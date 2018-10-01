@@ -170,66 +170,96 @@ func printTable() {
 	fmt.Println(`<script type="text/javascript" src="heroes.js"></script>`)
 }
 
-func replaceHearts(html string) string {
-	// heart := `<a href="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest?cb=20121016005115" class="image image-thumbnail" title="Heart"><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" alt="Heart" class="" style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" width="15" height="14"/></a>`
-	// newheart := `<img src="attributes/health.png" alt="Heart" class="" width="15" height="14" style="vertical-align: sub">`
-	heart := `https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115`
-	newheart := `attributes/health.png`
-	return strings.Replace(html, heart, newheart, -1)
+// func replaceHearts(html string) string {
+// 	// heart := `<a href="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest?cb=20121016005115" class="image image-thumbnail" title="Heart"><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" alt="Heart" class="" style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" width="15" height="14"/></a>`
+// 	// newheart := `<img src="attributes/health.png" alt="Heart" class="" width="15" height="14" style="vertical-align: sub">`
+// 	heart := `https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115`
+// 	newheart := `attributes/health.png`
+// 	return strings.Replace(html, heart, newheart, -1)
+// }
+
+// func replaceFatigue(html string) string {
+// 	// fatigue := `<a href="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest?cb=20121016005054" class="image image-thumbnail" title="Fatigue"><img src="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054" alt="Fatigue" class="" style="vertical-align: baseline" data-image-key="Fatigue.png" data-image-name="Fatigue.png" width="10" height="15"/></a>`
+// 	// newfatigue := `<img src="attributes/fatigue.png" alt="Fatigue" class="" width="10" height="15" style="vertical-align: baseline">`
+// 	fatigue := `https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054`
+// 	newfatigue := `attributes/fatigue.png`
+// 	html = strings.Replace(html, fatigue, newfatigue, -1)
+// 	fatigue = `https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest?cb=20121016005054`
+// 	return strings.Replace(html, fatigue, newfatigue, -1)
+// }
+
+// func replaceSurges(html string) string {
+// 	// surge := `<a href="/wiki/Surge" class="image image-thumbnail link-internal" title="Surge"><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" alt="Surge" class="" style="vertical-align: text-bottom" data-image-key="Surge.png" data-image-name="Surge.png" width="16" height="16"/></a>`
+// 	// newsurge := `<img src="attributes/surge.png" alt="Surge" class="" width="16" height="16" style="vertical-align: text-bottom">`
+// 	surge := `https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900`
+// 	newsurge := `attributes/surge.png`
+// 	return strings.Replace(html, surge, newsurge, -1)
+// }
+
+// func replaceShields(html string) string {
+// 	// shield := `<a href="/wiki/Shield" class="image image-thumbnail link-internal" title="Shield"><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Shield.png/revision/latest/scale-to-width-down/16?cb=20121015120900" alt="Shield" class="" style="vertical-align: text-bottom" data-image-key="Shield.png" data-image-name="Shield.png" width="16" height="16"/></a>`
+// 	// newshield := `<img src="attributes/shield.png" alt="Shield" class="" width="16" height="16" style="vertical-align: text-bottom">`
+// 	shield := `https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Shield.png/revision/latest/scale-to-width-down/16?cb=20121015120900`
+// 	newshield := `attributes/shield.png`
+// 	html = strings.Replace(html, shield, newshield, -1)
+// 	shield = `https://vignette.wikia.nocookie.net/descent2e/images/c/cf/Shield.png/revision/latest?cb=20121021145103`
+// 	newshield = `attributes/shield.png`
+// 	return strings.Replace(html, shield, newshield, -1)
+// }
+
+// func replaceActions(html string) string {
+// 	action := `https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410`
+// 	newaction := `attributes/action.png`
+// 	return strings.Replace(html, action, newaction, -1)
+// }
+
+// func replaceWillpower(html string) string {
+// 	willpower := `https://vignette.wikia.nocookie.net/descent2e/images/8/88/Willpower.png/revision/latest/scale-to-width-down/15?cb=20121013062622`
+// 	newwillpower := `attributes/willpower.png`
+// 	return strings.Replace(html, willpower, newwillpower, -1)
+// }
+
+// func replaceKnowledge(html string) string {
+// 	knowledge := `https://vignette.wikia.nocookie.net/descent2e/images/a/ad/Knowledge.png/revision/latest/scale-to-width-down/32?cb=20121013062540`
+// 	newknowledge := `attributes/knowledge.png`
+// 	return strings.Replace(html, knowledge, newknowledge, -1)
+// }
+
+// func replaceAwareness(html string) string {
+// 	awareness := `https://vignette.wikia.nocookie.net/descent2e/images/f/f5/Awareness.png/revision/latest/scale-to-width-down/20?cb=20121013062510`
+// 	newawareness := `attributes/awareness.png`
+// 	return strings.Replace(html, awareness, newawareness, -1)
+// }
+
+func iconHelper(src string, img *goquery.Selection) {
+	if strings.Contains(src, "Heart.png") {
+		img.SetAttr("src", "attributes/health.png")
+	} else if strings.Contains(src, "Fatigue.png") {
+		img.SetAttr("src", "attributes/fatigue.png")
+	} else if strings.Contains(src, "Surge.png") {
+		img.SetAttr("src", "attributes/surge.png")
+	} else if strings.Contains(src, "Shield.png") {
+		img.SetAttr("src", "attributes/defense.png")
+	} else if strings.Contains(src, "Action.png") {
+		img.SetAttr("src", "attributes/action.png")
+	} else if strings.Contains(src, "Willpower.png") {
+		img.SetAttr("src", "attributes/willpower.png")
+	} else if strings.Contains(src, "Knowledge.png") {
+		img.SetAttr("src", "attributes/knowledge.png")
+	} else if strings.Contains(src, "Awareness.png") {
+		img.SetAttr("src", "attributes/awareness.png")
+	}
 }
 
-func replaceFatigue(html string) string {
-	// fatigue := `<a href="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest?cb=20121016005054" class="image image-thumbnail" title="Fatigue"><img src="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054" alt="Fatigue" class="" style="vertical-align: baseline" data-image-key="Fatigue.png" data-image-name="Fatigue.png" width="10" height="15"/></a>`
-	// newfatigue := `<img src="attributes/fatigue.png" alt="Fatigue" class="" width="10" height="15" style="vertical-align: baseline">`
-	fatigue := `https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054`
-	newfatigue := `attributes/fatigue.png`
-	return strings.Replace(html, fatigue, newfatigue, -1)
-}
-
-func replaceSurges(html string) string {
-	// surge := `<a href="/wiki/Surge" class="image image-thumbnail link-internal" title="Surge"><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" alt="Surge" class="" style="vertical-align: text-bottom" data-image-key="Surge.png" data-image-name="Surge.png" width="16" height="16"/></a>`
-	// newsurge := `<img src="attributes/surge.png" alt="Surge" class="" width="16" height="16" style="vertical-align: text-bottom">`
-	surge := `https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900`
-	newsurge := `attributes/surge.png`
-	return strings.Replace(html, surge, newsurge, -1)
-}
-
-func replaceShields(html string) string {
-	// shield := `<a href="/wiki/Shield" class="image image-thumbnail link-internal" title="Shield"><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Shield.png/revision/latest/scale-to-width-down/16?cb=20121015120900" alt="Shield" class="" style="vertical-align: text-bottom" data-image-key="Shield.png" data-image-name="Shield.png" width="16" height="16"/></a>`
-	// newshield := `<img src="attributes/shield.png" alt="Shield" class="" width="16" height="16" style="vertical-align: text-bottom">`
-	shield := `https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Shield.png/revision/latest/scale-to-width-down/16?cb=20121015120900`
-	newshield := `attributes/shield.png`
-	html = strings.Replace(html, shield, newshield, -1)
-	shield = `https://vignette.wikia.nocookie.net/descent2e/images/c/cf/Shield.png/revision/latest?cb=20121021145103`
-	newshield = `attributes/shield.png`
-	return strings.Replace(html, shield, newshield, -1)
-}
-
-func replaceActions(html string) string {
-	action := `https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410`
-	newaction := `attributes/action.png`
-	return strings.Replace(html, action, newaction, -1)
-}
-
-func replaceWillpower(html string) string {
-	willpower := `https://vignette.wikia.nocookie.net/descent2e/images/8/88/Willpower.png/revision/latest/scale-to-width-down/15?cb=20121013062622`
-	newwillpower := `attributes/willpower.png`
-	return strings.Replace(html, willpower, newwillpower, -1)
-}
-
-func replaceKnowledge(html string) string {
-	knowledge := `https://vignette.wikia.nocookie.net/descent2e/images/a/ad/Knowledge.png/revision/latest/scale-to-width-down/32?cb=20121013062540`
-	newknowledge := `attributes/knowledge.png`
-	return strings.Replace(html, knowledge, newknowledge, -1)
-}
-
-func replaceAwareness(html string) string {
-	awareness := `https://vignette.wikia.nocookie.net/descent2e/images/f/f5/Awareness.png/revision/latest/scale-to-width-down/20?cb=20121013062510`
-	newawareness := `attributes/awareness.png`
-	return strings.Replace(html, awareness, newawareness, -1)
-}
-
-func replaceIcons(html string) string {
+func replaceIcons(td *goquery.Selection) *goquery.Selection {
+	td.Find("img").Each(func(i int, img *goquery.Selection) {
+		if src, ok := img.Attr("src"); ok {
+			iconHelper(src, img)
+		}
+		if src, ok := img.Attr("data-src"); ok {
+			iconHelper(src, img)
+		}
+	})
 	// html = replaceHearts(html)
 	// html = replaceFatigue(html)
 	// html = replaceSurges(html)
@@ -238,21 +268,23 @@ func replaceIcons(html string) string {
 	// html = replaceWillpower(html)
 	// html = replaceKnowledge(html)
 	// html = replaceAwareness(html)
-	return html
+	return td
 }
 
 func tdToAbility(td *goquery.Selection) string {
+	td = replaceIcons(td)
 	s, _ := td.Html()
 	ability := strings.TrimSpace(s)
 	if ability == "" {
 		ability = strings.TrimSpace(td.Text())
 	}
-	return replaceIcons(ability)
+	return ability
 }
 
 func tdToHeroic(td *goquery.Selection) string {
+	td = replaceIcons(td)
 	heroic := strings.TrimSpace(td.Text())
-	return replaceIcons(heroic)
+	return heroic
 }
 
 func heroFromTd(td *goquery.Selection) hero {
@@ -301,6 +333,20 @@ func main() {
 			}
 
 			characters := doc.Find("tbody")
+
+			characters.Find("a").Each(func(i int, a *goquery.Selection) {
+				if class, ok := a.Attr("class"); ok {
+					if strings.Contains(class, "image image-thumbnail") {
+						s, _ := a.Html()
+						a = a.ReplaceWithHtml(s)
+					}
+				}
+				if href, ok := a.Attr("href"); ok {
+					if strings.Contains(href, "/wiki/") {
+						a.SetAttr("href", "http://descent2e.wikia.com"+href)
+					}
+				}
+			})
 
 			if characters.Length() > 0 {
 				base := characters.First().Find("td")
