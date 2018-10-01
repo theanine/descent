@@ -1,5 +1,25 @@
 // <SCRIPT LANGUAGE="JavaScript">
 
+function showHideRowsOld(checkBoxSender)
+{
+	var classToShowOrHide = checkBoxSender.value
+    $('.' + classToShowOrHide, '#heroTable').each(function(){
+        $(this).css('display', ((checkBoxSender.checked) ? 'block' : 'none'));
+    });
+}
+
+function showHideRows(selectSender)
+{
+   var a = $(selectSender).val();
+   $("tr", "#heroTable").each(function(){
+   		if (a == "" || $(this).attr("class") == a || typeof $(this).attr("class") === "undefined") {
+		    $(this).show();
+		} else {
+		    $(this).hide();
+		}
+	});
+}
+
 function colorizeCells(cells, red, orange, yellow, green, dkGreen) {
 	for (var i=0, len=cells.length; i<len; i++) {
 		val = parseInt(cells[i].innerHTML, 10)

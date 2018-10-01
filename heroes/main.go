@@ -96,6 +96,7 @@ func downloadImages() {
 
 func printTable() {
 	fmt.Println(`<html><head>`)
+	fmt.Println(`<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>`)
 	fmt.Println(`<link rel="stylesheet" type="text/css" href="heroes.css">`)
 	fmt.Println(`</head><body><table id="heroTable"><thead><tr>`)
 	fmt.Printf("<th class=\"expansion\">Expansion</th>\n")
@@ -114,6 +115,15 @@ func printTable() {
 	fmt.Printf("<th class=\"heroic\">Heroic Feat</th>\n")
 	fmt.Printf("<th class=\"quote\">Quote</th>\n")
 	fmt.Println("</tr></thead><tbody>\n")
+	fmt.Println(`<tr><td><td><td><td>`)
+	fmt.Println(`<div id="selectType">`)
+	fmt.Println(`<select onclick="showHideRows(this)">`)
+	fmt.Println(`<option value=""></option>`)
+	fmt.Println(`<option value="healer">Healer</option>`)
+	fmt.Println(`<option value="mage">Mage</option>`)
+	fmt.Println(`<option value="scout">Scout</option>`)
+	fmt.Println(`<option value="warrior">Warrior</option>`)
+	fmt.Println(`</select></div><td></tr>`)
 
 	for _, h := range heroes {
 		ck := false

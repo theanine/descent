@@ -1,6 +1,9 @@
 <html><head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="heroes.css">
-</head><body><table id="heroTable"><thead><tr>
+</head><body>
+<table id="heroTable">
+<thead><tr>
 <th class="expansion">Expansion</th>
 <th class="hero">Hero</th>
 <th class="image">Image</th>
@@ -17,8 +20,23 @@
 <th class="heroic">Heroic Feat</th>
 <th class="quote">Quote</th>
 </tr></thead><tbody>
-
 <tr>
+<td>
+<td>
+<td>
+<td>
+<div id="selectType">
+<select onclick="showHideRows(this)">
+  <option value=""></option>
+  <option value="healer">Healer</option>
+  <option value="mage">Mage</option>
+  <option value="scout">Scout</option>
+  <option value="warrior">Warrior</option>
+</select>
+</div>
+<td>
+</tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Manor_of_Ravens.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Alys_Raine">Alys Raine</a></td>
 <td class="image"><img src="./heroes-small/AlysRaine.png"></td>
@@ -36,7 +54,7 @@
 <td class="quote">"The thief and the lord are equal; the law calls them both to justice."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion"><img src="expansions/Crusade_of_the_Forgotten.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Andira_Runehand">Andira Runehand</a></td>
 <td class="image"><img src="./heroes-small/AndiraRunehand.png"></td>
@@ -54,7 +72,7 @@
 <td class="quote">"To me, brave friends! Gather to my voice and light!"</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Andira_Runehand">Andira Runehand (CK)</a></td>
 <td class="image"><img src="./heroes-small/AndiraRunehandCK.png"></td>
@@ -72,7 +90,7 @@
 <td class="quote">"To me, brave friends! Gather to my voice and light!"</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"><img src="expansions/Shards_of_Everdark.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Arvel_Worldwalker">Arvel Worldwalker</a></td>
 <td class="image"><img src="./heroes-small/ArvelWorldwalker.png"></td>
@@ -92,7 +110,7 @@
 <td class="quote">"My quest remains unsatisfied - the search for a problem to which I am not the answer!"</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Arvel_Worldwalker">Arvel Worldwalker (CK)</a></td>
 <td class="image"><img src="./heroes-small/ArvelWorldwalkerCK.png"></td>
@@ -112,7 +130,7 @@
 <td class="quote">"My quest remains unsatisfied - the search for a problem to which I am not the answer!"</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ashrian">Ashrian</a></td>
 <td class="image"><img src="./heroes-small/Ashrian.png"></td>
@@ -130,7 +148,7 @@
 <td class="quote">"I no more understand why I can hear the spirits speak than I understand why you cannot."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion"><img src="expansions/Crusade_of_the_Forgotten.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Astarra">Astarra</a></td>
 <td class="image"><img src="./heroes-small/Astarra.png"></td>
@@ -148,7 +166,7 @@
 <td class="quote">"You’d be surprised what you can learn when you've no one to tell you how to think."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Astarra">Astarra (CK)</a></td>
 <td class="image"><img src="./heroes-small/AstarraCK.png"></td>
@@ -166,7 +184,7 @@
 <td class="quote">"You’d be surprised what you can learn when you've no one to tell you how to think."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion"><img src="expansions/The_Trollfens.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Augur_Grisom">Augur Grisom</a></td>
 <td class="image"><img src="./heroes-small/AugurGrisom.png"></td>
@@ -184,7 +202,7 @@
 <td class="quote">"An endless sea of possibility lies in what is yet to come. Even a tiny glimpse will drive most mad."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Aurim">Aurim (CK)</a></td>
 <td class="image"><img src="./heroes-small/AurimCK.png"></td>
@@ -202,7 +220,7 @@
 <td class="quote">"Ah, the rare Quixinlan Rune Harness I've read about! What a joy to see such wonders in person."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Avric_Albright">Avric Albright</a></td>
 <td class="image"><img src="./heroes-small/AvricAlbright.png"></td>
@@ -220,7 +238,7 @@
 <td class="quote">"I pledge myself to those in need.  I will be their shield, their light in the darkness."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Bogran_the_Shadow">Bogran the Shadow (CK)</a></td>
 <td class="image"><img src="./heroes-small/BogranTheShadowCK.png"></td>
@@ -238,7 +256,7 @@
 <td class="quote">"I am a deadly wind, invisible and inescapable. You cannot see me, but you can see where I have been."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion"><img src="expansions/Crown_of_Destiny.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Brother_Gherinn">Brother Gherinn</a></td>
 <td class="image"><img src="./heroes-small/BrotherGherinn.png"></td>
@@ -256,7 +274,7 @@
 <td class="quote">"We must suffer and purge our souls unto life, for the flame shall be our judge."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Brother_Gherinn">Brother Gherinn (CK)</a></td>
 <td class="image"><img src="./heroes-small/BrotherGherinnCK.png"></td>
@@ -274,7 +292,7 @@
 <td class="quote">"We must suffer and purge our souls unto life, for the flame shall be our judge."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Brother_Glyr">Brother Glyr (CK)</a></td>
 <td class="image"><img src="./heroes-small/BrotherGlyrCK.png"></td>
@@ -292,7 +310,7 @@
 <td class="quote">"keep moving, ye hear? I'll not leave a one of ye behind!"</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion"><img src="expansions/Bonds_of_the_Wild.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Challara">Challara</a></td>
 <td class="image"><img src="./heroes-small/Challara.png"></td>
@@ -310,7 +328,7 @@
 <td class="quote">"The flames of my fury you have survived, but can you endure the flame of my dragon?"</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Challara">Challara (CK)</a></td>
 <td class="image"><img src="./heroes-small/ChallaraCK.png"></td>
@@ -328,7 +346,7 @@
 <td class="quote">"The flames of my fury you have survived, but can you endure the flame of my dragon?"</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Crown_of_Destiny.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Corbin">Corbin</a></td>
 <td class="image"><img src="./heroes-small/Corbin.png"></td>
@@ -346,7 +364,7 @@
 <td class="quote">"I don't hold grudges. I keep short accounts. Now fight me!"</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Corbin">Corbin (CK)</a></td>
 <td class="image"><img src="./heroes-small/CorbinCK.png"></td>
@@ -364,7 +382,7 @@
 <td class="quote">"I don't hold grudges. I keep short accounts. Now fight me!"</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion"><img src="expansions/Labyrinth_of_Ruin.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Dezra_the_Vile">Dezra the Vile</a></td>
 <td class="image"><img src="./heroes-small/DezraTheVile.png"></td>
@@ -382,7 +400,7 @@
 <td class="quote">"Very few people understand my abilities.  I prefer it that way."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion"><img src="expansions/Oath_of_the_Outcast.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Elder_Mok">Elder Mok</a></td>
 <td class="image"><img src="./heroes-small/ElderMok.png"></td>
@@ -400,7 +418,7 @@
 <td class="quote">"My message is not my own. Follow my instruction or fall where you stand... You've been warned."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Elder_Mok">Elder Mok (CK)</a></td>
 <td class="image"><img src="./heroes-small/ElderMokCK.png"></td>
@@ -418,7 +436,7 @@
 <td class="quote">"My message is not my own. Follow my instruction or fall where you stand... You've been warned."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Eliam">Eliam (CK)</a></td>
 <td class="image"><img src="./heroes-small/EliamCK.png"></td>
@@ -436,7 +454,7 @@
 <td class="quote">"Battle is a dance of blades and wit."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"><img src="expansions/Treaty_of_Champions.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Grey_Ker">Grey Ker</a></td>
 <td class="image"><img src="./heroes-small/GreyKer.png"></td>
@@ -454,7 +472,7 @@
 <td class="quote">"If justice is the shadow of a setting sun, I am the midnight that follows."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Grey_Ker">Grey Ker (CK)</a></td>
 <td class="image"><img src="./heroes-small/GreyKerCK.png"></td>
@@ -472,7 +490,7 @@
 <td class="quote">"If justice is the shadow of a setting sun, I am the midnight that follows."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Grisban_the_Thirsty">Grisban the Thirsty</a></td>
 <td class="image"><img src="./heroes-small/GrisbanTheThirsty.png"></td>
@@ -490,7 +508,7 @@
 <td class="quote">"All this killing is thirsty work. Drink with me!"</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion"><img src="expansions/Lair_of_the_Wyrm.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/High_Mage_Quellen">High Mage Quellen</a></td>
 <td class="image"><img src="./heroes-small/HighMageQuellen.png"></td>
@@ -508,7 +526,7 @@
 <td class="quote">"I feed off the wisdom of others, even when it’s less filling than my own."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Hugo_the_Glorious">Hugo the Glorious (CK)</a></td>
 <td class="image"><img src="./heroes-small/HugoTheGloriousCK.png"></td>
@@ -526,7 +544,7 @@
 <td class="quote">"The songs of my name and my triumphs should be heard in every corner of the world."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion"><img src="expansions/Visions_of_Dawn.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ispher">Ispher</a></td>
 <td class="image"><img src="./heroes-small/Ispher.png"></td>
@@ -544,7 +562,7 @@
 <td class="quote">"We are feared,  we are despised, yet still I am called to help?"</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ispher">Ispher (CK)</a></td>
 <td class="image"><img src="./heroes-small/IspherCK.png"></td>
@@ -562,7 +580,7 @@
 <td class="quote">"We are feared,  we are despised, yet still I am called to help?"</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion"><img src="expansions/Crown_of_Destiny.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Jaes_the_Exile">Jaes the Exile</a></td>
 <td class="image"><img src="./heroes-small/JaesTheExile.png"></td>
@@ -580,7 +598,7 @@
 <td class="quote">"Courage and sacrifice means nothing! We must overcome or die in shame."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Jaes_the_Exile">Jaes the Exile (CK)</a></td>
 <td class="image"><img src="./heroes-small/JaesTheExileCK.png"></td>
@@ -598,7 +616,7 @@
 <td class="quote">"Courage and sacrifice means nothing! We must overcome or die in shame."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Jain_Fairwood">Jain Fairwood</a></td>
 <td class="image"><img src="./heroes-small/JainFairwood.png"></td>
@@ -616,7 +634,7 @@
 <td class="quote">"Out here in the wilds, I protect those who have misjudged me."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion"><img src="expansions/Treaty_of_Champions.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Jonas_the_Kind">Jonas the Kind</a></td>
 <td class="image"><img src="./heroes-small/JonasTheKind.png"></td>
@@ -634,7 +652,7 @@
 <td class="quote">"My place is between you and the innocent. You have one chance to lay down your blade."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Jonas_the_Kind">Jonas the Kind (CK)</a></td>
 <td class="image"><img src="./heroes-small/JonasTheKindCK.png"></td>
@@ -652,7 +670,7 @@
 <td class="quote">"My place is between you and the innocent. You have one chance to lay down your blade."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Shards_of_Everdark.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Karnon">Karnon</a></td>
 <td class="image"><img src="./heroes-small/Karnon.png"></td>
@@ -670,7 +688,7 @@
 <td class="quote">"At end of ages, Karnon remain: ever strong, ever alone."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Karnon">Karnon (CK)</a></td>
 <td class="image"><img src="./heroes-small/KarnonCK.png"></td>
@@ -688,7 +706,7 @@
 <td class="quote">"At end of ages, Karnon remain: ever strong, ever alone."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Kirga">Kirga (CK)</a></td>
 <td class="image"><img src="./heroes-small/KirgaCK.png"></td>
@@ -706,7 +724,7 @@
 <td class="quote">"Knowing how to find things helps keep one hidden. And I know how to find anything..."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Treaty_of_Champions.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Krutzbeck">Krutzbeck</a></td>
 <td class="image"><img src="./heroes-small/Krutzbeck.png"></td>
@@ -724,7 +742,7 @@
 <td class="quote">"Hit 'em hard. If they're still standing, hit 'em again--harder."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Krutzbeck">Krutzbeck (CK)</a></td>
 <td class="image"><img src="./heroes-small/KrutzbeckCK.png"></td>
@@ -742,7 +760,7 @@
 <td class="quote">"Hit 'em hard. If they're still standing, hit 'em again--harder."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Landrec_the_Wise">Landrec the Wise (CK)</a></td>
 <td class="image"><img src="./heroes-small/LandrecTheWiseCK.png"></td>
@@ -760,7 +778,7 @@
 <td class="quote">"Wisdom comes with age, but knowledge must always be searched for."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Laughin_Buldar">Laughin Buldar (CK)</a></td>
 <td class="image"><img src="./heroes-small/LaughinBuldarCK.png"></td>
@@ -778,7 +796,7 @@
 <td class="quote">"Courage, my brothers! Surrender yourselves to the joy of battle and we shall meet our destiny together!"</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"><img src="expansions/Oath_of_the_Outcast.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Laurel_of_Bloodwood">Laurel of Bloodwood</a></td>
 <td class="image"><img src="./heroes-small/LaurelOfBloodwood.png"></td>
@@ -796,7 +814,7 @@
 <td class="quote">"Herald and reaper, my arrow calls your name; answer with silence and blood."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Laurel_of_Bloodwood">Laurel of Bloodwood (CK)</a></td>
 <td class="image"><img src="./heroes-small/LaurelOfBloodwoodCK.png"></td>
@@ -814,7 +832,7 @@
 <td class="quote">"Herald and reaper, my arrow calls your name; answer with silence and blood."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Leoric_of_the_Book">Leoric of the Book</a></td>
 <td class="image"><img src="./heroes-small/LeoricOfTheBook.png"></td>
@@ -832,7 +850,7 @@
 <td class="quote">"If my years of study have taught me anything, it is that I am worthy of the knowledge I possess."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"><img src="expansions/Crown_of_Destiny.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lindel">Lindel</a></td>
 <td class="image"><img src="./heroes-small/Lindel.png"></td>
@@ -850,7 +868,7 @@
 <td class="quote">"I have been here before and watched darkness triumph. It will not happen again."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lindel">Lindel (CK)</a></td>
 <td class="image"><img src="./heroes-small/LindelCK.png"></td>
@@ -868,7 +886,7 @@
 <td class="quote">"I have been here before and watched darkness triumph. It will not happen again."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"><img src="expansions/Labyrinth_of_Ruin.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Logan_Lashley">Logan Lashley</a></td>
 <td class="image"><img src="./heroes-small/LoganLashley.png"></td>
@@ -886,7 +904,7 @@
 <td class="quote">"There is no question that you need me.  The question is, can you afford me?"</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Guardians_of_Deephall.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lord_Hawthorne">Lord Hawthorne</a></td>
 <td class="image"><img src="./heroes-small/LordHawthorne.png"></td>
@@ -904,7 +922,7 @@
 <td class="quote">"None fall faster than they that flee."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lord_Hawthorne">Lord Hawthorne (CK)</a></td>
 <td class="image"><img src="./heroes-small/LordHawthorneCK.png"></td>
@@ -922,7 +940,7 @@
 <td class="quote">"None fall faster than they that flee."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion"><img src="expansions/Bonds_of_the_Wild.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lyssa">Lyssa</a></td>
 <td class="image"><img src="./heroes-small/Lyssa.png"></td>
@@ -940,7 +958,7 @@
 <td class="quote">"There is more knowledge in the squirming of my prey than in all your dusty tomes."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lyssa">Lyssa (CK)</a></td>
 <td class="image"><img src="./heroes-small/LyssaCK.png"></td>
@@ -958,7 +976,7 @@
 <td class="quote">"There is more knowledge in the squirming of my prey than in all your dusty tomes."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Mad_Carthos">Mad Carthos (CK)</a></td>
 <td class="image"><img src="./heroes-small/MadCarthosCK.png"></td>
@@ -976,7 +994,7 @@
 <td class="quote">"If it's madness you seek power at any cost, then yes, you may call me mad."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion"><img src="expansions/Visions_of_Dawn.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Master_Thorn">Master Thorn</a></td>
 <td class="image"><img src="./heroes-small/MasterThorn.png"></td>
@@ -994,7 +1012,7 @@
 <td class="quote">"I walk the unseen paths, those that were never meant for the feet of men."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Master_Thorn">Master Thorn (CK)</a></td>
 <td class="image"><img src="./heroes-small/MasterThornCK.png"></td>
@@ -1012,7 +1030,7 @@
 <td class="quote">"I walk the unseen paths, those that were never meant for the feet of men."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Guardians_of_Deephall.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Mordrog">Mordrog</a></td>
 <td class="image"><img src="./heroes-small/Mordrog.png"></td>
@@ -1030,7 +1048,7 @@
 <td class="quote">"Prejudice is only a mask for jealousy."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Mordrog">Mordrog (CK)</a></td>
 <td class="image"><img src="./heroes-small/MordrogCK.png"></td>
@@ -1048,7 +1066,7 @@
 <td class="quote">"Prejudice is only a mask for jealousy."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Stewards_of_the_Secret.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Nanok_of_the_Blade">Nanok of the Blade</a></td>
 <td class="image"><img src="./heroes-small/NanokOfTheBlade.png"></td>
@@ -1066,7 +1084,7 @@
 <td class="quote">"Some fools cower behind metal, thinking the purpose of battle is survival."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Nanok_of_the_Blade">Nanok of the Blade (CK)</a></td>
 <td class="image"><img src="./heroes-small/NanokOfTheBladeCK.png"></td>
@@ -1084,7 +1102,7 @@
 <td class="quote">"Some fools cower behind metal, thinking the purpose of battle is survival."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Visions_of_Dawn.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Nara_the_Fang">Nara the Fang</a></td>
 <td class="image"><img src="./heroes-small/NaraTheFang.png"></td>
@@ -1102,7 +1120,7 @@
 <td class="quote">"Take your lessons from the wind: swift and constant striking as a howling gale."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Nara_the_Fang">Nara the Fang (CK)</a></td>
 <td class="image"><img src="./heroes-small/NaraTheFangCK.png"></td>
@@ -1120,7 +1138,7 @@
 <td class="quote">"Take your lessons from the wind: swift and constant striking as a howling gale."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion"><img src="expansions/Stewards_of_the_Secret.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Okaluk_and_Rakash">Okaluk and Rakash</a></td>
 <td class="image"><img src="./heroes-small/OkalukAndRakash.png"></td>
@@ -1138,7 +1156,7 @@
 <td class="quote">"I will follow where you lead, old friend. But let us go swiftly!"</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Okaluk_and_Rakash">Okaluk and Rakash (CK)</a></td>
 <td class="image"><img src="./heroes-small/OkalukAndRakashCK.png"></td>
@@ -1156,7 +1174,7 @@
 <td class="quote">"I will follow where you lead, old friend. But let us go swiftly!"</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Shards_of_Everdark.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/One_Fist">One Fist</a></td>
 <td class="image"><img src="./heroes-small/OneFist.png"></td>
@@ -1174,7 +1192,7 @@
 <td class="quote">"I didn't get the hook after losing my hand. I forfeited my hand to make room for the hook!"</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/One_Fist">One Fist (CK)</a></td>
 <td class="image"><img src="./heroes-small/OneFistCK.png"></td>
@@ -1192,7 +1210,7 @@
 <td class="quote">"I didn't get the hook after losing my hand. I forfeited my hand to make room for the hook!"</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Shadow_of_Nerekhall.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Orkell_the_Swift">Orkell the Swift</a></td>
 <td class="image"><img src="./heroes-small/OrkellTheSwift.png"></td>
@@ -1210,7 +1228,7 @@
 <td class="quote">"Just try to keep up, all right?"</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Labyrinth_of_Ruin.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Pathfinder_Durik">Pathfinder Durik</a></td>
 <td class="image"><img src="./heroes-small/PathfinderDurik.png"></td>
@@ -1228,7 +1246,7 @@
 <td class="quote">"The ways I know are dangerous, and I tread them carefully.  I advise you to do the same..."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion"><img src="expansions/Shadow_of_Nerekhall.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ravaella_Lightfoot">Ravaella Lightfoot</a></td>
 <td class="image"><img src="./heroes-small/RavaellaLightfoot.png"></td>
@@ -1246,7 +1264,7 @@
 <td class="quote">"Am I here? Am I over there? Or am I right behind you?"</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Raythen_(Hero)">Raythen</a></td>
 <td class="image"><img src="./heroes-small/Raythen.png"></td>
@@ -1264,7 +1282,7 @@
 <td class="quote">""Just be careful, I'd wager this place still has a few tricks up its sleeve.""</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Red_Scorpion">Red Scorpion (CK)</a></td>
 <td class="image"><img src="./heroes-small/RedScorpionCK.png"></td>
@@ -1282,7 +1300,7 @@
 <td class="quote">"Balance is the essence of success. To succeed, one must be balanced in all things."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion"><img src="expansions/Shadow_of_Nerekhall.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Rendiel">Rendiel</a></td>
 <td class="image"><img src="./heroes-small/Rendiel.png"></td>
@@ -1300,7 +1318,7 @@
 <td class="quote">"An ancient melody, refined through countless generations... freely given."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Lair_of_the_Wyrm.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Reynhart_the_Worthy">Reynhart the Worthy</a></td>
 <td class="image"><img src="./heroes-small/ReynhartTheWorthy.png"></td>
@@ -1318,7 +1336,7 @@
 <td class="quote">"I’ve been known to lose, but never to give up!"</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"><img src="expansions/The_Trollfens.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Roganna_the_Shade">Roganna the Shade</a></td>
 <td class="image"><img src="./heroes-small/RogannaTheShade.png"></td>
@@ -1336,7 +1354,7 @@
 <td class="quote">"Keep perfectly still. It may look small, but that creature is aggressive, and its bite fatal."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"><img src="expansions/Bonds_of_the_Wild.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ronan_of_the_Wild">Ronan of the Wild</a></td>
 <td class="image"><img src="./heroes-small/RonanOfTheWild.png"></td>
@@ -1360,7 +1378,7 @@ cards.
 <td class="quote">"There's something unnatural stirring in the forest."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ronan_of_the_Wild">Ronan of the Wild (CK)</a></td>
 <td class="image"><img src="./heroes-small/RonanOfTheWildCK.png"></td>
@@ -1384,7 +1402,7 @@ cards.
 <td class="quote">"There's something unnatural stirring in the forest."</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion"><img src="expansions/Guardians_of_Deephall.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Sahla">Sahla</a></td>
 <td class="image"><img src="./heroes-small/Sahla.png"></td>
@@ -1402,7 +1420,7 @@ cards.
 <td class="quote">"Why be only one man when I have the power to be many?"</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Sahla">Sahla (CK)</a></td>
 <td class="image"><img src="./heroes-small/SahlaCK.png"></td>
@@ -1420,7 +1438,7 @@ cards.
 <td class="quote">"Why be only one man when I have the power to be many?"</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Serena_(Hero)">Serena</a></td>
 <td class="image"><img src="./heroes-small/Serena.png"></td>
@@ -1438,7 +1456,7 @@ cards.
 <td class="quote">"I have waited in silence for far too long. Now the world will know my song."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion"><img src="expansions/Oath_of_the_Outcast.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Shiver">Shiver</a></td>
 <td class="image"><img src="./heroes-small/Shiver.png"></td>
@@ -1456,7 +1474,7 @@ cards.
 <td class="quote">"I care not the cost or pain, nor if my judgment was just; I will work out my redemption."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Shiver">Shiver (CK)</a></td>
 <td class="image"><img src="./heroes-small/ShiverCK.png"></td>
@@ -1474,7 +1492,7 @@ cards.
 <td class="quote">"I care not the cost or pain, nor if my judgment was just; I will work out my redemption."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"><img src="expansions/Guardians_of_Deephall.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Silhouette">Silhouette</a></td>
 <td class="image"><img src="./heroes-small/Silhouette.png"></td>
@@ -1492,7 +1510,7 @@ cards.
 <td class="quote">"Don't worry... I'll just be right around the corner."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Silhouette">Silhouette (CK)</a></td>
 <td class="image"><img src="./heroes-small/SilhouetteCK.png"></td>
@@ -1510,7 +1528,7 @@ cards.
 <td class="quote">"Don't worry... I'll just be right around the corner."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Visions_of_Dawn.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Sir_Valadir">Sir Valadir</a></td>
 <td class="image"><img src="./heroes-small/SirValadir.png"></td>
@@ -1530,7 +1548,7 @@ cards.
 <td class="quote">"Stay close. I've got the bigger sword."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Sir_Valadir">Sir Valadir (CK)</a></td>
 <td class="image"><img src="./heroes-small/SirValadirCK.png"></td>
@@ -1550,7 +1568,7 @@ cards.
 <td class="quote">"Stay close. I've got the bigger sword."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Shards_of_Everdark.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Steelhorns">Steelhorns</a></td>
 <td class="image"><img src="./heroes-small/Steelhorns.png"></td>
@@ -1568,7 +1586,7 @@ cards.
 <td class="quote">"Friends are an awful lot like foes. Neither knows when to get out of my way."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Steelhorns">Steelhorns (CK)</a></td>
 <td class="image"><img src="./heroes-small/SteelhornsCK.png"></td>
@@ -1586,7 +1604,7 @@ cards.
 <td class="quote">"Friends are an awful lot like foes. Neither knows when to get out of my way."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Syndrael">Syndrael</a></td>
 <td class="image"><img src="./heroes-small/Syndrael.png"></td>
@@ -1604,7 +1622,7 @@ cards.
 <td class="quote">"You swear undying loyalty, yet you are mortal.  What can you know of commitment?"</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Crusade_of_the_Forgotten.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tahlia">Tahlia</a></td>
 <td class="image"><img src="./heroes-small/Tahlia.png"></td>
@@ -1622,7 +1640,7 @@ cards.
 <td class="quote">"We will only prevail when evil fears the darkness more than hates the light."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tahlia">Tahlia (CK)</a></td>
 <td class="image"><img src="./heroes-small/TahliaCK.png"></td>
@@ -1640,7 +1658,7 @@ cards.
 <td class="quote">"We will only prevail when evil fears the darkness more than hates the light."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"><img src="expansions/Stewards_of_the_Secret.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tatianna">Tatianna</a></td>
 <td class="image"><img src="./heroes-small/Tatianna.png"></td>
@@ -1658,7 +1676,7 @@ cards.
 <td class="quote">"My sisters have given me everything I seek only to return that favor."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tatianna">Tatianna (CK)</a></td>
 <td class="image"><img src="./heroes-small/TatiannaCK.png"></td>
@@ -1676,7 +1694,7 @@ cards.
 <td class="quote">"My sisters have given me everything I seek only to return that favor."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"><img src="expansions/Crusade_of_the_Forgotten.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tetherys">Tetherys</a></td>
 <td class="image"><img src="./heroes-small/Tetherys.png"></td>
@@ -1694,7 +1712,7 @@ cards.
 <td class="quote">"I am a daughter of darkness and a companion of chaos; fate has forgotten my name."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tetherys">Tetherys (CK)</a></td>
 <td class="image"><img src="./heroes-small/TetherysCK.png"></td>
@@ -1712,7 +1730,7 @@ cards.
 <td class="quote">"I am a daughter of darkness and a companion of chaos; fate has forgotten my name."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"><img src="expansions/Manor_of_Ravens.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Thaiden_Mistpeak">Thaiden Mistpeak</a></td>
 <td class="image"><img src="./heroes-small/ThaidenMistpeak.png"></td>
@@ -1730,7 +1748,7 @@ cards.
 <td class="quote">"We all have debts to pay."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"><img src="expansions/Shadow_of_Nerekhall.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tinashi_the_Wanderer">Tinashi the Wanderer</a></td>
 <td class="image"><img src="./heroes-small/TinashiTheWanderer.png"></td>
@@ -1748,7 +1766,7 @@ cards.
 <td class="quote">"Shadows keep me. Shadows protect me. There is nothing to fear in the shadows... except me."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tobin_Farslayer">Tobin Farslayer (CK)</a></td>
 <td class="image"><img src="./heroes-small/TobinFarslayerCK.png"></td>
@@ -1766,7 +1784,7 @@ cards.
 <td class="quote">"It matters not how far away you are. My bow can reach you."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tomble_Burrowell">Tomble Burrowell</a></td>
 <td class="image"><img src="./heroes-small/TombleBurrowell.png"></td>
@@ -1784,7 +1802,7 @@ cards.
 <td class="quote">"Don't think of this as you being robbed. Instead, think of it as you donating to a worthy cause."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion"><img src="expansions/Oath_of_the_Outcast.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Trenloe_the_Strong">Trenloe the Strong</a></td>
 <td class="image"><img src="./heroes-small/TrenloeTheStrong.png"></td>
@@ -1802,7 +1820,7 @@ cards.
 <td class="quote">"I will stand when none others do. Though my body may fail, my courage will never break!"</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Trenloe_the_Strong">Trenloe the Strong (CK)</a></td>
 <td class="image"><img src="./heroes-small/TrenloeTheStrongCK.png"></td>
@@ -1820,7 +1838,7 @@ cards.
 <td class="quote">"I will stand when none others do. Though my body may fail, my courage will never break!"</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion"><img src="expansions/Stewards_of_the_Secret.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Truthseer_Kel">Truthseer Kel</a></td>
 <td class="image"><img src="./heroes-small/TruthseerKel.png"></td>
@@ -1838,7 +1856,7 @@ cards.
 <td class="quote">"“Some say they’ve seen the whole of Terrinoth. They are blind.”"</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Truthseer_Kel">Truthseer Kel (CK)</a></td>
 <td class="image"><img src="./heroes-small/TruthseerKelCK.png"></td>
@@ -1856,7 +1874,7 @@ cards.
 <td class="quote">"“Some say they’ve seen the whole of Terrinoth. They are blind.”"</td>
 </tr>
 
-<tr>
+<tr class="healer">
 <td class="expansion"><img src="expansions/Labyrinth_of_Ruin.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ulma_Grimstone">Ulma Grimstone</a></td>
 <td class="image"><img src="./heroes-small/UlmaGrimstone.png"></td>
@@ -1874,7 +1892,7 @@ cards.
 <td class="quote">"The only thing more exciting than mixing up a new concoction is actually testing it."</td>
 </tr>
 
-<tr>
+<tr class="warrior">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Varikas_the_Dead">Varikas the Dead (CK)</a></td>
 <td class="image"><img src="./heroes-small/VarikasTheDeadCK.png"></td>
@@ -1892,7 +1910,7 @@ cards.
 <td class="quote">"I have already died for freedom once before. If I must die again, I will not die alone."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion"><img src="expansions/Bonds_of_the_Wild.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Vyrah_the_Falconer">Vyrah the Falconer</a></td>
 <td class="image"><img src="./heroes-small/VyrahTheFalconer.png"></td>
@@ -1910,7 +1928,7 @@ cards.
 <td class="quote">"If you train a falcon well, you begin to trust her more than your eyes."</td>
 </tr>
 
-<tr>
+<tr class="scout">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Vyrah_the_Falconer">Vyrah the Falconer (CK)</a></td>
 <td class="image"><img src="./heroes-small/VyrahTheFalconerCK.png"></td>
@@ -1928,7 +1946,7 @@ cards.
 <td class="quote">"If you train a falcon well, you begin to trust her more than your eyes."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Widow_Tarha">Widow Tarha</a></td>
 <td class="image"><img src="./heroes-small/WidowTarha.png"></td>
@@ -1946,7 +1964,7 @@ cards.
 <td class="quote">"I have nothing left to lose.  Yet, there is so much more power for me to gain."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion"><img src="expansions/Treaty_of_Champions.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Zyla">Zyla</a></td>
 <td class="image"><img src="./heroes-small/Zyla.png"></td>
@@ -1964,7 +1982,7 @@ cards.
 <td class="quote">"Pursue me all you want; we’ll meet when and where I decide – and there you will die."</td>
 </tr>
 
-<tr>
+<tr class="mage">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Zyla">Zyla (CK)</a></td>
 <td class="image"><img src="./heroes-small/ZylaCK.png"></td>

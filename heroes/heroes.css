@@ -25,6 +25,19 @@ td.expansion {
 table thead tr{
 	display:block;
 }
+table.healer tr.healer {
+	display:table-row;
+}
+table.mage tr.mage {
+	display:table-row;
+}
+table.scout tr.scout {
+	display:table-row;
+}
+table.warrior tr.warrior {
+	display:table-row;
+}
+
 /*
 table th, table td{
 	width:100px; //fixed width
