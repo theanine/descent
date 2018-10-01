@@ -39,6 +39,7 @@ var expansions = map[string]struct{}{
 
 type hero struct {
 	name        string
+	url         string
 	archetype   string
 	expansion   string
 	description string
@@ -84,6 +85,193 @@ func (h *hero) print() {
 		h.might, h.knowledge, h.willpower, h.awareness, h.ability, h.heroic, h.quote)
 }
 
+func downloadImages() {
+	for _, h := range heroes {
+		var conf utils.Config
+		conf.Url = h.img
+		conf.Outfile = strings.Split(h.img, "/")[7]
+		utils.Wget(conf)
+	}
+}
+
+func printTable() {
+	fmt.Println(`<html><head>`)
+	fmt.Println(`<link rel="stylesheet" type="text/css" href="heroes.css">`)
+	fmt.Println(`</head><body><table id="heroTable"><thead><tr>`)
+	fmt.Printf("<th class=\"expansion\">Expansion</th>\n")
+	fmt.Printf("<th class=\"hero\">Hero</th>\n")
+	fmt.Printf("<th class=\"image\">Image</th>\n")
+	fmt.Printf("<th class=\"archetype\">Type</th>\n")
+	fmt.Printf("<th class=\"num speed\"><img src=\"attributes/speed.png\" class=\"header\"></th>\n")
+	fmt.Printf("<th class=\"num health\"><img src=\"attributes/health.png\" class=\"header\"></th>\n")
+	fmt.Printf("<th class=\"num stamina\"><img src=\"attributes/fatigue.png\" class=\"header\"></th>\n")
+	fmt.Printf("<th class=\"num die\"><img src=\"attributes/defense.png\" class=\"header\"></th>\n")
+	fmt.Printf("<th class=\"num might\"><img src=\"attributes/might.png\" class=\"header\"></th>\n")
+	fmt.Printf("<th class=\"num willpower\"><img src=\"attributes/willpower.png\" class=\"header\"></th>\n")
+	fmt.Printf("<th class=\"num knowledge\"><img src=\"attributes/knowledge.png\" class=\"header\"></th>\n")
+	fmt.Printf("<th class=\"num awareness\"><img src=\"attributes/awareness.png\" class=\"header\"></th>\n")
+	fmt.Printf("<th class=\"ability\">Hero Ability</th>\n")
+	fmt.Printf("<th class=\"heroic\">Heroic Feat</th>\n")
+	fmt.Printf("<th class=\"quote\">Quote</th>\n")
+	fmt.Println("</tr></thead><tbody>\n")
+
+	for _, h := range heroes {
+		ck := false
+		if h.expansion == "Second Edition Conversion Kit" {
+			ck = true
+		}
+		image := "./heroes-small/" + strings.Replace(h.name, " the ", " The ", -1)
+		image = strings.Replace(image, " of ", " Of ", -1)
+		image = strings.Replace(image, " and ", " And ", -1)
+		image = strings.Replace(image, " ", "", -1)
+		if ck {
+			image += "CK"
+			h.name += " (CK)"
+		}
+		fmt.Println("<tr>")
+		expansionImage := "expansions/" + strings.Replace(h.expansion, " ", "_", -1) + ".svg"
+		if _, err := os.Stat(expansionImage); !os.IsNotExist(err) {
+			fmt.Printf("<td class=\"expansion\"><img src=\"%s\"></td>\n", "expansions/"+strings.Replace(h.expansion, " ", "_", -1)+".svg")
+		} else if h.expansion == "Second Edition Base Game" {
+			fmt.Println("<td class=\"expansion\">2E</td>")
+		} else if h.expansion == "Second Edition Conversion Kit" {
+			fmt.Println("<td class=\"expansion\">1E</td>")
+		} else {
+			fmt.Println("<td class=\"expansion\"></td>")
+		}
+		fmt.Printf("<td class=\"hero\"><a href=\"%s\">%s</a></td>\n", h.url, h.name)
+		fmt.Printf("<td class=\"image\"><img src=\"%s\"></td>\n", image+".png")
+		fmt.Printf("<td class=\"archetype\"><img src=\"%s\" class=\"archetype\"></td>\n", "classes/"+strings.ToLower(h.archetype)+".png")
+		fmt.Printf("<td class=\"num speed\">%d</td>\n", h.speed)
+		fmt.Printf("<td class=\"num health\">%d</td>\n", h.health)
+		fmt.Printf("<td class=\"num stamina\">%d</td>\n", h.stamina)
+
+		die := strings.ToLower(h.defense)
+		if die == "1 gray" || die == "1 grey" {
+			die = "attributes/whitedie.png"
+		} else if die == "1 black" {
+			die = "attributes/blackdie.png"
+		} else if die == "1 brown" {
+			die = "attributes/browndie.png"
+		} else {
+			panic(h.defense)
+		}
+		fmt.Printf("<td class=\"num die\"><img src=\"%s\" class=\"die\"></td>\n", die)
+		fmt.Printf("<td class=\"num might\">%d</td>\n", h.might)
+		fmt.Printf("<td class=\"num willpower\">%d</td>\n", h.willpower)
+		fmt.Printf("<td class=\"num knowledge\">%d</td>\n", h.knowledge)
+		fmt.Printf("<td class=\"num awareness\">%d</td>\n", h.awareness)
+		fmt.Printf("<td class=\"ability\">%s</td>\n", h.ability)
+		fmt.Printf("<td class=\"heroic\">%s</td>\n", h.heroic)
+		fmt.Printf("<td class=\"quote\">%s</td>\n", h.quote)
+		fmt.Println("</tr>\n")
+	}
+	fmt.Println("</tbody></table></body></html>")
+	fmt.Println(`<script type="text/javascript" src="heroes.js"></script>`)
+}
+
+func replaceHearts(html string) string {
+	// heart := `<a href="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest?cb=20121016005115" class="image image-thumbnail" title="Heart"><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" alt="Heart" class="" style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" width="15" height="14"/></a>`
+	// newheart := `<img src="attributes/health.png" alt="Heart" class="" width="15" height="14" style="vertical-align: sub">`
+	heart := `https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115`
+	newheart := `attributes/health.png`
+	return strings.Replace(html, heart, newheart, -1)
+}
+
+func replaceFatigue(html string) string {
+	// fatigue := `<a href="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest?cb=20121016005054" class="image image-thumbnail" title="Fatigue"><img src="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054" alt="Fatigue" class="" style="vertical-align: baseline" data-image-key="Fatigue.png" data-image-name="Fatigue.png" width="10" height="15"/></a>`
+	// newfatigue := `<img src="attributes/fatigue.png" alt="Fatigue" class="" width="10" height="15" style="vertical-align: baseline">`
+	fatigue := `https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054`
+	newfatigue := `attributes/fatigue.png`
+	return strings.Replace(html, fatigue, newfatigue, -1)
+}
+
+func replaceSurges(html string) string {
+	// surge := `<a href="/wiki/Surge" class="image image-thumbnail link-internal" title="Surge"><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" alt="Surge" class="" style="vertical-align: text-bottom" data-image-key="Surge.png" data-image-name="Surge.png" width="16" height="16"/></a>`
+	// newsurge := `<img src="attributes/surge.png" alt="Surge" class="" width="16" height="16" style="vertical-align: text-bottom">`
+	surge := `https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900`
+	newsurge := `attributes/surge.png`
+	return strings.Replace(html, surge, newsurge, -1)
+}
+
+func replaceShields(html string) string {
+	// shield := `<a href="/wiki/Shield" class="image image-thumbnail link-internal" title="Shield"><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Shield.png/revision/latest/scale-to-width-down/16?cb=20121015120900" alt="Shield" class="" style="vertical-align: text-bottom" data-image-key="Shield.png" data-image-name="Shield.png" width="16" height="16"/></a>`
+	// newshield := `<img src="attributes/shield.png" alt="Shield" class="" width="16" height="16" style="vertical-align: text-bottom">`
+	shield := `https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Shield.png/revision/latest/scale-to-width-down/16?cb=20121015120900`
+	newshield := `attributes/shield.png`
+	html = strings.Replace(html, shield, newshield, -1)
+	shield = `https://vignette.wikia.nocookie.net/descent2e/images/c/cf/Shield.png/revision/latest?cb=20121021145103`
+	newshield = `attributes/shield.png`
+	return strings.Replace(html, shield, newshield, -1)
+}
+
+func replaceActions(html string) string {
+	action := `https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410`
+	newaction := `attributes/action.png`
+	return strings.Replace(html, action, newaction, -1)
+}
+
+func replaceWillpower(html string) string {
+	willpower := `https://vignette.wikia.nocookie.net/descent2e/images/8/88/Willpower.png/revision/latest/scale-to-width-down/15?cb=20121013062622`
+	newwillpower := `attributes/willpower.png`
+	return strings.Replace(html, willpower, newwillpower, -1)
+}
+
+func replaceKnowledge(html string) string {
+	knowledge := `https://vignette.wikia.nocookie.net/descent2e/images/a/ad/Knowledge.png/revision/latest/scale-to-width-down/32?cb=20121013062540`
+	newknowledge := `attributes/knowledge.png`
+	return strings.Replace(html, knowledge, newknowledge, -1)
+}
+
+func replaceAwareness(html string) string {
+	awareness := `https://vignette.wikia.nocookie.net/descent2e/images/f/f5/Awareness.png/revision/latest/scale-to-width-down/20?cb=20121013062510`
+	newawareness := `attributes/awareness.png`
+	return strings.Replace(html, awareness, newawareness, -1)
+}
+
+func replaceIcons(html string) string {
+	// html = replaceHearts(html)
+	// html = replaceFatigue(html)
+	// html = replaceSurges(html)
+	// html = replaceShields(html)
+	// html = replaceActions(html)
+	// html = replaceWillpower(html)
+	// html = replaceKnowledge(html)
+	// html = replaceAwareness(html)
+	return html
+}
+
+func tdToAbility(td *goquery.Selection) string {
+	s, _ := td.Html()
+	ability := strings.TrimSpace(s)
+	if ability == "" {
+		ability = strings.TrimSpace(td.Text())
+	}
+	return replaceIcons(ability)
+}
+
+func tdToHeroic(td *goquery.Selection) string {
+	heroic := strings.TrimSpace(td.Text())
+	return replaceIcons(heroic)
+}
+
+func heroFromTd(td *goquery.Selection) hero {
+	var h hero
+	h.img, _ = td.Eq(0).Find("a").Attr("href")
+	h.speed = utils.MustAtoi(td.Eq(2).Text())
+	h.health = utils.MustAtoi(td.Eq(5).Text())
+	h.ability = tdToAbility(td.Eq(6))
+	h.stamina = utils.MustAtoi(td.Eq(8).Text())
+	h.defense = strings.TrimSpace(td.Eq(10).Text())
+	h.might = utils.MustAtoi(td.Eq(12).Text())
+	h.knowledge = utils.MustAtoi(td.Eq(15).Text())
+	h.heroic = tdToAbility(td.Eq(16))
+	h.willpower = utils.MustAtoi(td.Eq(17).Text())
+	h.awareness = utils.MustAtoi(td.Eq(20).Text())
+	h.quote = strings.TrimSpace(td.Eq(21).Text())
+	return h
+}
+
 func main() {
 	if len(os.Args) != 1 {
 		usage()
@@ -98,15 +286,16 @@ func main() {
 	heroesTable.Find("tr").Each(func(i int, s1 *goquery.Selection) {
 		elements := s1.Find("td")
 
-		var h hero
-		h.name = strings.TrimSpace(elements.Eq(0).Text())
-		h.archetype = strings.TrimSpace(elements.Eq(1).Text())
-		h.expansion = strings.TrimSpace(elements.Eq(2).Text())
-		h.description = strings.TrimSpace(elements.Eq(3).Text())
+		var meta hero
+		meta.name = strings.TrimSpace(elements.Eq(0).Text())
+		meta.archetype = strings.TrimSpace(elements.Eq(1).Text())
+		meta.expansion = strings.TrimSpace(elements.Eq(2).Text())
+		meta.description = strings.TrimSpace(elements.Eq(3).Text())
 
 		aTag := elements.Eq(0).Find("a")
 		if heroUrl, ok := aTag.Attr("href"); ok {
-			doc, err := goquery.NewDocument("http://descent2e.wikia.com" + heroUrl)
+			heroUrl = "http://descent2e.wikia.com" + heroUrl
+			doc, err := goquery.NewDocument(heroUrl)
 			if err != nil {
 				panic(fmt.Sprintf("error on parsing: %s", err))
 			}
@@ -115,47 +304,33 @@ func main() {
 
 			if characters.Length() > 0 {
 				base := characters.First().Find("td")
-				h.img, _ = base.Eq(0).Find("a").Attr("href")
-				h.speed = utils.MustAtoi(base.Eq(2).Text())
-				h.health = utils.MustAtoi(base.Eq(5).Text())
-				h.ability = strings.TrimSpace(base.Eq(6).Text())
-				h.stamina = utils.MustAtoi(base.Eq(8).Text())
-				h.defense = strings.TrimSpace(base.Eq(10).Text())
-				h.might = utils.MustAtoi(base.Eq(12).Text())
-				h.knowledge = utils.MustAtoi(base.Eq(15).Text())
-				h.heroic = strings.TrimSpace(base.Eq(16).Text())
-				h.willpower = utils.MustAtoi(base.Eq(17).Text())
-				h.awareness = utils.MustAtoi(base.Eq(20).Text())
-				h.quote = strings.TrimSpace(base.Eq(21).Text())
-
+				h := heroFromTd(base)
+				h.url = heroUrl
+				h.name = meta.name
+				h.archetype = meta.archetype
+				h.expansion = meta.expansion
+				h.description = meta.description
 				heroes = append(heroes, h)
-				h.print()
 			}
 
 			if characters.Length() > 1 {
-				var ckh hero
-				ckh.name = h.name
-				ckh.archetype = h.archetype
-				ckh.expansion = "Second Edition Conversion Kit"
-				ckh.description = h.description
-
-				ck := characters.Eq(1).Find("td")
-				ckh.img, _ = ck.Eq(0).Find("a").Attr("href")
-				ckh.speed = utils.MustAtoi(ck.Eq(2).Text())
-				ckh.health = utils.MustAtoi(ck.Eq(5).Text())
-				ckh.ability = strings.TrimSpace(ck.Eq(6).Text())
-				ckh.stamina = utils.MustAtoi(ck.Eq(8).Text())
-				ckh.defense = strings.TrimSpace(ck.Eq(10).Text())
-				ckh.might = utils.MustAtoi(ck.Eq(12).Text())
-				ckh.knowledge = utils.MustAtoi(ck.Eq(15).Text())
-				ckh.heroic = strings.TrimSpace(ck.Eq(16).Text())
-				ckh.willpower = utils.MustAtoi(ck.Eq(17).Text())
-				ckh.awareness = utils.MustAtoi(ck.Eq(20).Text())
-				ckh.quote = strings.TrimSpace(ck.Eq(21).Text())
-
-				heroes = append(heroes, ckh)
-				ckh.print()
+				ck := characters.First().Find("td")
+				h := heroFromTd(ck)
+				h.url = heroUrl
+				h.name = meta.name
+				h.archetype = meta.archetype
+				h.expansion = "Second Edition Conversion Kit"
+				h.description = meta.description
+				heroes = append(heroes, h)
 			}
 		}
 	})
+
+	// for _, h := range heroes {
+	// 	h.print()
+	// }
+
+	// downloadImages()
+
+	printTable()
 }
