@@ -1,14 +1,18 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"html"
+	"log"
 	"os"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/theanine/utils"
 )
+
+const htmlFile = "heroes.html"
 
 var archetypes = map[string]struct{}{
 	"Warrior": {},
@@ -39,12 +43,16 @@ var expansions = map[string]struct{}{
 }
 
 type hero struct {
+	trClass     string
 	name        string
 	url         string
 	archetype   string
 	expansion   string
 	description string
 	img         string // html (may contain img tags)
+	die         string
+	expImg      string
+	ck          bool
 	speed       int
 	health      int
 	stamina     int
@@ -95,112 +103,141 @@ func downloadImages() {
 	}
 }
 
-func printTable() {
-	fmt.Println(`<html><head>`)
-	fmt.Println(`<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>`)
-	fmt.Println(`<link rel="stylesheet" type="text/css" href="heroes.css">`)
-	fmt.Println(`</head><body onload="showHideRows()"><table id="heroTable"><thead><tr>`)
-	fmt.Printf("<th class=\"expansion\">Expansion</th>\n")
-	fmt.Printf("<th class=\"hero\">Hero</th>\n")
-	fmt.Printf("<th class=\"image\">Image</th>\n")
-	fmt.Printf("<th class=\"archetype\">Type</th>\n")
-	fmt.Printf("<th class=\"num speed\"><img src=\"attributes/speed.png\" class=\"header\"></th>\n")
-	fmt.Printf("<th class=\"num health\"><img src=\"attributes/health.png\" class=\"header\"></th>\n")
-	fmt.Printf("<th class=\"num stamina\"><img src=\"attributes/fatigue.png\" class=\"header\"></th>\n")
-	fmt.Printf("<th class=\"num die\"><img src=\"attributes/defense.png\" class=\"header\"></th>\n")
-	fmt.Printf("<th class=\"num might\"><img src=\"attributes/might.png\" class=\"header\"></th>\n")
-	fmt.Printf("<th class=\"num willpower\"><img src=\"attributes/willpower.png\" class=\"header\"></th>\n")
-	fmt.Printf("<th class=\"num knowledge\"><img src=\"attributes/knowledge.png\" class=\"header\"></th>\n")
-	fmt.Printf("<th class=\"num awareness\"><img src=\"attributes/awareness.png\" class=\"header\"></th>\n")
-	fmt.Printf("<th class=\"ability\">Hero Ability</th>\n")
-	fmt.Printf("<th class=\"heroic\">Heroic Feat</th>\n")
-	fmt.Println("</tr></thead><tbody>\n")
-	fmt.Println(`<tr><td>`)
-	fmt.Println(`<td><div><select id="selectCK" onclick="showHideRows()">`)
-	fmt.Println(`<option value=""></option>`)
-	fmt.Println(`<option value="+ck">+CK</option>`)
-	fmt.Println(`<option value="-ck">-CK</option>`)
-	fmt.Println(`</select></div>`)
-	fmt.Println(`<td>`)
-	fmt.Println(`<td><div><select id="selectClass" onclick="showHideRows()">`)
-	fmt.Println(`<option value=""></option>`)
-	fmt.Println(`<option value="healer">Healer</option>`)
-	fmt.Println(`<option value="mage">Mage</option>`)
-	fmt.Println(`<option value="scout">Scout</option>`)
-	fmt.Println(`<option value="warrior">Warrior</option>`)
-	fmt.Println(`</select></div>`)
-	fmt.Println(`<td><td><td>`)
-	fmt.Println(`<td><div><select id="selectDefense" onclick="showHideRows()">`)
-	fmt.Println(`<option value=""></option>`)
-	fmt.Println(`<option value="brown">b</option>`)
-	fmt.Println(`<option value="white">W</option>`)
-	fmt.Println(`<option value="black">B</option>`)
-	fmt.Println(`</select></div></tr>`)
+func outputHeader(w *bufio.Writer) {
+	fmt.Fprintf(w, "<html><head>\n")
+	fmt.Fprintf(w, "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n")
+	fmt.Fprintf(w, "<link rel=\"stylesheet\" type=\"text/css\" href=\"heroes.css\">\n")
+	fmt.Fprintf(w, "</head><body onload=\"showHideRows()\"><table id=\"heroTable\"><thead><tr>\n")
+	fmt.Fprintf(w, "<th class=\"expansion\">Expansion</th>\n")
+	fmt.Fprintf(w, "<th class=\"hero\">Hero</th>\n")
+	fmt.Fprintf(w, "<th class=\"image\">Image</th>\n")
+	fmt.Fprintf(w, "<th class=\"archetype\">Type</th>\n")
+	fmt.Fprintf(w, "<th class=\"num speed\"><img src=\"attributes/speed.png\" class=\"header\"></th>\n")
+	fmt.Fprintf(w, "<th class=\"num health\"><img src=\"attributes/health.png\" class=\"header\"></th>\n")
+	fmt.Fprintf(w, "<th class=\"num stamina\"><img src=\"attributes/fatigue.png\" class=\"header\"></th>\n")
+	fmt.Fprintf(w, "<th class=\"num die\"><img src=\"attributes/defense.png\" class=\"header\"></th>\n")
+	fmt.Fprintf(w, "<th class=\"num might\"><img src=\"attributes/might.png\" class=\"header\"></th>\n")
+	fmt.Fprintf(w, "<th class=\"num willpower\"><img src=\"attributes/willpower.png\" class=\"header\"></th>\n")
+	fmt.Fprintf(w, "<th class=\"num knowledge\"><img src=\"attributes/knowledge.png\" class=\"header\"></th>\n")
+	fmt.Fprintf(w, "<th class=\"num awareness\"><img src=\"attributes/awareness.png\" class=\"header\"></th>\n")
+	fmt.Fprintf(w, "<th class=\"ability\">Hero Ability</th>\n")
+	fmt.Fprintf(w, "<th class=\"heroic\">Heroic Feat</th>\n")
+	fmt.Fprintf(w, "</tr></thead><tbody>\n\n")
+	fmt.Fprintf(w, "<tr><td>\n")
+	fmt.Fprintf(w, "<td><div><select id=\"selectCK\" onclick=\"showHideRows()\">\n")
+	fmt.Fprintf(w, "<option value=\"\"></option>\n")
+	fmt.Fprintf(w, "<option value=\"ck+\">CK+</option>\n")
+	fmt.Fprintf(w, "<option value=\"+ck\">+CK</option>\n")
+	fmt.Fprintf(w, "<option value=\"-ck\">-CK</option>\n")
+	fmt.Fprintf(w, "</select></div>\n")
+	fmt.Fprintf(w, "<td>\n")
+	fmt.Fprintf(w, "<td><div><select id=\"selectClass\" onclick=\"showHideRows()\">\n")
+	fmt.Fprintf(w, "<option value=\"\"></option>\n")
+	fmt.Fprintf(w, "<option value=\"healer\">Healer</option>\n")
+	fmt.Fprintf(w, "<option value=\"mage\">Mage</option>\n")
+	fmt.Fprintf(w, "<option value=\"scout\">Scout</option>\n")
+	fmt.Fprintf(w, "<option value=\"warrior\">Warrior</option>\n")
+	fmt.Fprintf(w, "</select></div>\n")
+	fmt.Fprintf(w, "<td><td><td>\n")
+	fmt.Fprintf(w, "<td><div><select id=\"selectDefense\" onclick=\"showHideRows()\">\n")
+	fmt.Fprintf(w, "<option value=\"\"></option>\n")
+	fmt.Fprintf(w, "<option value=\"brown\">b</option>\n")
+	fmt.Fprintf(w, "<option value=\"white\">W</option>\n")
+	fmt.Fprintf(w, "<option value=\"black\">B</option>\n")
+	fmt.Fprintf(w, "</select></div></tr>\n")
+}
 
-	for i, h := range heroes {
-		ckStr := ""
-		ck := false
-		if h.expansion == "Second Edition Conversion Kit" {
-			ck = true
-		}
-		image := "./heroes-small/" + strings.Replace(h.name, " the ", " The ", -1)
-		image = strings.Replace(image, " of ", " Of ", -1)
-		image = strings.Replace(image, " and ", " And ", -1)
-		image = strings.Replace(image, " ", "", -1)
-		if ck {
-			ckStr = "+ck"
-			if h.name == heroes[i-1].name {
-				ckStr += " ck+"
-			}
-			image += "CK"
-			h.name += " (CK)"
-		} else {
-			ckStr = "-ck"
-		}
+func outputTable(w *bufio.Writer) {
+	outputHeader(w)
 
-		die := strings.ToLower(h.defense)
-		if die == "1 gray" || die == "1 grey" {
-			die = "white"
-		} else if die == "1 black" {
-			die = "black"
-		} else if die == "1 brown" {
-			die = "brown"
-		} else {
-			panic(h.defense)
-		}
-
-		fmt.Printf("<tr class=\"%s %s %s\">\n", strings.ToLower(h.archetype), die, ckStr)
-		expansionImage := "expansions/" + strings.Replace(h.expansion, " ", "_", -1) + ".svg"
-		if _, err := os.Stat(expansionImage); !os.IsNotExist(err) {
-			fmt.Printf("<td class=\"expansion\"><img src=\"%s\"></td>\n", "expansions/"+strings.Replace(h.expansion, " ", "_", -1)+".svg")
-		} else if h.expansion == "Second Edition Base Game" {
-			fmt.Println("<td class=\"expansion\">2E</td>")
-		} else if h.expansion == "Second Edition Conversion Kit" {
-			fmt.Println("<td class=\"expansion\">1E</td>")
-		} else {
-			fmt.Println("<td class=\"expansion\"></td>")
-		}
-		fmt.Printf("<td class=\"hero\"><a href=\"%s\">%s</a></td>\n", h.url, h.name)
-		// fmt.Printf("<td class=\"image\"><img src=\"%s\"></td>\n", image+".png")
-		fmt.Printf("<td class=\"image\">")
-		fmt.Printf("<span title=\"%s\">", html.EscapeString(h.quote))
-		fmt.Printf("<img src=\"%s\">", image+".png")
-		fmt.Printf("</span></td>\n")
-		fmt.Printf("<td class=\"archetype\"><img src=\"%s\" class=\"archetype\"></td>\n", "classes/"+strings.ToLower(h.archetype)+".png")
-		fmt.Printf("<td class=\"num speed\">%d</td>\n", h.speed)
-		fmt.Printf("<td class=\"num health\">%d</td>\n", h.health)
-		fmt.Printf("<td class=\"num stamina\">%d</td>\n", h.stamina)
-		fmt.Printf("<td class=\"num die\"><img src=\"%s\" class=\"die\"></td>\n", "attributes/"+die+"die.png")
-		fmt.Printf("<td class=\"num might\">%d</td>\n", h.might)
-		fmt.Printf("<td class=\"num willpower\">%d</td>\n", h.willpower)
-		fmt.Printf("<td class=\"num knowledge\">%d</td>\n", h.knowledge)
-		fmt.Printf("<td class=\"num awareness\">%d</td>\n", h.awareness)
-		fmt.Printf("<td class=\"ability\">%s</td>\n", h.ability)
-		fmt.Printf("<td class=\"heroic\">%s</td>\n", h.heroic)
-		fmt.Println("</tr>\n")
+	for _, h := range heroes {
+		fmt.Fprintf(w, "<tr class=\"%s %s %s\">\n", strings.ToLower(h.archetype), h.die, h.trClass)
+		fmt.Fprintf(w, "<td class=\"expansion\">%s</td>\n", h.expImg)
+		fmt.Fprintf(w, "<td class=\"hero\"><a href=\"%s\">%s</a></td>\n", h.url, h.name)
+		// fmt.Fprintf(w, "<td class=\"image\"><img src=\"%s\"></td>\n", image+".png")
+		fmt.Fprintf(w, "<td class=\"image\">")
+		fmt.Fprintf(w, "<span title=\"%s\">", html.EscapeString(h.quote))
+		fmt.Fprintf(w, "<img src=\"%s\">", h.img)
+		fmt.Fprintf(w, "</span></td>\n")
+		fmt.Fprintf(w, "<td class=\"archetype\"><img src=\"%s\" class=\"archetype\"></td>\n", "classes/"+strings.ToLower(h.archetype)+".png")
+		fmt.Fprintf(w, "<td class=\"num speed\">%d</td>\n", h.speed)
+		fmt.Fprintf(w, "<td class=\"num health\">%d</td>\n", h.health)
+		fmt.Fprintf(w, "<td class=\"num stamina\">%d</td>\n", h.stamina)
+		fmt.Fprintf(w, "<td class=\"num die\"><img src=\"%s\" class=\"die\"></td>\n", "attributes/"+h.die+"die.png")
+		fmt.Fprintf(w, "<td class=\"num might\">%d</td>\n", h.might)
+		fmt.Fprintf(w, "<td class=\"num willpower\">%d</td>\n", h.willpower)
+		fmt.Fprintf(w, "<td class=\"num knowledge\">%d</td>\n", h.knowledge)
+		fmt.Fprintf(w, "<td class=\"num awareness\">%d</td>\n", h.awareness)
+		fmt.Fprintf(w, "<td class=\"ability\">%s</td>\n", h.ability)
+		fmt.Fprintf(w, "<td class=\"heroic\">%s</td>\n", h.heroic)
+		fmt.Fprintf(w, "</tr>\n\n")
 	}
-	fmt.Println("</tbody></table></body></html>")
-	fmt.Println(`<script type="text/javascript" src="heroes.js"></script>`)
+
+	outputFooter(w)
+	w.Flush()
+}
+
+func outputFooter(w *bufio.Writer) {
+	fmt.Fprintf(w, "</tbody></table></body></html>\n")
+	fmt.Fprintf(w, "<script type=\"text/javascript\" src=\"heroes.js\"></script>\n")
+}
+
+func fixHeroes() {
+	for i := range heroes {
+		// h.ck
+		heroes[i].ck = false
+		if heroes[i].expansion == "Second Edition Conversion Kit" {
+			heroes[i].ck = true
+		}
+
+		// h.trClass
+		if heroes[i].ck {
+			heroes[i].trClass = "+ck"
+		} else {
+			heroes[i].trClass = "-ck"
+		}
+		if i == 0 || heroes[i].name != heroes[i-1].name {
+			heroes[i].trClass += " ck+"
+		}
+
+		// h.img
+		heroes[i].img = "heroes-small/" + strings.Replace(heroes[i].name, " the ", " The ", -1)
+		heroes[i].img = strings.Replace(heroes[i].img, " of ", " Of ", -1)
+		heroes[i].img = strings.Replace(heroes[i].img, " and ", " And ", -1)
+		heroes[i].img = strings.Replace(heroes[i].img, " ", "", -1)
+		if heroes[i].ck {
+			heroes[i].img += "CK"
+		}
+		heroes[i].img += ".png"
+
+		// h.name
+		if heroes[i].ck {
+			heroes[i].name += " (CK)"
+		}
+
+		// h.die
+		heroes[i].die = strings.ToLower(heroes[i].defense)
+		if heroes[i].die == "1 gray" || heroes[i].die == "1 grey" {
+			heroes[i].die = "white"
+		} else if heroes[i].die == "1 black" {
+			heroes[i].die = "black"
+		} else if heroes[i].die == "1 brown" {
+			heroes[i].die = "brown"
+		} else {
+			panic(heroes[i].defense)
+		}
+
+		// h.expImg
+		heroes[i].expImg = ""
+		imgFile := "expansions/" + strings.Replace(heroes[i].expansion, " ", "_", -1) + ".svg"
+		if _, err := os.Stat(imgFile); !os.IsNotExist(err) {
+			heroes[i].expImg = fmt.Sprintf("<img src=\"%s\">", "expansions/"+strings.Replace(heroes[i].expansion, " ", "_", -1)+".svg")
+		} else if heroes[i].expansion == "Second Edition Base Game" {
+			heroes[i].expImg = "2E"
+		} else if heroes[i].expansion == "Second Edition Conversion Kit" {
+			heroes[i].expImg = "1E"
+		}
+	}
 }
 
 func iconHelper(src string, img *goquery.Selection) {
@@ -342,5 +379,13 @@ func main() {
 
 	// downloadImages()
 
-	printTable()
+	f, err := os.Create(htmlFile)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+	w := bufio.NewWriter(f)
+
+	fixHeroes()
+	outputTable(w)
 }
