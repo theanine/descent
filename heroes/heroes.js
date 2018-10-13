@@ -8,11 +8,26 @@ function showHideRowsOld(checkBoxSender)
     });
 }
 
-function showHideRows(selectSender)
+function showHideRowsOld2(selectSender)
 {
    var a = $(selectSender).val();
    $("tr", "#heroTable").each(function(){
    		if (a == "" || $(this).attr("class") == a || typeof $(this).attr("class") === "undefined") {
+		    $(this).show();
+		} else {
+		    $(this).hide();
+		}
+	});
+}
+
+function showHideRows()
+{
+	var k = $("#selectCK").val();
+	var c = $("#selectClass").val();
+	var d = $("#selectDefense").val();
+	$("tr", "#heroTable").each(function(){
+   		if (((c == "" || $(this).hasClass(c)) && (d == "" || $(this).hasClass(d)) && (k == "" || $(this).hasClass(k)))
+   			|| typeof $(this).attr("class") === "undefined") {
 		    $(this).show();
 		} else {
 		    $(this).hide();

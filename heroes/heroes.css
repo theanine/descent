@@ -72,18 +72,6 @@ table th.heroic, table td.heroic{
 	width:300px;
 }
 
-table th.quote, table td.quote{
-	width:260px;
-}
-/*
-table th.quote{
-	width:300px;
-}*/
-
-/*table td.quote{
-	width:100px;
-}*/
-
 table tbody{
 	display:block;
 	height:92.5vh;

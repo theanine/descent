@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html"
 	"os"
 	"strings"
 
@@ -98,7 +99,7 @@ func printTable() {
 	fmt.Println(`<html><head>`)
 	fmt.Println(`<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>`)
 	fmt.Println(`<link rel="stylesheet" type="text/css" href="heroes.css">`)
-	fmt.Println(`</head><body><table id="heroTable"><thead><tr>`)
+	fmt.Println(`</head><body onload="showHideRows()"><table id="heroTable"><thead><tr>`)
 	fmt.Printf("<th class=\"expansion\">Expansion</th>\n")
 	fmt.Printf("<th class=\"hero\">Hero</th>\n")
 	fmt.Printf("<th class=\"image\">Image</th>\n")
@@ -113,19 +114,31 @@ func printTable() {
 	fmt.Printf("<th class=\"num awareness\"><img src=\"attributes/awareness.png\" class=\"header\"></th>\n")
 	fmt.Printf("<th class=\"ability\">Hero Ability</th>\n")
 	fmt.Printf("<th class=\"heroic\">Heroic Feat</th>\n")
-	fmt.Printf("<th class=\"quote\">Quote</th>\n")
 	fmt.Println("</tr></thead><tbody>\n")
-	fmt.Println(`<tr><td><td><td><td>`)
-	fmt.Println(`<div id="selectType">`)
-	fmt.Println(`<select onclick="showHideRows(this)">`)
+	fmt.Println(`<tr><td>`)
+	fmt.Println(`<td><div><select id="selectCK" onclick="showHideRows()">`)
+	fmt.Println(`<option value=""></option>`)
+	fmt.Println(`<option value="+ck">+CK</option>`)
+	fmt.Println(`<option value="-ck">-CK</option>`)
+	fmt.Println(`</select></div>`)
+	fmt.Println(`<td>`)
+	fmt.Println(`<td><div><select id="selectClass" onclick="showHideRows()">`)
 	fmt.Println(`<option value=""></option>`)
 	fmt.Println(`<option value="healer">Healer</option>`)
 	fmt.Println(`<option value="mage">Mage</option>`)
 	fmt.Println(`<option value="scout">Scout</option>`)
 	fmt.Println(`<option value="warrior">Warrior</option>`)
-	fmt.Println(`</select></div><td></tr>`)
+	fmt.Println(`</select></div>`)
+	fmt.Println(`<td><td><td>`)
+	fmt.Println(`<td><div><select id="selectDefense" onclick="showHideRows()">`)
+	fmt.Println(`<option value=""></option>`)
+	fmt.Println(`<option value="brown">b</option>`)
+	fmt.Println(`<option value="white">W</option>`)
+	fmt.Println(`<option value="black">B</option>`)
+	fmt.Println(`</select></div></tr>`)
 
-	for _, h := range heroes {
+	for i, h := range heroes {
+		ckStr := ""
 		ck := false
 		if h.expansion == "Second Edition Conversion Kit" {
 			ck = true
@@ -135,10 +148,28 @@ func printTable() {
 		image = strings.Replace(image, " and ", " And ", -1)
 		image = strings.Replace(image, " ", "", -1)
 		if ck {
+			ckStr = "+ck"
+			if h.name == heroes[i-1].name {
+				ckStr += " ck+"
+			}
 			image += "CK"
 			h.name += " (CK)"
+		} else {
+			ckStr = "-ck"
 		}
-		fmt.Println("<tr>")
+
+		die := strings.ToLower(h.defense)
+		if die == "1 gray" || die == "1 grey" {
+			die = "white"
+		} else if die == "1 black" {
+			die = "black"
+		} else if die == "1 brown" {
+			die = "brown"
+		} else {
+			panic(h.defense)
+		}
+
+		fmt.Printf("<tr class=\"%s %s %s\">\n", strings.ToLower(h.archetype), die, ckStr)
 		expansionImage := "expansions/" + strings.Replace(h.expansion, " ", "_", -1) + ".svg"
 		if _, err := os.Stat(expansionImage); !os.IsNotExist(err) {
 			fmt.Printf("<td class=\"expansion\"><img src=\"%s\"></td>\n", "expansions/"+strings.Replace(h.expansion, " ", "_", -1)+".svg")
@@ -150,96 +181,27 @@ func printTable() {
 			fmt.Println("<td class=\"expansion\"></td>")
 		}
 		fmt.Printf("<td class=\"hero\"><a href=\"%s\">%s</a></td>\n", h.url, h.name)
-		fmt.Printf("<td class=\"image\"><img src=\"%s\"></td>\n", image+".png")
+		// fmt.Printf("<td class=\"image\"><img src=\"%s\"></td>\n", image+".png")
+		fmt.Printf("<td class=\"image\">")
+		fmt.Printf("<span title=\"%s\">", html.EscapeString(h.quote))
+		fmt.Printf("<img src=\"%s\">", image+".png")
+		fmt.Printf("</span></td>\n")
 		fmt.Printf("<td class=\"archetype\"><img src=\"%s\" class=\"archetype\"></td>\n", "classes/"+strings.ToLower(h.archetype)+".png")
 		fmt.Printf("<td class=\"num speed\">%d</td>\n", h.speed)
 		fmt.Printf("<td class=\"num health\">%d</td>\n", h.health)
 		fmt.Printf("<td class=\"num stamina\">%d</td>\n", h.stamina)
-
-		die := strings.ToLower(h.defense)
-		if die == "1 gray" || die == "1 grey" {
-			die = "attributes/whitedie.png"
-		} else if die == "1 black" {
-			die = "attributes/blackdie.png"
-		} else if die == "1 brown" {
-			die = "attributes/browndie.png"
-		} else {
-			panic(h.defense)
-		}
-		fmt.Printf("<td class=\"num die\"><img src=\"%s\" class=\"die\"></td>\n", die)
+		fmt.Printf("<td class=\"num die\"><img src=\"%s\" class=\"die\"></td>\n", "attributes/"+die+"die.png")
 		fmt.Printf("<td class=\"num might\">%d</td>\n", h.might)
 		fmt.Printf("<td class=\"num willpower\">%d</td>\n", h.willpower)
 		fmt.Printf("<td class=\"num knowledge\">%d</td>\n", h.knowledge)
 		fmt.Printf("<td class=\"num awareness\">%d</td>\n", h.awareness)
 		fmt.Printf("<td class=\"ability\">%s</td>\n", h.ability)
 		fmt.Printf("<td class=\"heroic\">%s</td>\n", h.heroic)
-		fmt.Printf("<td class=\"quote\">%s</td>\n", h.quote)
 		fmt.Println("</tr>\n")
 	}
 	fmt.Println("</tbody></table></body></html>")
 	fmt.Println(`<script type="text/javascript" src="heroes.js"></script>`)
 }
-
-// func replaceHearts(html string) string {
-// 	// heart := `<a href="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest?cb=20121016005115" class="image image-thumbnail" title="Heart"><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" alt="Heart" class="" style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" width="15" height="14"/></a>`
-// 	// newheart := `<img src="attributes/health.png" alt="Heart" class="" width="15" height="14" style="vertical-align: sub">`
-// 	heart := `https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115`
-// 	newheart := `attributes/health.png`
-// 	return strings.Replace(html, heart, newheart, -1)
-// }
-
-// func replaceFatigue(html string) string {
-// 	// fatigue := `<a href="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest?cb=20121016005054" class="image image-thumbnail" title="Fatigue"><img src="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054" alt="Fatigue" class="" style="vertical-align: baseline" data-image-key="Fatigue.png" data-image-name="Fatigue.png" width="10" height="15"/></a>`
-// 	// newfatigue := `<img src="attributes/fatigue.png" alt="Fatigue" class="" width="10" height="15" style="vertical-align: baseline">`
-// 	fatigue := `https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054`
-// 	newfatigue := `attributes/fatigue.png`
-// 	html = strings.Replace(html, fatigue, newfatigue, -1)
-// 	fatigue = `https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest?cb=20121016005054`
-// 	return strings.Replace(html, fatigue, newfatigue, -1)
-// }
-
-// func replaceSurges(html string) string {
-// 	// surge := `<a href="/wiki/Surge" class="image image-thumbnail link-internal" title="Surge"><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" alt="Surge" class="" style="vertical-align: text-bottom" data-image-key="Surge.png" data-image-name="Surge.png" width="16" height="16"/></a>`
-// 	// newsurge := `<img src="attributes/surge.png" alt="Surge" class="" width="16" height="16" style="vertical-align: text-bottom">`
-// 	surge := `https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900`
-// 	newsurge := `attributes/surge.png`
-// 	return strings.Replace(html, surge, newsurge, -1)
-// }
-
-// func replaceShields(html string) string {
-// 	// shield := `<a href="/wiki/Shield" class="image image-thumbnail link-internal" title="Shield"><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Shield.png/revision/latest/scale-to-width-down/16?cb=20121015120900" alt="Shield" class="" style="vertical-align: text-bottom" data-image-key="Shield.png" data-image-name="Shield.png" width="16" height="16"/></a>`
-// 	// newshield := `<img src="attributes/shield.png" alt="Shield" class="" width="16" height="16" style="vertical-align: text-bottom">`
-// 	shield := `https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Shield.png/revision/latest/scale-to-width-down/16?cb=20121015120900`
-// 	newshield := `attributes/shield.png`
-// 	html = strings.Replace(html, shield, newshield, -1)
-// 	shield = `https://vignette.wikia.nocookie.net/descent2e/images/c/cf/Shield.png/revision/latest?cb=20121021145103`
-// 	newshield = `attributes/shield.png`
-// 	return strings.Replace(html, shield, newshield, -1)
-// }
-
-// func replaceActions(html string) string {
-// 	action := `https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410`
-// 	newaction := `attributes/action.png`
-// 	return strings.Replace(html, action, newaction, -1)
-// }
-
-// func replaceWillpower(html string) string {
-// 	willpower := `https://vignette.wikia.nocookie.net/descent2e/images/8/88/Willpower.png/revision/latest/scale-to-width-down/15?cb=20121013062622`
-// 	newwillpower := `attributes/willpower.png`
-// 	return strings.Replace(html, willpower, newwillpower, -1)
-// }
-
-// func replaceKnowledge(html string) string {
-// 	knowledge := `https://vignette.wikia.nocookie.net/descent2e/images/a/ad/Knowledge.png/revision/latest/scale-to-width-down/32?cb=20121013062540`
-// 	newknowledge := `attributes/knowledge.png`
-// 	return strings.Replace(html, knowledge, newknowledge, -1)
-// }
-
-// func replaceAwareness(html string) string {
-// 	awareness := `https://vignette.wikia.nocookie.net/descent2e/images/f/f5/Awareness.png/revision/latest/scale-to-width-down/20?cb=20121013062510`
-// 	newawareness := `attributes/awareness.png`
-// 	return strings.Replace(html, awareness, newawareness, -1)
-// }
 
 func iconHelper(src string, img *goquery.Selection) {
 	if strings.Contains(src, "Heart.png") {
@@ -270,14 +232,6 @@ func replaceIcons(td *goquery.Selection) *goquery.Selection {
 			iconHelper(src, img)
 		}
 	})
-	// html = replaceHearts(html)
-	// html = replaceFatigue(html)
-	// html = replaceSurges(html)
-	// html = replaceShields(html)
-	// html = replaceActions(html)
-	// html = replaceWillpower(html)
-	// html = replaceKnowledge(html)
-	// html = replaceAwareness(html)
 	return td
 }
 
@@ -370,7 +324,7 @@ func main() {
 			}
 
 			if characters.Length() > 1 {
-				ck := characters.First().Find("td")
+				ck := characters.Eq(1).Find("td")
 				h := heroFromTd(ck)
 				h.url = heroUrl
 				h.name = meta.name
