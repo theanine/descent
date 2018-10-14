@@ -126,9 +126,9 @@ func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<tr><td>\n")
 	fmt.Fprintf(w, "<td><div><select id=\"selectCK\" onclick=\"showHideRows()\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
-	fmt.Fprintf(w, "<option value=\"ck+\">CK+</option>\n")
-	fmt.Fprintf(w, "<option value=\"+ck\">+CK</option>\n")
-	fmt.Fprintf(w, "<option value=\"-ck\">-CK</option>\n")
+	fmt.Fprintf(w, "<option value=\"override-ck\">Override CK</option>\n")
+	fmt.Fprintf(w, "<option value=\"ck-only\">CK Only</option>\n")
+	fmt.Fprintf(w, "<option value=\"no-ck\">No CK</option>\n")
 	fmt.Fprintf(w, "</select></div>\n")
 	fmt.Fprintf(w, "<td>\n")
 	fmt.Fprintf(w, "<td><div><select id=\"selectClass\" onclick=\"showHideRows()\">\n")
@@ -192,12 +192,12 @@ func fixHeroes() {
 
 		// h.trClass
 		if heroes[i].ck {
-			heroes[i].trClass = "+ck"
+			heroes[i].trClass = "ck-only"
 		} else {
-			heroes[i].trClass = "-ck"
+			heroes[i].trClass = "no-ck"
 		}
 		if i == 0 || heroes[i].name != heroes[i-1].name {
-			heroes[i].trClass += " ck+"
+			heroes[i].trClass += " override-ck"
 		}
 
 		// h.img
