@@ -1,3 +1,7 @@
+body {
+	margin: 0px;
+}
+
 img.archetype {
 	width: 75px;
 	height: 75px;
@@ -20,6 +24,11 @@ td.expansion {
 	text-align: center;
 	font-size: 20pt;
 	font-family: "Adobe Garamond Pro", Garamond;
+}
+
+table {
+	margin-left:auto;
+	margin-right:auto;
 }
 
 table thead tr{
@@ -76,10 +85,16 @@ table th.heroic, table td.heroic{
 	width:300px;
 }
 
+table thead{
+	display:block;
+	height:7.5vh;
+	overflow:auto;
+}
+
 table tbody{
 	display:block;
-	height:92.5vh;
-	overflow:auto; /* set tbody to auto */
+	height:92vh;
+	overflow:auto;
 }
 
 select {
