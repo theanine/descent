@@ -39,30 +39,30 @@ function showHideRows()
 				$(tr).hide();
 		});
 	});
+	
+	loadSelects();
 }
 
 function loadSelects()
 {
 	$.each(attrs, function (i, attr) {
+		var selected = $('#select'+toTitleCase(attr)).val();
 		var arr = [];
 		$("tr", "#heroTable").each(function(index, tr) {
 			$('td.'+attr, tr).each(function(index, td) {
-				arr.push($(td).text());
+				if (selected != "" || $(tr).is(":visible"))
+					arr.push($(td).text());
 			});
 		});
 		arr = jQuery.uniqueSort(arr).sort(function(a,b){
 			return a-b;
 		});
+		$('#select'+toTitleCase(attr)).empty().append($('<option>', { value: "", text : "" }));
 		$.each(arr, function (i, item) {
 			$('#select'+toTitleCase(attr)).append($('<option>', { value: item, text : item }));
 		});
+		$('#select'+toTitleCase(attr)).val(selected);
 	});
-}
-
-function onload()
-{
-	loadSelects();
-	showHideRows();
 }
 
 function colorizeCells(cells, red, orange, yellow, green, dkGreen) {

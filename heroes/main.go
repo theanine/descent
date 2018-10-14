@@ -108,7 +108,7 @@ func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<html><head>\n")
 	fmt.Fprintf(w, "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n")
 	fmt.Fprintf(w, "<link rel=\"stylesheet\" type=\"text/css\" href=\"heroes.css\">\n")
-	fmt.Fprintf(w, "</head><body onload=\"onload()\"><table id=\"heroTable\"><thead><tr>\n")
+	fmt.Fprintf(w, "</head><body onload=\"showHideRows()\"><table id=\"heroTable\"><thead><tr>\n")
 	fmt.Fprintf(w, "<th class=\"expansion\">Expansion</th>\n")
 	fmt.Fprintf(w, "<th class=\"hero\">Hero</th>\n")
 	fmt.Fprintf(w, "<th class=\"image\">Image</th>\n")
