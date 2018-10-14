@@ -1,22 +1,16 @@
 // <SCRIPT LANGUAGE="JavaScript">
 
-function showHideRowsOld(checkBoxSender)
-{
-	var classToShowOrHide = checkBoxSender.value
-    $('.' + classToShowOrHide, '#heroTable').each(function(){
-        $(this).css('display', ((checkBoxSender.checked) ? 'block' : 'none'));
-    });
-}
+var attrs = ["speed",
+			 "health",
+			 "stamina",
+			 "might",
+			 "willpower",
+			 "knowledge",
+			 "awareness"];
 
-function showHideRowsOld2(selectSender)
-{
-   var a = $(selectSender).val();
-   $("tr", "#heroTable").each(function(){
-   		if (a == "" || $(this).attr("class") == a || typeof $(this).attr("class") === "undefined") {
-		    $(this).show();
-		} else {
-		    $(this).hide();
-		}
+function toTitleCase(str) {
+	return str.replace(/(?:^|\s)\w/g, function(match) {
+		return match.toUpperCase();
 	});
 }
 
@@ -26,17 +20,49 @@ function showHideRows()
 	var k = $("#selectCK").val();
 	var c = $("#selectClass").val();
 	var d = $("#selectDefense").val();
-	$("tr", "#heroTable").each(function(){
-   		if (((c == "" || $(this).hasClass(c)) &&
-   			 (d == "" || $(this).hasClass(d)) &&
-   			 (k == "" || $(this).hasClass(k)) &&
-   			 (e == "" || $(this).hasClass(e)))
-   			|| typeof $(this).attr("class") === "undefined") {
-		    $(this).show();
-		} else {
-		    $(this).hide();
-		}
+	$("tr", "#heroTable").each(function(index, tr){
+		$(tr).show();
+		if (typeof $(tr).attr("class") === "undefined")
+			return;
+		if (c != "" && !$(tr).hasClass(c))
+			$(tr).hide();
+		if (d != "" && !$(tr).hasClass(d))
+			$(tr).hide();
+		if (k != "" && !$(tr).hasClass(k))
+			$(tr).hide();
+		if (e != "" && !$(tr).hasClass(e))
+			$(tr).hide();
+		
+		$.each(attrs, function (i, attr) {
+			var s = $("#select"+toTitleCase(attr)).val();
+			if (s != "" && $('td.'+attr, tr).text() != s)
+				$(tr).hide();
+		});
 	});
+}
+
+function loadSelects()
+{
+	$.each(attrs, function (i, attr) {
+		var arr = [];
+		$("tr", "#heroTable").each(function(index, tr) {
+			$('td.'+attr, tr).each(function(index, td) {
+				arr.push($(td).text());
+			});
+		});
+		arr = jQuery.uniqueSort(arr).sort(function(a,b){
+			return a-b;
+		});
+		$.each(arr, function (i, item) {
+			$('#select'+toTitleCase(attr)).append($('<option>', { value: item, text : item }));
+		});
+	});
+}
+
+function onload()
+{
+	loadSelects();
+	showHideRows();
 }
 
 function colorizeCells(cells, red, orange, yellow, green, dkGreen) {

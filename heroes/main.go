@@ -108,7 +108,7 @@ func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<html><head>\n")
 	fmt.Fprintf(w, "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n")
 	fmt.Fprintf(w, "<link rel=\"stylesheet\" type=\"text/css\" href=\"heroes.css\">\n")
-	fmt.Fprintf(w, "</head><body onload=\"showHideRows()\"><table id=\"heroTable\"><thead><tr>\n")
+	fmt.Fprintf(w, "</head><body onload=\"onload()\"><table id=\"heroTable\"><thead><tr>\n")
 	fmt.Fprintf(w, "<th class=\"expansion\">Expansion</th>\n")
 	fmt.Fprintf(w, "<th class=\"hero\">Hero</th>\n")
 	fmt.Fprintf(w, "<th class=\"image\">Image</th>\n")
@@ -149,13 +149,20 @@ func outputHeader(w *bufio.Writer) {
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", strings.ToLower(k), k)
 	}
 	fmt.Fprintf(w, "</select></div>\n")
-	fmt.Fprintf(w, "<td><td><td>\n")
+	fmt.Fprintf(w, "<td><div><select id=\"selectSpeed\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div>\n")
+	fmt.Fprintf(w, "<td><div><select id=\"selectHealth\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div>\n")
+	fmt.Fprintf(w, "<td><div><select id=\"selectStamina\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div>\n")
 	fmt.Fprintf(w, "<td><div><select id=\"selectDefense\" onclick=\"showHideRows()\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
 	fmt.Fprintf(w, "<option value=\"brown\">b</option>\n")
 	fmt.Fprintf(w, "<option value=\"white\">W</option>\n")
 	fmt.Fprintf(w, "<option value=\"black\">B</option>\n")
-	fmt.Fprintf(w, "</select></div></tr>\n")
+	fmt.Fprintf(w, "</select></div>\n")
+	fmt.Fprintf(w, "<td><div><select id=\"selectMight\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div>\n")
+	fmt.Fprintf(w, "<td><div><select id=\"selectWillpower\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div>\n")
+	fmt.Fprintf(w, "<td><div><select id=\"selectKnowledge\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div>\n")
+	fmt.Fprintf(w, "<td><div><select id=\"selectAwareness\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div>\n")
+	fmt.Fprintf(w, "</tr>\n")
 }
 
 func outputTable(w *bufio.Writer) {
@@ -384,12 +391,6 @@ func main() {
 		}
 	})
 
-	// for _, h := range heroes {
-	// 	h.print()
-	// }
-
-	// downloadImages()
-
 	f, err := os.Create(htmlFile)
 	if err != nil {
 		log.Fatal(err)
@@ -397,6 +398,7 @@ func main() {
 	defer f.Close()
 	w := bufio.NewWriter(f)
 
+	// downloadImages()
 	fixHeroes()
 	outputTable(w)
 }

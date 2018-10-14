@@ -79,7 +79,7 @@ table th.heroic, table td.heroic{
 table tbody{
 	display:block;
 	height:92.5vh;
-	overflow:auto; //set tbody to auto
+	overflow:auto; /* set tbody to auto */
 }
 
 select {

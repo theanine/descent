@@ -1,7 +1,7 @@
 <html><head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="heroes.css">
-</head><body onload="showHideRows()"><table id="heroTable"><thead><tr>
+</head><body onload="onload()"><table id="heroTable"><thead><tr>
 <th class="expansion">Expansion</th>
 <th class="hero">Hero</th>
 <th class="image">Image</th>
@@ -49,18 +49,25 @@
 <td>
 <td><div><select id="selectClass" onclick="showHideRows()">
 <option value=""></option>
+<option value="mage">Mage</option>
 <option value="warrior">Warrior</option>
 <option value="healer">Healer</option>
 <option value="scout">Scout</option>
-<option value="mage">Mage</option>
 </select></div>
-<td><td><td>
+<td><div><select id="selectSpeed" onclick="showHideRows()"><option value=""></option></select></div>
+<td><div><select id="selectHealth" onclick="showHideRows()"><option value=""></option></select></div>
+<td><div><select id="selectStamina" onclick="showHideRows()"><option value=""></option></select></div>
 <td><div><select id="selectDefense" onclick="showHideRows()">
 <option value=""></option>
 <option value="brown">b</option>
 <option value="white">W</option>
 <option value="black">B</option>
-</select></div></tr>
+</select></div>
+<td><div><select id="selectMight" onclick="showHideRows()"><option value=""></option></select></div>
+<td><div><select id="selectWillpower" onclick="showHideRows()"><option value=""></option></select></div>
+<td><div><select id="selectKnowledge" onclick="showHideRows()"><option value=""></option></select></div>
+<td><div><select id="selectAwareness" onclick="showHideRows()"><option value=""></option></select></div>
+</tr>
 <tr class="warrior white no-ck override-ck MoR">
 <td class="expansion"><img src="expansions/Manor_of_Ravens.svg"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Alys_Raine">Alys Raine</a></td>
