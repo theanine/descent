@@ -60,8 +60,12 @@ table th.archetype, table td.archetype{
 	text-align: center;
 }
 
+table th, table td {
+	/*padding: 0px;*/
+}
+
 table th.num, table td.num{
-	width:30px;
+	width:35px;
 }
 
 table th.ability, table td.ability{
@@ -76,4 +80,9 @@ table tbody{
 	display:block;
 	height:92.5vh;
 	overflow:auto; //set tbody to auto
+}
+
+select {
+	border: 0px;
+	width: 100%;
 }
