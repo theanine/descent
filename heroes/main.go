@@ -6,6 +6,7 @@ import (
 	"html"
 	"log"
 	"os"
+	"sort"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -21,25 +22,25 @@ var archetypes = map[string]struct{}{
 	"Mage":    {},
 }
 
-var expansions = map[string]struct{}{
-	"Bonds of the Wild":             {},
-	"Crown of Destiny":              {},
-	"Crusade of the Forgotten":      {},
-	"Guardians of Deephall":         {},
-	"Labyrinth of Ruin":             {},
-	"Lair of the Wyrm":              {},
-	"Manor of Ravens":               {},
-	"Oath of the Outcast":           {},
-	"Raythen Lieutenant Pack":       {},
-	"Second Edition Base Game":      {},
-	"Second Edition Conversion Kit": {},
-	"Serena Lieutenant Pack":        {},
-	"Shadow of Nerekhall":           {},
-	"Shards of Everdark":            {},
-	"Stewards of the Secret":        {},
-	"The Trollfens":                 {},
-	"Treaty of Champions":           {},
-	"Visions of Dawn":               {},
+var expansions = map[string]string{
+	"Bonds of the Wild":             "BotW",
+	"Crown of Destiny":              "CoD",
+	"Crusade of the Forgotten":      "CotF",
+	"Guardians of Deephall":         "GoD",
+	"Labyrinth of Ruin":             "LoR",
+	"Lair of the Wyrm":              "LotW",
+	"Manor of Ravens":               "MoR",
+	"Oath of the Outcast":           "OotO",
+	"Raythen Lieutenant Pack":       "R",
+	"Second Edition Base Game":      "2E",
+	"Second Edition Conversion Kit": "1E",
+	"Serena Lieutenant Pack":        "S",
+	"Shadow of Nerekhall":           "SoN",
+	"Shards of Everdark":            "SoE",
+	"Stewards of the Secret":        "SotS",
+	"The Trollfens":                 "TT",
+	"Treaty of Champions":           "ToC",
+	"Visions of Dawn":               "VoD",
 }
 
 type hero struct {
@@ -123,7 +124,18 @@ func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<th class=\"ability\">Hero Ability</th>\n")
 	fmt.Fprintf(w, "<th class=\"heroic\">Heroic Feat</th>\n")
 	fmt.Fprintf(w, "</tr></thead><tbody>\n\n")
-	fmt.Fprintf(w, "<tr><td>\n")
+	fmt.Fprintf(w, "<tr>\n")
+	fmt.Fprintf(w, "<td><div><select id=\"selectExp\" onclick=\"showHideRows()\">\n")
+	fmt.Fprintf(w, "<option value=\"\"></option>\n")
+	var exps []string
+	for _, v := range expansions {
+		exps = append(exps, v)
+	}
+	sort.Strings(exps)
+	for _, v := range exps {
+		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", v, v)
+	}
+	fmt.Fprintf(w, "</select></div>\n")
 	fmt.Fprintf(w, "<td><div><select id=\"selectCK\" onclick=\"showHideRows()\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
 	fmt.Fprintf(w, "<option value=\"override-ck\">Override CK</option>\n")
@@ -133,10 +145,9 @@ func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<td>\n")
 	fmt.Fprintf(w, "<td><div><select id=\"selectClass\" onclick=\"showHideRows()\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
-	fmt.Fprintf(w, "<option value=\"healer\">Healer</option>\n")
-	fmt.Fprintf(w, "<option value=\"mage\">Mage</option>\n")
-	fmt.Fprintf(w, "<option value=\"scout\">Scout</option>\n")
-	fmt.Fprintf(w, "<option value=\"warrior\">Warrior</option>\n")
+	for k := range archetypes {
+		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", strings.ToLower(k), k)
+	}
 	fmt.Fprintf(w, "</select></div>\n")
 	fmt.Fprintf(w, "<td><td><td>\n")
 	fmt.Fprintf(w, "<td><div><select id=\"selectDefense\" onclick=\"showHideRows()\">\n")
@@ -151,7 +162,7 @@ func outputTable(w *bufio.Writer) {
 	outputHeader(w)
 
 	for _, h := range heroes {
-		fmt.Fprintf(w, "<tr class=\"%s %s %s\">\n", strings.ToLower(h.archetype), h.die, h.trClass)
+		fmt.Fprintf(w, "<tr class=\"%s %s %s %s\">\n", strings.ToLower(h.archetype), h.die, h.trClass, expansions[h.expansion])
 		fmt.Fprintf(w, "<td class=\"expansion\">%s</td>\n", h.expImg)
 		fmt.Fprintf(w, "<td class=\"hero\"><a href=\"%s\">%s</a></td>\n", h.url, h.name)
 		// fmt.Fprintf(w, "<td class=\"image\"><img src=\"%s\"></td>\n", image+".png")

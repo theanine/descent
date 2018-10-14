@@ -22,11 +22,15 @@ function showHideRowsOld2(selectSender)
 
 function showHideRows()
 {
+	var e = $("#selectExp").val();
 	var k = $("#selectCK").val();
 	var c = $("#selectClass").val();
 	var d = $("#selectDefense").val();
 	$("tr", "#heroTable").each(function(){
-   		if (((c == "" || $(this).hasClass(c)) && (d == "" || $(this).hasClass(d)) && (k == "" || $(this).hasClass(k)))
+   		if (((c == "" || $(this).hasClass(c)) &&
+   			 (d == "" || $(this).hasClass(d)) &&
+   			 (k == "" || $(this).hasClass(k)) &&
+   			 (e == "" || $(this).hasClass(e)))
    			|| typeof $(this).attr("class") === "undefined") {
 		    $(this).show();
 		} else {
