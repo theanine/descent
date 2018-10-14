@@ -31,10 +31,10 @@ var expansions = map[string]string{
 	"Lair of the Wyrm":              "LotW",
 	"Manor of Ravens":               "MoR",
 	"Oath of the Outcast":           "OotO",
-	"Raythen Lieutenant Pack":       "R",
+	"Raythen Lieutenant Pack":       "LP",
 	"Second Edition Base Game":      "2E",
 	"Second Edition Conversion Kit": "1E",
-	"Serena Lieutenant Pack":        "S",
+	"Serena Lieutenant Pack":        "LP",
 	"Shadow of Nerekhall":           "SoN",
 	"Shards of Everdark":            "SoE",
 	"Stewards of the Secret":        "SotS",
@@ -104,6 +104,19 @@ func downloadImages() {
 	}
 }
 
+func uniqueSortedExps() []string {
+	expMap := make(map[string]struct{})
+	for _, exp := range expansions {
+		expMap[exp] = struct{}{}
+	}
+	var exps []string
+	for exp := range expMap {
+		exps = append(exps, exp)
+	}
+	sort.Strings(exps)
+	return exps
+}
+
 func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<html><head>\n")
 	fmt.Fprintf(w, "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n")
@@ -127,13 +140,9 @@ func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<tr>\n")
 	fmt.Fprintf(w, "<td><div><select id=\"selectExp\" onclick=\"showHideRows()\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
-	var exps []string
-	for _, v := range expansions {
-		exps = append(exps, v)
-	}
-	sort.Strings(exps)
-	for _, v := range exps {
-		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", v, v)
+	exps := uniqueSortedExps()
+	for _, exp := range exps {
+		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", exp, exp)
 	}
 	fmt.Fprintf(w, "</select></div>\n")
 	fmt.Fprintf(w, "<td><div><select id=\"selectCK\" onclick=\"showHideRows()\">\n")
@@ -248,8 +257,11 @@ func fixHeroes() {
 		// h.expImg
 		heroes[i].expImg = ""
 		imgFile := "expansions/" + strings.Replace(heroes[i].expansion, " ", "_", -1) + ".svg"
+		if strings.Contains(heroes[i].expansion, "Lieutenant Pack") {
+			imgFile = "expansions/Lieutenant_Pack.png"
+		}
 		if _, err := os.Stat(imgFile); !os.IsNotExist(err) {
-			heroes[i].expImg = fmt.Sprintf("<img src=\"%s\">", "expansions/"+strings.Replace(heroes[i].expansion, " ", "_", -1)+".svg")
+			heroes[i].expImg = fmt.Sprintf("<img src=\"%s\">", imgFile)
 		} else if heroes[i].expansion == "Second Edition Base Game" {
 			heroes[i].expImg = "2E"
 		} else if heroes[i].expansion == "Second Edition Conversion Kit" {
