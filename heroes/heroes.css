@@ -87,13 +87,13 @@ table th.heroic, table td.heroic{
 
 table thead{
 	display:block;
-	height:7.5vh;
+	height:59px;
 	overflow:auto;
 }
 
 table tbody{
 	display:block;
-	height:92vh;
+	height:calc(99.5vh - 59px);
 	overflow:auto;
 }
 
