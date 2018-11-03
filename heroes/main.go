@@ -147,7 +147,7 @@ func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "</select></div></th>\n")
 	fmt.Fprintf(w, "<th class=\"hero\"><div><select id=\"selectCK\" onclick=\"showHideRows()\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
-	fmt.Fprintf(w, "<option value=\"override-ck\">Override CK</option>\n")
+	fmt.Fprintf(w, "<option value=\"override-ck\" selected=\"selected\">Override CK</option>\n")
 	fmt.Fprintf(w, "<option value=\"ck-only\">CK Only</option>\n")
 	fmt.Fprintf(w, "<option value=\"no-ck\">No CK</option>\n")
 	fmt.Fprintf(w, "</select></div></th>\n")
@@ -178,7 +178,7 @@ func outputTable(w *bufio.Writer) {
 	outputHeader(w)
 
 	for _, h := range heroes {
-		fmt.Fprintf(w, "<tr class=\"%s %s %s %s\">\n", strings.ToLower(h.archetype), h.die, h.trClass, expansions[h.expansion])
+		fmt.Fprintf(w, "<tr class=\"%s %s %s %s\" style=\"display:none;\">\n", strings.ToLower(h.archetype), h.die, h.trClass, expansions[h.expansion])
 		fmt.Fprintf(w, "<td class=\"expansion\">%s</td>\n", h.expImg)
 		fmt.Fprintf(w, "<td class=\"hero\"><a href=\"%s\">%s</a></td>\n", h.url, h.name)
 		// fmt.Fprintf(w, "<td class=\"image\"><img src=\"%s\"></td>\n", image+".png")
