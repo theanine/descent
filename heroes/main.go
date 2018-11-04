@@ -122,7 +122,7 @@ func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n")
 	fmt.Fprintf(w, "<link rel=\"stylesheet\" type=\"text/css\" href=\"heroes.css\">\n")
 	fmt.Fprintf(w, "</head><body onload=\"showHideRows()\"><table id=\"heroTable\"><thead><tr>\n")
-	fmt.Fprintf(w, "<th class=\"expansion\">Expansion</th>\n")
+	fmt.Fprintf(w, "<th class=\"expansion\">Exp</th>\n")
 	fmt.Fprintf(w, "<th class=\"hero\">Hero</th>\n")
 	fmt.Fprintf(w, "<th class=\"image\">Image</th>\n")
 	fmt.Fprintf(w, "<th class=\"archetype\">Type</th>\n")
@@ -261,7 +261,7 @@ func fixHeroes() {
 			imgFile = "expansions/Lieutenant_Pack.png"
 		}
 		if _, err := os.Stat(imgFile); !os.IsNotExist(err) {
-			heroes[i].expImg = fmt.Sprintf("<img src=\"%s\">", imgFile)
+			heroes[i].expImg = fmt.Sprintf("<img src=\"%s\" class=\"expansion\">", imgFile)
 		} else if heroes[i].expansion == "Second Edition Base Game" {
 			heroes[i].expImg = "2E"
 		} else if heroes[i].expansion == "Second Edition Conversion Kit" {
