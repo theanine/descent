@@ -3,9 +3,8 @@
 <link rel="stylesheet" type="text/css" href="heroes.css">
 </head><body onload="showHideRows()"><table id="heroTable"><thead><tr>
 <th class="expansion">Exp</th>
-<th class="hero">Hero</th>
-<th class="image">Image</th>
-<th class="archetype">Type</th>
+<th class="hero">Name</th>
+<th class="image">Hero</th>
 <th class="num speed"><img src="attributes/speed.png" class="header"></th>
 <th class="num health"><img src="attributes/health.png" class="header"></th>
 <th class="num stamina"><img src="attributes/fatigue.png" class="header"></th>
@@ -45,13 +44,12 @@
 <option value="ck-only">CK Only</option>
 <option value="no-ck">No CK</option>
 </select></div></th>
-<th class="image"></th>
-<th class="archetype"><div><select id="selectClass" onclick="showHideRows()">
+<th class="image"><div><select id="selectClass" onclick="showHideRows()">
 <option value=""></option>
-<option value="warrior">Warrior</option>
-<option value="healer">Healer</option>
 <option value="scout">Scout</option>
 <option value="mage">Mage</option>
+<option value="warrior">Warrior</option>
+<option value="healer">Healer</option>
 </select></div></th>
 <th class="num speed"><div><select id="selectSpeed" onclick="showHideRows()"><option value=""></option></select></div></th>
 <th class="num health"><div><select id="selectHealth" onclick="showHideRows()"><option value=""></option></select></div></th>
@@ -71,8 +69,7 @@
 <tr class="warrior white no-ck override-ck MoR" style="display:none;">
 <td class="expansion"><img src="expansions/Manor_of_Ravens.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Alys_Raine">Alys Raine</a></td>
-<td class="image"><span title="&#34;The thief and the lord are equal; the law calls them both to justice.&#34;"><img src="heroes-small/AlysRaine.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;The thief and the lord are equal; the law calls them both to justice.&#34;"><div class="divImage"><img src="heroes-small/AlysRaine.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -88,8 +85,7 @@
 <tr class="healer white no-ck override-ck CotF" style="display:none;">
 <td class="expansion"><img src="expansions/Crusade_of_the_Forgotten.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Andira_Runehand">Andira Runehand</a></td>
-<td class="image"><span title="&#34;To me, brave friends! Gather to my voice and light!&#34;"><img src="heroes-small/AndiraRunehand.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;To me, brave friends! Gather to my voice and light!&#34;"><div class="divImage"><img src="heroes-small/AndiraRunehand.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -105,8 +101,7 @@
 <tr class="healer white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Andira_Runehand">Andira Runehand (CK)</a></td>
-<td class="image"><span title="&#34;Heroes are nothing without brave friends.&#34;"><img src="heroes-small/AndiraRunehandCK.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;Heroes are nothing without brave friends.&#34;"><div class="divImage"><img src="heroes-small/AndiraRunehandCK.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -122,8 +117,7 @@
 <tr class="scout white no-ck override-ck SoE" style="display:none;">
 <td class="expansion"><img src="expansions/Shards_of_Everdark.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Arvel_Worldwalker">Arvel Worldwalker</a></td>
-<td class="image"><span title="&#34;My quest remains unsatisfied - the search for a problem to which I am not the answer!&#34;"><img src="heroes-small/ArvelWorldwalker.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;My quest remains unsatisfied - the search for a problem to which I am not the answer!&#34;"><div class="divImage"><img src="heroes-small/ArvelWorldwalker.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -141,8 +135,7 @@
 <tr class="scout white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Arvel_Worldwalker">Arvel Worldwalker (CK)</a></td>
-<td class="image"><span title="&#34;This land is harsh and terrible, I grant you. But I have seen as harsh before and lived.&#34;"><img src="heroes-small/ArvelWorldwalkerCK.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;This land is harsh and terrible, I grant you. But I have seen as harsh before and lived.&#34;"><div class="divImage"><img src="heroes-small/ArvelWorldwalkerCK.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -158,8 +151,7 @@
 <tr class="healer white no-ck override-ck 2E" style="display:none;">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ashrian">Ashrian</a></td>
-<td class="image"><span title="&#34;I no more understand why I can hear the spirits speak than I understand why you cannot.&#34;"><img src="heroes-small/Ashrian.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;I no more understand why I can hear the spirits speak than I understand why you cannot.&#34;"><div class="divImage"><img src="heroes-small/Ashrian.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -175,8 +167,7 @@
 <tr class="mage white no-ck override-ck CotF" style="display:none;">
 <td class="expansion"><img src="expansions/Crusade_of_the_Forgotten.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Astarra">Astarra</a></td>
-<td class="image"><span title="&#34;You’d be surprised what you can learn when you&#39;ve no one to tell you how to think.&#34;"><img src="heroes-small/Astarra.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;You’d be surprised what you can learn when you&#39;ve no one to tell you how to think.&#34;"><div class="divImage"><img src="heroes-small/Astarra.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">5</td>
@@ -192,8 +183,7 @@
 <tr class="mage white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Astarra">Astarra (CK)</a></td>
-<td class="image"><span title="&#34;The Rune Keepers said I was too unruly to be taught, so all I needed to know I&#39;ve learned on my own.&#34;"><img src="heroes-small/AstarraCK.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;The Rune Keepers said I was too unruly to be taught, so all I needed to know I&#39;ve learned on my own.&#34;"><div class="divImage"><img src="heroes-small/AstarraCK.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">5</td>
@@ -209,8 +199,7 @@
 <tr class="healer white no-ck override-ck TT" style="display:none;">
 <td class="expansion"><img src="expansions/The_Trollfens.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Augur_Grisom">Augur Grisom</a></td>
-<td class="image"><span title="&#34;An endless sea of possibility lies in what is yet to come. Even a tiny glimpse will drive most mad.&#34;"><img src="heroes-small/AugurGrisom.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;An endless sea of possibility lies in what is yet to come. Even a tiny glimpse will drive most mad.&#34;"><div class="divImage"><img src="heroes-small/AugurGrisom.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">12</td>
 <td class="num stamina">5</td>
@@ -226,8 +215,7 @@
 <tr class="healer white ck-only override-ck 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Aurim">Aurim (CK)</a></td>
-<td class="image"><span title="&#34;Ah, the rare Quixinlan Rune Harness I&#39;ve read about! What a joy to see such wonders in person.&#34;"><img src="heroes-small/AurimCK.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;Ah, the rare Quixinlan Rune Harness I&#39;ve read about! What a joy to see such wonders in person.&#34;"><div class="divImage"><img src="heroes-small/AurimCK.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">8</td>
 <td class="num stamina">5</td>
@@ -243,8 +231,7 @@
 <tr class="healer white no-ck override-ck 2E" style="display:none;">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Avric_Albright">Avric Albright</a></td>
-<td class="image"><span title="&#34;I pledge myself to those in need.  I will be their shield, their light in the darkness.&#34;"><img src="heroes-small/AvricAlbright.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;I pledge myself to those in need.  I will be their shield, their light in the darkness.&#34;"><div class="divImage"><img src="heroes-small/AvricAlbright.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -260,8 +247,7 @@
 <tr class="scout white ck-only override-ck 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Bogran_the_Shadow">Bogran the Shadow (CK)</a></td>
-<td class="image"><span title="&#34;I am a deadly wind, invisible and inescapable. You cannot see me, but you can see where I have been.&#34;"><img src="heroes-small/BogranTheShadowCK.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;I am a deadly wind, invisible and inescapable. You cannot see me, but you can see where I have been.&#34;"><div class="divImage"><img src="heroes-small/BogranTheShadowCK.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -277,8 +263,7 @@
 <tr class="healer white no-ck override-ck CoD" style="display:none;">
 <td class="expansion"><img src="expansions/Crown_of_Destiny.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Brother_Gherinn">Brother Gherinn</a></td>
-<td class="image"><span title="&#34;We must suffer and purge our souls unto life, for the flame shall be our judge.&#34;"><img src="heroes-small/BrotherGherinn.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;We must suffer and purge our souls unto life, for the flame shall be our judge.&#34;"><div class="divImage"><img src="heroes-small/BrotherGherinn.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -294,8 +279,7 @@
 <tr class="healer white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Brother_Gherinn">Brother Gherinn (CK)</a></td>
-<td class="image"><span title="&#34;I must strive to fight darkness, lest I be overtaken by the darkness that dwells within me.&#34;"><img src="heroes-small/BrotherGherinnCK.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;I must strive to fight darkness, lest I be overtaken by the darkness that dwells within me.&#34;"><div class="divImage"><img src="heroes-small/BrotherGherinnCK.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -311,8 +295,7 @@
 <tr class="healer white ck-only override-ck 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Brother_Glyr">Brother Glyr (CK)</a></td>
-<td class="image"><span title="&#34;keep moving, ye hear? I&#39;ll not leave a one of ye behind!&#34;"><img src="heroes-small/BrotherGlyrCK.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;keep moving, ye hear? I&#39;ll not leave a one of ye behind!&#34;"><div class="divImage"><img src="heroes-small/BrotherGlyrCK.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">2</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -328,8 +311,7 @@
 <tr class="mage white no-ck override-ck BotW" style="display:none;">
 <td class="expansion"><img src="expansions/Bonds_of_the_Wild.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Challara">Challara</a></td>
-<td class="image"><span title="&#34;The flames of my fury you have survived, but can you endure the flame of my dragon?&#34;"><img src="heroes-small/Challara.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;The flames of my fury you have survived, but can you endure the flame of my dragon?&#34;"><div class="divImage"><img src="heroes-small/Challara.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -345,8 +327,7 @@
 <tr class="mage white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Challara">Challara (CK)</a></td>
-<td class="image"><span title="&#34;All I accomplish, every enemy I vanquish, is to the glory of my ancestors.&#34;"><img src="heroes-small/ChallaraCK.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;All I accomplish, every enemy I vanquish, is to the glory of my ancestors.&#34;"><div class="divImage"><img src="heroes-small/ChallaraCK.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">10</td>
 <td class="num stamina">5</td>
@@ -362,8 +343,7 @@
 <tr class="warrior white no-ck override-ck CoD" style="display:none;">
 <td class="expansion"><img src="expansions/Crown_of_Destiny.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Corbin">Corbin</a></td>
-<td class="image"><span title="&#34;I don&#39;t hold grudges. I keep short accounts. Now fight me!&#34;"><img src="heroes-small/Corbin.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;I don&#39;t hold grudges. I keep short accounts. Now fight me!&#34;"><div class="divImage"><img src="heroes-small/Corbin.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">12</td>
 <td class="num stamina">5</td>
@@ -379,8 +359,7 @@
 <tr class="warrior white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Corbin">Corbin (CK)</a></td>
-<td class="image"><span title="&#34;The only way I&#39;ll stop fightin&#39; is if I take you down with me!&#34;"><img src="heroes-small/CorbinCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;The only way I&#39;ll stop fightin&#39; is if I take you down with me!&#34;"><div class="divImage"><img src="heroes-small/CorbinCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">12</td>
 <td class="num stamina">5</td>
@@ -396,8 +375,7 @@
 <tr class="mage white no-ck override-ck LoR" style="display:none;">
 <td class="expansion"><img src="expansions/Labyrinth_of_Ruin.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Dezra_the_Vile">Dezra the Vile</a></td>
-<td class="image"><span title="&#34;Very few people understand my abilities.  I prefer it that way.&#34;"><img src="heroes-small/DezraTheVile.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;Very few people understand my abilities.  I prefer it that way.&#34;"><div class="divImage"><img src="heroes-small/DezraTheVile.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">8</td>
 <td class="num stamina">4</td>
@@ -413,8 +391,7 @@
 <tr class="healer white no-ck override-ck OotO" style="display:none;">
 <td class="expansion"><img src="expansions/Oath_of_the_Outcast.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Elder_Mok">Elder Mok</a></td>
-<td class="image"><span title="&#34;My message is not my own. Follow my instruction or fall where you stand... You&#39;ve been warned.&#34;"><img src="heroes-small/ElderMok.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;My message is not my own. Follow my instruction or fall where you stand... You&#39;ve been warned.&#34;"><div class="divImage"><img src="heroes-small/ElderMok.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -430,8 +407,7 @@
 <tr class="healer white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Elder_Mok">Elder Mok (CK)</a></td>
-<td class="image"><span title="&#34;The spirits are angry. I am angry too. When we get angry, people get hurt.&#34;"><img src="heroes-small/ElderMokCK.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;The spirits are angry. I am angry too. When we get angry, people get hurt.&#34;"><div class="divImage"><img src="heroes-small/ElderMokCK.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -447,8 +423,7 @@
 <tr class="warrior brown ck-only override-ck 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Eliam">Eliam (CK)</a></td>
-<td class="image"><span title="&#34;Battle is a dance of blades and wit.&#34;"><img src="heroes-small/EliamCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Battle is a dance of blades and wit.&#34;"><div class="divImage"><img src="heroes-small/EliamCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">12</td>
 <td class="num stamina">5</td>
@@ -464,8 +439,7 @@
 <tr class="scout white no-ck override-ck ToC" style="display:none;">
 <td class="expansion"><img src="expansions/Treaty_of_Champions.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Grey_Ker">Grey Ker</a></td>
-<td class="image"><span title="&#34;If justice is the shadow of a setting sun, I am the midnight that follows.&#34;"><img src="heroes-small/GreyKer.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;If justice is the shadow of a setting sun, I am the midnight that follows.&#34;"><div class="divImage"><img src="heroes-small/GreyKer.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">5</td>
@@ -481,8 +455,7 @@
 <tr class="scout white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Grey_Ker">Grey Ker (CK)</a></td>
-<td class="image"><span title="&#34;I&#39;m not the thin line between black and white... I&#39;m the thin line between your life and your death.&#34;"><img src="heroes-small/GreyKerCK.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;I&#39;m not the thin line between black and white... I&#39;m the thin line between your life and your death.&#34;"><div class="divImage"><img src="heroes-small/GreyKerCK.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">5</td>
@@ -498,8 +471,7 @@
 <tr class="warrior white no-ck override-ck 2E" style="display:none;">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Grisban_the_Thirsty">Grisban the Thirsty</a></td>
-<td class="image"><span title="&#34;All this killing is thirsty work. Drink with me!&#34;"><img src="heroes-small/GrisbanTheThirsty.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;All this killing is thirsty work. Drink with me!&#34;"><div class="divImage"><img src="heroes-small/GrisbanTheThirsty.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">14</td>
 <td class="num stamina">4</td>
@@ -515,8 +487,7 @@
 <tr class="mage white no-ck override-ck LotW" style="display:none;">
 <td class="expansion"><img src="expansions/Lair_of_the_Wyrm.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/High_Mage_Quellen">High Mage Quellen</a></td>
-<td class="image"><span title="&#34;I feed off the wisdom of others, even when it’s less filling than my own.&#34;"><img src="heroes-small/HighMageQuellen.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;I feed off the wisdom of others, even when it’s less filling than my own.&#34;"><div class="divImage"><img src="heroes-small/HighMageQuellen.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -532,8 +503,7 @@
 <tr class="warrior black ck-only override-ck 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Hugo_the_Glorious">Hugo the Glorious (CK)</a></td>
-<td class="image"><span title="&#34;The songs of my name and my triumphs should be heard in every corner of the world.&#34;"><img src="heroes-small/HugoTheGloriousCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;The songs of my name and my triumphs should be heard in every corner of the world.&#34;"><div class="divImage"><img src="heroes-small/HugoTheGloriousCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -549,8 +519,7 @@
 <tr class="healer white no-ck override-ck VoD" style="display:none;">
 <td class="expansion"><img src="expansions/Visions_of_Dawn.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ispher">Ispher</a></td>
-<td class="image"><span title="&#34;We are feared,  we are despised, yet still I am called to help?&#34;"><img src="heroes-small/Ispher.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;We are feared,  we are despised, yet still I am called to help?&#34;"><div class="divImage"><img src="heroes-small/Ispher.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -566,8 +535,7 @@
 <tr class="healer white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ispher">Ispher (CK)</a></td>
-<td class="image"><span title="&#34;Humans fear us, and we despise them.&#34;"><img src="heroes-small/IspherCK.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;Humans fear us, and we despise them.&#34;"><div class="divImage"><img src="heroes-small/IspherCK.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">8</td>
 <td class="num stamina">4</td>
@@ -583,8 +551,7 @@
 <tr class="mage white no-ck override-ck CoD" style="display:none;">
 <td class="expansion"><img src="expansions/Crown_of_Destiny.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Jaes_the_Exile">Jaes the Exile</a></td>
-<td class="image"><span title="&#34;Courage and sacrifice means nothing! We must overcome or die in shame.&#34;"><img src="heroes-small/JaesTheExile.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;Courage and sacrifice means nothing! We must overcome or die in shame.&#34;"><div class="divImage"><img src="heroes-small/JaesTheExile.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -600,8 +567,7 @@
 <tr class="mage white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Jaes_the_Exile">Jaes the Exile (CK)</a></td>
-<td class="image"><span title="&#34;The dragon Wars almost destroyed my people. I will die before I let that happen again.&#34;"><img src="heroes-small/JaesTheExileCK.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;The dragon Wars almost destroyed my people. I will die before I let that happen again.&#34;"><div class="divImage"><img src="heroes-small/JaesTheExileCK.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -617,8 +583,7 @@
 <tr class="scout white no-ck override-ck 2E" style="display:none;">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Jain_Fairwood">Jain Fairwood</a></td>
-<td class="image"><span title="&#34;Out here in the wilds, I protect those who have misjudged me.&#34;"><img src="heroes-small/JainFairwood.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;Out here in the wilds, I protect those who have misjudged me.&#34;"><div class="divImage"><img src="heroes-small/JainFairwood.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">8</td>
 <td class="num stamina">5</td>
@@ -634,8 +599,7 @@
 <tr class="healer white no-ck override-ck ToC" style="display:none;">
 <td class="expansion"><img src="expansions/Treaty_of_Champions.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Jonas_the_Kind">Jonas the Kind</a></td>
-<td class="image"><span title="&#34;My place is between you and the innocent. You have one chance to lay down your blade.&#34;"><img src="heroes-small/JonasTheKind.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;My place is between you and the innocent. You have one chance to lay down your blade.&#34;"><div class="divImage"><img src="heroes-small/JonasTheKind.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -651,8 +615,7 @@
 <tr class="healer white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Jonas_the_Kind">Jonas the Kind (CK)</a></td>
-<td class="image"><span title="&#34;Surrender. It&#39;s never too late to repent!&#34;"><img src="heroes-small/JonasTheKindCK.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;Surrender. It&#39;s never too late to repent!&#34;"><div class="divImage"><img src="heroes-small/JonasTheKindCK.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">8</td>
 <td class="num stamina">4</td>
@@ -668,8 +631,7 @@
 <tr class="warrior white no-ck override-ck SoE" style="display:none;">
 <td class="expansion"><img src="expansions/Shards_of_Everdark.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Karnon">Karnon</a></td>
-<td class="image"><span title="&#34;At end of ages, Karnon remain: ever strong, ever alone.&#34;"><img src="heroes-small/Karnon.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;At end of ages, Karnon remain: ever strong, ever alone.&#34;"><div class="divImage"><img src="heroes-small/Karnon.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">14</td>
 <td class="num stamina">3</td>
@@ -685,8 +647,7 @@
 <tr class="warrior white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Karnon">Karnon (CK)</a></td>
-<td class="image"><span title="&#34;Karnon needs no help from little man. Karnon is Karnon.&#34;"><img src="heroes-small/KarnonCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Karnon needs no help from little man. Karnon is Karnon.&#34;"><div class="divImage"><img src="heroes-small/KarnonCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">14</td>
 <td class="num stamina">3</td>
@@ -702,8 +663,7 @@
 <tr class="scout white ck-only override-ck 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Kirga">Kirga (CK)</a></td>
-<td class="image"><span title="&#34;Knowing how to find things helps keep one hidden. And I know how to find anything...&#34;"><img src="heroes-small/KirgaCK.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;Knowing how to find things helps keep one hidden. And I know how to find anything...&#34;"><div class="divImage"><img src="heroes-small/KirgaCK.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -719,8 +679,7 @@
 <tr class="warrior white no-ck override-ck ToC" style="display:none;">
 <td class="expansion"><img src="expansions/Treaty_of_Champions.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Krutzbeck">Krutzbeck</a></td>
-<td class="image"><span title="&#34;Hit &#39;em hard. If they&#39;re still standing, hit &#39;em again--harder.&#34;"><img src="heroes-small/Krutzbeck.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Hit &#39;em hard. If they&#39;re still standing, hit &#39;em again--harder.&#34;"><div class="divImage"><img src="heroes-small/Krutzbeck.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -736,8 +695,7 @@
 <tr class="warrior white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Krutzbeck">Krutzbeck (CK)</a></td>
-<td class="image"><span title="&#34;Smash it. Crush it. If that doesn&#39;t work, smash it and crush it again.&#34;"><img src="heroes-small/KrutzbeckCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Smash it. Crush it. If that doesn&#39;t work, smash it and crush it again.&#34;"><div class="divImage"><img src="heroes-small/KrutzbeckCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -753,8 +711,7 @@
 <tr class="mage brown ck-only override-ck 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Landrec_the_Wise">Landrec the Wise (CK)</a></td>
-<td class="image"><span title="&#34;Wisdom comes with age, but knowledge must always be searched for.&#34;"><img src="heroes-small/LandrecTheWiseCK.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;Wisdom comes with age, but knowledge must always be searched for.&#34;"><div class="divImage"><img src="heroes-small/LandrecTheWiseCK.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -770,8 +727,7 @@
 <tr class="warrior white ck-only override-ck 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Laughin_Buldar">Laughin Buldar (CK)</a></td>
-<td class="image"><span title="&#34;Courage, my brothers! Surrender yourselves to the joy of battle and we shall meet our destiny together!&#34;"><img src="heroes-small/LaughinBuldarCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Courage, my brothers! Surrender yourselves to the joy of battle and we shall meet our destiny together!&#34;"><div class="divImage"><img src="heroes-small/LaughinBuldarCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">14</td>
 <td class="num stamina">3</td>
@@ -787,8 +743,7 @@
 <tr class="scout white no-ck override-ck OotO" style="display:none;">
 <td class="expansion"><img src="expansions/Oath_of_the_Outcast.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Laurel_of_Bloodwood">Laurel of Bloodwood</a></td>
-<td class="image"><span title="&#34;Herald and reaper, my arrow calls your name; answer with silence and blood.&#34;"><img src="heroes-small/LaurelOfBloodwood.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;Herald and reaper, my arrow calls your name; answer with silence and blood.&#34;"><div class="divImage"><img src="heroes-small/LaurelOfBloodwood.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">8</td>
 <td class="num stamina">5</td>
@@ -804,8 +759,7 @@
 <tr class="scout white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Laurel_of_Bloodwood">Laurel of Bloodwood (CK)</a></td>
-<td class="image"><span title="&#34;No matter what you hear, it was our bows that gave my home its name, not the autumn winds.&#34;"><img src="heroes-small/LaurelOfBloodwoodCK.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;No matter what you hear, it was our bows that gave my home its name, not the autumn winds.&#34;"><div class="divImage"><img src="heroes-small/LaurelOfBloodwoodCK.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">8</td>
 <td class="num stamina">3</td>
@@ -821,8 +775,7 @@
 <tr class="mage white no-ck override-ck 2E" style="display:none;">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Leoric_of_the_Book">Leoric of the Book</a></td>
-<td class="image"><span title="&#34;If my years of study have taught me anything, it is that I am worthy of the knowledge I possess.&#34;"><img src="heroes-small/LeoricOfTheBook.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;If my years of study have taught me anything, it is that I am worthy of the knowledge I possess.&#34;"><div class="divImage"><img src="heroes-small/LeoricOfTheBook.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">8</td>
 <td class="num stamina">5</td>
@@ -838,8 +791,7 @@
 <tr class="scout white no-ck override-ck CoD" style="display:none;">
 <td class="expansion"><img src="expansions/Crown_of_Destiny.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lindel">Lindel</a></td>
-<td class="image"><span title="&#34;I have been here before and watched darkness triumph. It will not happen again.&#34;"><img src="heroes-small/Lindel.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;I have been here before and watched darkness triumph. It will not happen again.&#34;"><div class="divImage"><img src="heroes-small/Lindel.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">10</td>
 <td class="num stamina">5</td>
@@ -855,8 +807,7 @@
 <tr class="scout white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lindel">Lindel (CK)</a></td>
-<td class="image"><span title="&#34;There is so much sorrow in the world, I do what I may to end the cruelty that plagues this land.&#34;"><img src="heroes-small/LindelCK.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;There is so much sorrow in the world, I do what I may to end the cruelty that plagues this land.&#34;"><div class="divImage"><img src="heroes-small/LindelCK.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">10</td>
 <td class="num stamina">5</td>
@@ -872,8 +823,7 @@
 <tr class="scout white no-ck override-ck LoR" style="display:none;">
 <td class="expansion"><img src="expansions/Labyrinth_of_Ruin.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Logan_Lashley">Logan Lashley</a></td>
-<td class="image"><span title="&#34;There is no question that you need me.  The question is, can you afford me?&#34;"><img src="heroes-small/LoganLashley.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;There is no question that you need me.  The question is, can you afford me?&#34;"><div class="divImage"><img src="heroes-small/LoganLashley.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -889,8 +839,7 @@
 <tr class="warrior white no-ck override-ck GoD" style="display:none;">
 <td class="expansion"><img src="expansions/Guardians_of_Deephall.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lord_Hawthorne">Lord Hawthorne</a></td>
-<td class="image"><span title="&#34;None fall faster than they that flee.&#34;"><img src="heroes-small/LordHawthorne.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;None fall faster than they that flee.&#34;"><div class="divImage"><img src="heroes-small/LordHawthorne.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -906,8 +855,7 @@
 <tr class="warrior white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lord_Hawthorne">Lord Hawthorne (CK)</a></td>
-<td class="image"><span title="&#34;If you decide to flee from me, you better hope you flee far enough.&#34;"><img src="heroes-small/LordHawthorneCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;If you decide to flee from me, you better hope you flee far enough.&#34;"><div class="divImage"><img src="heroes-small/LordHawthorneCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -923,8 +871,7 @@
 <tr class="mage white no-ck override-ck BotW" style="display:none;">
 <td class="expansion"><img src="expansions/Bonds_of_the_Wild.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lyssa">Lyssa</a></td>
-<td class="image"><span title="&#34;There is more knowledge in the squirming of my prey than in all your dusty tomes.&#34;"><img src="heroes-small/Lyssa.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;There is more knowledge in the squirming of my prey than in all your dusty tomes.&#34;"><div class="divImage"><img src="heroes-small/Lyssa.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">8</td>
 <td class="num stamina">5</td>
@@ -940,8 +887,7 @@
 <tr class="mage white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lyssa">Lyssa (CK)</a></td>
-<td class="image"><span title="&#34;My people are at one with nature.&#34;"><img src="heroes-small/LyssaCK.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;My people are at one with nature.&#34;"><div class="divImage"><img src="heroes-small/LyssaCK.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">8</td>
 <td class="num stamina">5</td>
@@ -957,8 +903,7 @@
 <tr class="mage white ck-only override-ck 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Mad_Carthos">Mad Carthos (CK)</a></td>
-<td class="image"><span title="&#34;If it&#39;s madness you seek power at any cost, then yes, you may call me mad.&#34;"><img src="heroes-small/MadCarthosCK.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;If it&#39;s madness you seek power at any cost, then yes, you may call me mad.&#34;"><div class="divImage"><img src="heroes-small/MadCarthosCK.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">8</td>
 <td class="num stamina">3</td>
@@ -974,8 +919,7 @@
 <tr class="mage white no-ck override-ck VoD" style="display:none;">
 <td class="expansion"><img src="expansions/Visions_of_Dawn.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Master_Thorn">Master Thorn</a></td>
-<td class="image"><span title="&#34;I walk the unseen paths, those that were never meant for the feet of men.&#34;"><img src="heroes-small/MasterThorn.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;I walk the unseen paths, those that were never meant for the feet of men.&#34;"><div class="divImage"><img src="heroes-small/MasterThorn.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">8</td>
 <td class="num stamina">4</td>
@@ -991,8 +935,7 @@
 <tr class="mage white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Master_Thorn">Master Thorn (CK)</a></td>
-<td class="image"><span title="&#34;You can&#39;t see the path I walk, because they were not meant to be tread.&#34;"><img src="heroes-small/MasterThornCK.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;You can&#39;t see the path I walk, because they were not meant to be tread.&#34;"><div class="divImage"><img src="heroes-small/MasterThornCK.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">8</td>
 <td class="num stamina">4</td>
@@ -1008,8 +951,7 @@
 <tr class="warrior white no-ck override-ck GoD" style="display:none;">
 <td class="expansion"><img src="expansions/Guardians_of_Deephall.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Mordrog">Mordrog</a></td>
-<td class="image"><span title="&#34;Prejudice is only a mask for jealousy.&#34;"><img src="heroes-small/Mordrog.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Prejudice is only a mask for jealousy.&#34;"><div class="divImage"><img src="heroes-small/Mordrog.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">14</td>
 <td class="num stamina">4</td>
@@ -1025,8 +967,7 @@
 <tr class="warrior white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Mordrog">Mordrog (CK)</a></td>
-<td class="image"><span title="&#34;You call me beast. You call me animal. But I call you coward.&#34;"><img src="heroes-small/MordrogCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;You call me beast. You call me animal. But I call you coward.&#34;"><div class="divImage"><img src="heroes-small/MordrogCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">14</td>
 <td class="num stamina">3</td>
@@ -1042,8 +983,7 @@
 <tr class="warrior black no-ck override-ck SotS" style="display:none;">
 <td class="expansion"><img src="expansions/Stewards_of_the_Secret.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Nanok_of_the_Blade">Nanok of the Blade</a></td>
-<td class="image"><span title="&#34;Some fools cower behind metal, thinking the purpose of battle is survival.&#34;"><img src="heroes-small/NanokOfTheBlade.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Some fools cower behind metal, thinking the purpose of battle is survival.&#34;"><div class="divImage"><img src="heroes-small/NanokOfTheBlade.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -1059,8 +999,7 @@
 <tr class="warrior black ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Nanok_of_the_Blade">Nanok of the Blade (CK)</a></td>
-<td class="image"><span title="&#34;To wear armor is to fear that a foe might strike me. It is cowardice. I am no coward.&#34;"><img src="heroes-small/NanokOfTheBladeCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;To wear armor is to fear that a foe might strike me. It is cowardice. I am no coward.&#34;"><div class="divImage"><img src="heroes-small/NanokOfTheBladeCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -1076,8 +1015,7 @@
 <tr class="warrior white no-ck override-ck VoD" style="display:none;">
 <td class="expansion"><img src="expansions/Visions_of_Dawn.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Nara_the_Fang">Nara the Fang</a></td>
-<td class="image"><span title="&#34;Take your lessons from the wind: swift and constant striking as a howling gale.&#34;"><img src="heroes-small/NaraTheFang.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Take your lessons from the wind: swift and constant striking as a howling gale.&#34;"><div class="divImage"><img src="heroes-small/NaraTheFang.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1093,8 +1031,7 @@
 <tr class="warrior white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Nara_the_Fang">Nara the Fang (CK)</a></td>
-<td class="image"><span title="&#34;I leap, I attack, I stab, I kill!&#34;"><img src="heroes-small/NaraTheFangCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;I leap, I attack, I stab, I kill!&#34;"><div class="divImage"><img src="heroes-small/NaraTheFangCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1110,8 +1047,7 @@
 <tr class="healer white no-ck override-ck SotS" style="display:none;">
 <td class="expansion"><img src="expansions/Stewards_of_the_Secret.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Okaluk_and_Rakash">Okaluk and Rakash</a></td>
-<td class="image"><span title="&#34;I will follow where you lead, old friend. But let us go swiftly!&#34;"><img src="heroes-small/OkalukAndRakash.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;I will follow where you lead, old friend. But let us go swiftly!&#34;"><div class="divImage"><img src="heroes-small/OkalukAndRakash.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">2</td>
 <td class="num health">8</td>
 <td class="num stamina">3</td>
@@ -1127,8 +1063,7 @@
 <tr class="healer white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Okaluk_and_Rakash">Okaluk and Rakash (CK)</a></td>
-<td class="image"><span title="&#34;You know my answer already, old friend. I could never abandon you.&#34;"><img src="heroes-small/OkalukAndRakashCK.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;You know my answer already, old friend. I could never abandon you.&#34;"><div class="divImage"><img src="heroes-small/OkalukAndRakashCK.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">2</td>
 <td class="num health">8</td>
 <td class="num stamina">3</td>
@@ -1144,8 +1079,7 @@
 <tr class="warrior white no-ck override-ck SoE" style="display:none;">
 <td class="expansion"><img src="expansions/Shards_of_Everdark.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/One_Fist">One Fist</a></td>
-<td class="image"><span title="&#34;I didn&#39;t get the hook after losing my hand. I forfeited my hand to make room for the hook!&#34;"><img src="heroes-small/OneFist.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;I didn&#39;t get the hook after losing my hand. I forfeited my hand to make room for the hook!&#34;"><div class="divImage"><img src="heroes-small/OneFist.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1161,8 +1095,7 @@
 <tr class="warrior white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/One_Fist">One Fist (CK)</a></td>
-<td class="image"><span title="&#34;I&#39;ve fought many battles and seen the worst the world has to offer. Do your worst. I have no fear.&#34;"><img src="heroes-small/OneFistCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;I&#39;ve fought many battles and seen the worst the world has to offer. Do your worst. I have no fear.&#34;"><div class="divImage"><img src="heroes-small/OneFistCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1178,8 +1111,7 @@
 <tr class="warrior brown no-ck override-ck SoN" style="display:none;">
 <td class="expansion"><img src="expansions/Shadow_of_Nerekhall.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Orkell_the_Swift">Orkell the Swift</a></td>
-<td class="image"><span title="&#34;Just try to keep up, all right?&#34;"><img src="heroes-small/OrkellTheSwift.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Just try to keep up, all right?&#34;"><div class="divImage"><img src="heroes-small/OrkellTheSwift.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">10</td>
 <td class="num stamina">5</td>
@@ -1195,8 +1127,7 @@
 <tr class="warrior white no-ck override-ck LoR" style="display:none;">
 <td class="expansion"><img src="expansions/Labyrinth_of_Ruin.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Pathfinder_Durik">Pathfinder Durik</a></td>
-<td class="image"><span title="&#34;The ways I know are dangerous, and I tread them carefully.  I advise you to do the same...&#34;"><img src="heroes-small/PathfinderDurik.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;The ways I know are dangerous, and I tread them carefully.  I advise you to do the same...&#34;"><div class="divImage"><img src="heroes-small/PathfinderDurik.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1212,8 +1143,7 @@
 <tr class="mage black no-ck override-ck SoN" style="display:none;">
 <td class="expansion"><img src="expansions/Shadow_of_Nerekhall.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ravaella_Lightfoot">Ravaella Lightfoot</a></td>
-<td class="image"><span title="&#34;Am I here? Am I over there? Or am I right behind you?&#34;"><img src="heroes-small/RavaellaLightfoot.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;Am I here? Am I over there? Or am I right behind you?&#34;"><div class="divImage"><img src="heroes-small/RavaellaLightfoot.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">8</td>
 <td class="num stamina">5</td>
@@ -1229,8 +1159,7 @@
 <tr class="scout brown no-ck override-ck LP" style="display:none;">
 <td class="expansion"><img src="expansions/Lieutenant_Pack.png" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Raythen_(Hero)">Raythen</a></td>
-<td class="image"><span title="&#34;&#34;Just be careful, I&#39;d wager this place still has a few tricks up its sleeve.&#34;&#34;"><img src="heroes-small/Raythen.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;&#34;Just be careful, I&#39;d wager this place still has a few tricks up its sleeve.&#34;&#34;"><div class="divImage"><img src="heroes-small/Raythen.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">14</td>
 <td class="num stamina">4</td>
@@ -1246,8 +1175,7 @@
 <tr class="scout white ck-only override-ck 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Red_Scorpion">Red Scorpion (CK)</a></td>
-<td class="image"><span title="&#34;Balance is the essence of success. To succeed, one must be balanced in all things.&#34;"><img src="heroes-small/RedScorpionCK.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;Balance is the essence of success. To succeed, one must be balanced in all things.&#34;"><div class="divImage"><img src="heroes-small/RedScorpionCK.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">8</td>
 <td class="num stamina">5</td>
@@ -1263,8 +1191,7 @@
 <tr class="healer white no-ck override-ck SoN" style="display:none;">
 <td class="expansion"><img src="expansions/Shadow_of_Nerekhall.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Rendiel">Rendiel</a></td>
-<td class="image"><span title="&#34;An ancient melody, refined through countless generations... freely given.&#34;"><img src="heroes-small/Rendiel.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;An ancient melody, refined through countless generations... freely given.&#34;"><div class="divImage"><img src="heroes-small/Rendiel.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1280,8 +1207,7 @@
 <tr class="warrior white no-ck override-ck LotW" style="display:none;">
 <td class="expansion"><img src="expansions/Lair_of_the_Wyrm.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Reynhart_the_Worthy">Reynhart the Worthy</a></td>
-<td class="image"><span title="&#34;I’ve been known to lose, but never to give up!&#34;"><img src="heroes-small/ReynhartTheWorthy.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;I’ve been known to lose, but never to give up!&#34;"><div class="divImage"><img src="heroes-small/ReynhartTheWorthy.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -1297,8 +1223,7 @@
 <tr class="scout white no-ck override-ck TT" style="display:none;">
 <td class="expansion"><img src="expansions/The_Trollfens.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Roganna_the_Shade">Roganna the Shade</a></td>
-<td class="image"><span title="&#34;Keep perfectly still. It may look small, but that creature is aggressive, and its bite fatal.&#34;"><img src="heroes-small/RogannaTheShade.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;Keep perfectly still. It may look small, but that creature is aggressive, and its bite fatal.&#34;"><div class="divImage"><img src="heroes-small/RogannaTheShade.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1314,8 +1239,7 @@
 <tr class="scout white no-ck override-ck BotW" style="display:none;">
 <td class="expansion"><img src="expansions/Bonds_of_the_Wild.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ronan_of_the_Wild">Ronan of the Wild</a></td>
-<td class="image"><span title="&#34;There&#39;s something unnatural stirring in the forest.&#34;"><img src="heroes-small/RonanOfTheWild.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;There&#39;s something unnatural stirring in the forest.&#34;"><div class="divImage"><img src="heroes-small/RonanOfTheWild.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">5</td>
@@ -1337,8 +1261,7 @@ cards.
 <tr class="scout white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ronan_of_the_Wild">Ronan of the Wild (CK)</a></td>
-<td class="image"><span title="&#34;The forest is stirring… but we’re prepared for anything.&#34;"><img src="heroes-small/RonanOfTheWildCK.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;The forest is stirring… but we’re prepared for anything.&#34;"><div class="divImage"><img src="heroes-small/RonanOfTheWildCK.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">5</td>
@@ -1354,8 +1277,7 @@ cards.
 <tr class="healer white no-ck override-ck GoD" style="display:none;">
 <td class="expansion"><img src="expansions/Guardians_of_Deephall.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Sahla">Sahla</a></td>
-<td class="image"><span title="&#34;Why be only one man when I have the power to be many?&#34;"><img src="heroes-small/Sahla.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;Why be only one man when I have the power to be many?&#34;"><div class="divImage"><img src="heroes-small/Sahla.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1371,8 +1293,7 @@ cards.
 <tr class="healer white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Sahla">Sahla (CK)</a></td>
-<td class="image"><span title="&#34;Special powers are all well and good, but there are other paths to fame.&#34;"><img src="heroes-small/SahlaCK.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;Special powers are all well and good, but there are other paths to fame.&#34;"><div class="divImage"><img src="heroes-small/SahlaCK.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1388,8 +1309,7 @@ cards.
 <tr class="healer brown no-ck override-ck LP" style="display:none;">
 <td class="expansion"><img src="expansions/Lieutenant_Pack.png" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Serena_(Hero)">Serena</a></td>
-<td class="image"><span title="&#34;I have waited in silence for far too long. Now the world will know my song.&#34;"><img src="heroes-small/Serena.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;I have waited in silence for far too long. Now the world will know my song.&#34;"><div class="divImage"><img src="heroes-small/Serena.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">8</td>
 <td class="num stamina">6</td>
@@ -1405,8 +1325,7 @@ cards.
 <tr class="mage white no-ck override-ck OotO" style="display:none;">
 <td class="expansion"><img src="expansions/Oath_of_the_Outcast.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Shiver">Shiver</a></td>
-<td class="image"><span title="&#34;I care not the cost or pain, nor if my judgment was just; I will work out my redemption.&#34;"><img src="heroes-small/Shiver.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;I care not the cost or pain, nor if my judgment was just; I will work out my redemption.&#34;"><div class="divImage"><img src="heroes-small/Shiver.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1422,8 +1341,7 @@ cards.
 <tr class="mage white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Shiver">Shiver (CK)</a></td>
-<td class="image"><span title="&#34;My sins were grievous, but I have repented for millennia. How long was I meant to suffer for my crimes?&#34;"><img src="heroes-small/ShiverCK.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;My sins were grievous, but I have repented for millennia. How long was I meant to suffer for my crimes?&#34;"><div class="divImage"><img src="heroes-small/ShiverCK.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">8</td>
 <td class="num stamina">4</td>
@@ -1439,8 +1357,7 @@ cards.
 <tr class="scout white no-ck override-ck GoD" style="display:none;">
 <td class="expansion"><img src="expansions/Guardians_of_Deephall.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Silhouette">Silhouette</a></td>
-<td class="image"><span title="&#34;Don&#39;t worry... I&#39;ll just be right around the corner.&#34;"><img src="heroes-small/Silhouette.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;Don&#39;t worry... I&#39;ll just be right around the corner.&#34;"><div class="divImage"><img src="heroes-small/Silhouette.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1456,8 +1373,7 @@ cards.
 <tr class="scout white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Silhouette">Silhouette (CK)</a></td>
-<td class="image"><span title="&#34;Shhh... This will only hurt for a moment.&#34;"><img src="heroes-small/SilhouetteCK.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;Shhh... This will only hurt for a moment.&#34;"><div class="divImage"><img src="heroes-small/SilhouetteCK.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1473,8 +1389,7 @@ cards.
 <tr class="warrior white no-ck override-ck VoD" style="display:none;">
 <td class="expansion"><img src="expansions/Visions_of_Dawn.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Sir_Valadir">Sir Valadir</a></td>
-<td class="image"><span title="&#34;Stay close. I&#39;ve got the bigger sword.&#34;"><img src="heroes-small/SirValadir.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Stay close. I&#39;ve got the bigger sword.&#34;"><div class="divImage"><img src="heroes-small/SirValadir.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -1492,8 +1407,7 @@ cards.
 <tr class="warrior white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Sir_Valadir">Sir Valadir (CK)</a></td>
-<td class="image"><span title="&#34;Ours is a noble crusade! We will fight gloriously and die with honor!&#34;"><img src="heroes-small/SirValadirCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Ours is a noble crusade! We will fight gloriously and die with honor!&#34;"><div class="divImage"><img src="heroes-small/SirValadirCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -1509,8 +1423,7 @@ cards.
 <tr class="warrior white no-ck override-ck SoE" style="display:none;">
 <td class="expansion"><img src="expansions/Shards_of_Everdark.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Steelhorns">Steelhorns</a></td>
-<td class="image"><span title="&#34;Friends are an awful lot like foes. Neither knows when to get out of my way.&#34;"><img src="heroes-small/Steelhorns.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Friends are an awful lot like foes. Neither knows when to get out of my way.&#34;"><div class="divImage"><img src="heroes-small/Steelhorns.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">14</td>
 <td class="num stamina">3</td>
@@ -1526,8 +1439,7 @@ cards.
 <tr class="warrior white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Steelhorns">Steelhorns (CK)</a></td>
-<td class="image"><span title="&#34;Humans have called us monsters throughout the ages, but we know who the real beasts are.&#34;"><img src="heroes-small/SteelhornsCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Humans have called us monsters throughout the ages, but we know who the real beasts are.&#34;"><div class="divImage"><img src="heroes-small/SteelhornsCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">14</td>
 <td class="num stamina">3</td>
@@ -1543,8 +1455,7 @@ cards.
 <tr class="warrior white no-ck override-ck 2E" style="display:none;">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Syndrael">Syndrael</a></td>
-<td class="image"><span title="&#34;You swear undying loyalty, yet you are mortal.  What can you know of commitment?&#34;"><img src="heroes-small/Syndrael.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;You swear undying loyalty, yet you are mortal.  What can you know of commitment?&#34;"><div class="divImage"><img src="heroes-small/Syndrael.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -1560,8 +1471,7 @@ cards.
 <tr class="warrior white no-ck override-ck CotF" style="display:none;">
 <td class="expansion"><img src="expansions/Crusade_of_the_Forgotten.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tahlia">Tahlia</a></td>
-<td class="image"><span title="&#34;We will only prevail when evil fears the darkness more than hates the light.&#34;"><img src="heroes-small/Tahlia.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;We will only prevail when evil fears the darkness more than hates the light.&#34;"><div class="divImage"><img src="heroes-small/Tahlia.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">14</td>
 <td class="num stamina">4</td>
@@ -1577,8 +1487,7 @@ cards.
 <tr class="warrior white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tahlia">Tahlia (CK)</a></td>
-<td class="image"><span title="&#34;Fools are fools, no matter where they are. They never see me coming.&#34;"><img src="heroes-small/TahliaCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Fools are fools, no matter where they are. They never see me coming.&#34;"><div class="divImage"><img src="heroes-small/TahliaCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">14</td>
 <td class="num stamina">3</td>
@@ -1594,8 +1503,7 @@ cards.
 <tr class="scout white no-ck override-ck SotS" style="display:none;">
 <td class="expansion"><img src="expansions/Stewards_of_the_Secret.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tatianna">Tatianna</a></td>
-<td class="image"><span title="&#34;My sisters have given me everything I seek only to return that favor.&#34;"><img src="heroes-small/Tatianna.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;My sisters have given me everything I seek only to return that favor.&#34;"><div class="divImage"><img src="heroes-small/Tatianna.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -1611,8 +1519,7 @@ cards.
 <tr class="scout white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tatianna">Tatianna (CK)</a></td>
-<td class="image"><span title="&#34;I will journey where my tribe will not go and hunt that which no one else dares to hunt.&#34;"><img src="heroes-small/TatiannaCK.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;I will journey where my tribe will not go and hunt that which no one else dares to hunt.&#34;"><div class="divImage"><img src="heroes-small/TatiannaCK.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -1628,8 +1535,7 @@ cards.
 <tr class="scout white no-ck override-ck CotF" style="display:none;">
 <td class="expansion"><img src="expansions/Crusade_of_the_Forgotten.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tetherys">Tetherys</a></td>
-<td class="image"><span title="&#34;I am a daughter of darkness and a companion of chaos; fate has forgotten my name.&#34;"><img src="heroes-small/Tetherys.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;I am a daughter of darkness and a companion of chaos; fate has forgotten my name.&#34;"><div class="divImage"><img src="heroes-small/Tetherys.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1645,8 +1551,7 @@ cards.
 <tr class="scout white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tetherys">Tetherys (CK)</a></td>
-<td class="image"><span title="&#34;Sometimes ever I don&#39;t know just where I will strike next.&#34;"><img src="heroes-small/TetherysCK.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;Sometimes ever I don&#39;t know just where I will strike next.&#34;"><div class="divImage"><img src="heroes-small/TetherysCK.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1662,8 +1567,7 @@ cards.
 <tr class="scout white no-ck override-ck MoR" style="display:none;">
 <td class="expansion"><img src="expansions/Manor_of_Ravens.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Thaiden_Mistpeak">Thaiden Mistpeak</a></td>
-<td class="image"><span title="&#34;We all have debts to pay.&#34;"><img src="heroes-small/ThaidenMistpeak.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;We all have debts to pay.&#34;"><div class="divImage"><img src="heroes-small/ThaidenMistpeak.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">5</td>
@@ -1679,8 +1583,7 @@ cards.
 <tr class="scout white no-ck override-ck SoN" style="display:none;">
 <td class="expansion"><img src="expansions/Shadow_of_Nerekhall.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tinashi_the_Wanderer">Tinashi the Wanderer</a></td>
-<td class="image"><span title="&#34;Shadows keep me. Shadows protect me. There is nothing to fear in the shadows... except me.&#34;"><img src="heroes-small/TinashiTheWanderer.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;Shadows keep me. Shadows protect me. There is nothing to fear in the shadows... except me.&#34;"><div class="divImage"><img src="heroes-small/TinashiTheWanderer.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">4</td>
@@ -1696,8 +1599,7 @@ cards.
 <tr class="scout white ck-only override-ck 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tobin_Farslayer">Tobin Farslayer (CK)</a></td>
-<td class="image"><span title="&#34;It matters not how far away you are. My bow can reach you.&#34;"><img src="heroes-small/TobinFarslayerCK.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;It matters not how far away you are. My bow can reach you.&#34;"><div class="divImage"><img src="heroes-small/TobinFarslayerCK.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -1713,8 +1615,7 @@ cards.
 <tr class="scout white no-ck override-ck 2E" style="display:none;">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tomble_Burrowell">Tomble Burrowell</a></td>
-<td class="image"><span title="&#34;Don&#39;t think of this as you being robbed. Instead, think of it as you donating to a worthy cause.&#34;"><img src="heroes-small/TombleBurrowell.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;Don&#39;t think of this as you being robbed. Instead, think of it as you donating to a worthy cause.&#34;"><div class="divImage"><img src="heroes-small/TombleBurrowell.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">8</td>
 <td class="num stamina">5</td>
@@ -1730,8 +1631,7 @@ cards.
 <tr class="warrior white no-ck override-ck OotO" style="display:none;">
 <td class="expansion"><img src="expansions/Oath_of_the_Outcast.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Trenloe_the_Strong">Trenloe the Strong</a></td>
-<td class="image"><span title="&#34;I will stand when none others do. Though my body may fail, my courage will never break!&#34;"><img src="heroes-small/TrenloeTheStrong.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;I will stand when none others do. Though my body may fail, my courage will never break!&#34;"><div class="divImage"><img src="heroes-small/TrenloeTheStrong.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -1747,8 +1647,7 @@ cards.
 <tr class="warrior white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Trenloe_the_Strong">Trenloe the Strong (CK)</a></td>
-<td class="image"><span title="&#34;Nothing will stand in the way of my ultimate quest!&#34;"><img src="heroes-small/TrenloeTheStrongCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;Nothing will stand in the way of my ultimate quest!&#34;"><div class="divImage"><img src="heroes-small/TrenloeTheStrongCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -1764,8 +1663,7 @@ cards.
 <tr class="mage white no-ck override-ck SotS" style="display:none;">
 <td class="expansion"><img src="expansions/Stewards_of_the_Secret.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Truthseer_Kel">Truthseer Kel</a></td>
-<td class="image"><span title="&#34;“Some say they’ve seen the whole of Terrinoth. They are blind.”&#34;"><img src="heroes-small/TruthseerKel.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;“Some say they’ve seen the whole of Terrinoth. They are blind.”&#34;"><div class="divImage"><img src="heroes-small/TruthseerKel.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1781,8 +1679,7 @@ cards.
 <tr class="mage white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Truthseer_Kel">Truthseer Kel (CK)</a></td>
-<td class="image"><span title="&#34;I see what others cannot, and into places others dare not.&#34;"><img src="heroes-small/TruthseerKelCK.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;I see what others cannot, and into places others dare not.&#34;"><div class="divImage"><img src="heroes-small/TruthseerKelCK.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1798,8 +1695,7 @@ cards.
 <tr class="healer white no-ck override-ck LoR" style="display:none;">
 <td class="expansion"><img src="expansions/Labyrinth_of_Ruin.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ulma_Grimstone">Ulma Grimstone</a></td>
-<td class="image"><span title="&#34;The only thing more exciting than mixing up a new concoction is actually testing it.&#34;"><img src="heroes-small/UlmaGrimstone.png"></span></td>
-<td class="archetype"><img src="classes/healer.png" class="archetype"></td>
+<td class="image"><span title="&#34;The only thing more exciting than mixing up a new concoction is actually testing it.&#34;"><div class="divImage"><img src="heroes-small/UlmaGrimstone.png" class="hero"><img src="classes/healer.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">8</td>
 <td class="num stamina">5</td>
@@ -1815,8 +1711,7 @@ cards.
 <tr class="warrior white ck-only override-ck 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Varikas_the_Dead">Varikas the Dead (CK)</a></td>
-<td class="image"><span title="&#34;I have already died for freedom once before. If I must die again, I will not die alone.&#34;"><img src="heroes-small/VarikasTheDeadCK.png"></span></td>
-<td class="archetype"><img src="classes/warrior.png" class="archetype"></td>
+<td class="image"><span title="&#34;I have already died for freedom once before. If I must die again, I will not die alone.&#34;"><div class="divImage"><img src="heroes-small/VarikasTheDeadCK.png" class="hero"><img src="classes/warrior.png" class="archetype"></div></span></td>
 <td class="num speed">3</td>
 <td class="num health">12</td>
 <td class="num stamina">3</td>
@@ -1832,8 +1727,7 @@ cards.
 <tr class="scout white no-ck override-ck BotW" style="display:none;">
 <td class="expansion"><img src="expansions/Bonds_of_the_Wild.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Vyrah_the_Falconer">Vyrah the Falconer</a></td>
-<td class="image"><span title="&#34;If you train a falcon well, you begin to trust her more than your eyes.&#34;"><img src="heroes-small/VyrahTheFalconer.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;If you train a falcon well, you begin to trust her more than your eyes.&#34;"><div class="divImage"><img src="heroes-small/VyrahTheFalconer.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1849,8 +1743,7 @@ cards.
 <tr class="scout white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Vyrah_the_Falconer">Vyrah the Falconer (CK)</a></td>
-<td class="image"><span title="&#34;My loyal falcon sees far.&#34;"><img src="heroes-small/VyrahTheFalconerCK.png"></span></td>
-<td class="archetype"><img src="classes/scout.png" class="archetype"></td>
+<td class="image"><span title="&#34;My loyal falcon sees far.&#34;"><div class="divImage"><img src="heroes-small/VyrahTheFalconerCK.png" class="hero"><img src="classes/scout.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1866,8 +1759,7 @@ cards.
 <tr class="mage white no-ck override-ck 2E" style="display:none;">
 <td class="expansion">2E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Widow_Tarha">Widow Tarha</a></td>
-<td class="image"><span title="&#34;I have nothing left to lose.  Yet, there is so much more power for me to gain.&#34;"><img src="heroes-small/WidowTarha.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;I have nothing left to lose.  Yet, there is so much more power for me to gain.&#34;"><div class="divImage"><img src="heroes-small/WidowTarha.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">10</td>
 <td class="num stamina">4</td>
@@ -1883,8 +1775,7 @@ cards.
 <tr class="mage white no-ck override-ck ToC" style="display:none;">
 <td class="expansion"><img src="expansions/Treaty_of_Champions.svg" class="expansion"></td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Zyla">Zyla</a></td>
-<td class="image"><span title="&#34;Pursue me all you want; we’ll meet when and where I decide – and there you will die.&#34;"><img src="heroes-small/Zyla.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;Pursue me all you want; we’ll meet when and where I decide – and there you will die.&#34;"><div class="divImage"><img src="heroes-small/Zyla.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">5</td>
 <td class="num health">8</td>
 <td class="num stamina">5</td>
@@ -1900,8 +1791,7 @@ cards.
 <tr class="mage white ck-only 1E" style="display:none;">
 <td class="expansion">1E</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Zyla">Zyla (CK)</a></td>
-<td class="image"><span title="&#34;Can&#39;t hit what you can&#39;t catch!&#34;"><img src="heroes-small/ZylaCK.png"></span></td>
-<td class="archetype"><img src="classes/mage.png" class="archetype"></td>
+<td class="image"><span title="&#34;Can&#39;t hit what you can&#39;t catch!&#34;"><div class="divImage"><img src="heroes-small/ZylaCK.png" class="hero"><img src="classes/mage.png" class="archetype"></div></span></td>
 <td class="num speed">4</td>
 <td class="num health">8</td>
 <td class="num stamina">5</td>

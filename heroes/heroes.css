@@ -2,13 +2,34 @@ body {
 	margin: 0px;
 }
 
-img.expansion {
-	width: 100%;
+div.divImage {
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+img.hero {
+	position: relative;
+	top: 0;
+	left: 0;
 }
 
 img.archetype {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 35px;
+	height: 35px;
+}
+
+/*
+img.archetype {
 	width: 75px;
 	height: 75px;
+}*/
+
+img.expansion {
+	width: 100%;
 }
 
 img.header {
