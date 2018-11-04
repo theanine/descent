@@ -58,19 +58,23 @@ table th, table td{
 
 table th.expansion, table td.expansion{
 	/*width:75px;*/
-	width:28px;
+	min-width:28px;
+	max-width:28px;
 }
 
 table th.hero, table td.hero{
-	width:150px;
+	min-width:96px;
+	max-width:96px;
 }
 
 table th.image, table td.image{
-	width:100px;
+	min-width:100px;
+	max-width:100px;
 }
 
 table th.archetype, table td.archetype{
-	width:75px;
+	min-width:75px;
+	max-width:75px;
 	text-align: center;
 }
 
@@ -80,7 +84,8 @@ table th, table td {
 
 table th.num, table td.num{
 	/*width:35px;*/
-	width:27px;
+	min-width:27px;
+	max-width:27px;
 }
 
 table th.ability, table td.ability{
