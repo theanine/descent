@@ -89,4 +89,9 @@ colorizeCells(document.getElementsByClassName("might"), 1, 2, 3, 4, 5)
 colorizeCells(document.getElementsByClassName("willpower"), 1, 2, 3, 4, 5)
 colorizeCells(document.getElementsByClassName("knowledge"), 1, 2, 3, 4, 5)
 colorizeCells(document.getElementsByClassName("awareness"), 1, 2, 3, 4, 5)
+
+function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
 // </SCRIPT>
