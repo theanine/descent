@@ -158,7 +158,10 @@ table thead{
 table tbody{
 	display:block;
 	height:calc(99.5vh - 59px - 28px);
-	overflow:auto;
+
+	/* scroll, not auto, for smooth scrolling on iDevices */
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 }
 
 table tfoot{
