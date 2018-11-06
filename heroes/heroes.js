@@ -68,6 +68,22 @@ function showHideRows()
 	loadSelects();
 }
 
+function uniquesort(arr) {
+	if (arr.length === 0)
+		return arr;
+	arr = arr.sort(function (a, b) { return a*1 - b*1; });
+	var a = [];
+	var l = arr.length;
+	for(var i=0; i<l; i++) {
+		for(var j=i+1; j<l; j++) {
+			if (arr[i] === arr[j])
+				j = ++i;
+		}
+		a.push(arr[i]);
+	}
+	return a;
+}
+
 function loadSelects()
 {
 	$.each(attrs, function (i, attr) {
@@ -79,9 +95,7 @@ function loadSelects()
 					arr.push($(td).text());
 			});
 		});
-		arr = jQuery.uniqueSort(arr).sort(function(a,b){
-			return a-b;
-		});
+		arr = uniquesort(arr);
 		$('#select'+toTitleCase(attr)).empty().append($('<option>', { value: "", text : "" }));
 		$.each(arr, function (i, item) {
 			$('#select'+toTitleCase(attr)).append($('<option>', { value: item, text : item }));

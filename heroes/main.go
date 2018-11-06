@@ -14,7 +14,7 @@ import (
 )
 
 const htmlFile = "heroes.html"
-const version = "v1.1.3.181106"
+const version = "v1.1.4.181106"
 
 var archetypes = map[string]struct{}{
 	"Warrior": {},
