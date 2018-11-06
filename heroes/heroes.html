@@ -2,7 +2,7 @@
 <title>Coufee: Journeys in Hero Selection</title>
 <meta name="description" content="Free Web tutorials">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="heroes.css?version=v1.1.1.181105">
+<link rel="stylesheet" type="text/css" href="heroes.css?version=v1.1.2.181105">
 <link rel="icon" type="image/png" href="etc/favicon.png">
 </head><body onload="onload()">
 <table id="heroTable"><thead><tr>
@@ -22,7 +22,7 @@
 </tr>
 
 <tr>
-<th class="expansion"><div><select id="selectExp" onclick="trigger(this)">
+<th class="expansion"><div><select id="selectExp" onchange="trigger(this)">
 <option value=""></option>
 <option value="1E">1E</option>
 <option value="2E">2E</option>
@@ -42,32 +42,32 @@
 <option value="ToC">ToC</option>
 <option value="VoD">VoD</option>
 </select></div></th>
-<th class="hero"><div><select id="selectCK" onclick="trigger(this)">
+<th class="hero"><div><select id="selectCK" onchange="trigger(this)">
 <option value=""></option>
 <option value="override-ck" selected="selected">Override CK</option>
 <option value="ck-only">CK Only</option>
 <option value="no-ck">No CK</option>
 </select></div></th>
-<th class="image"><div><select id="selectClass" onclick="trigger(this)">
+<th class="image"><div><select id="selectClass" onchange="trigger(this)">
 <option value=""></option>
 <option value="warrior">Warrior</option>
 <option value="healer">Healer</option>
 <option value="scout">Scout</option>
 <option value="mage">Mage</option>
 </select></div></th>
-<th class="num speed"><div><select id="selectSpeed" onclick="trigger(this)"><option value=""></option></select></div></th>
-<th class="num health"><div><select id="selectHealth" onclick="trigger(this)"><option value=""></option></select></div></th>
-<th class="num stamina"><div><select id="selectStamina" onclick="trigger(this)"><option value=""></option></select></div></th>
-<th class="num dice"><div><select id="selectDefense" onclick="trigger(this)">
+<th class="num speed"><div><select id="selectSpeed" onchange="trigger(this)"><option value=""></option></select></div></th>
+<th class="num health"><div><select id="selectHealth" onchange="trigger(this)"><option value=""></option></select></div></th>
+<th class="num stamina"><div><select id="selectStamina" onchange="trigger(this)"><option value=""></option></select></div></th>
+<th class="num dice"><div><select id="selectDefense" onchange="trigger(this)">
 <option value=""></option>
 <option value="brown">b</option>
 <option value="white">W</option>
 <option value="black">B</option>
 </select></div></th>
-<th class="num might"><div><select id="selectMight" onclick="trigger(this)"><option value=""></option></select></div></th>
-<th class="num willpower"><div><select id="selectWillpower" onclick="trigger(this)"><option value=""></option></select></div></th>
-<th class="num knowledge"><div><select id="selectKnowledge" onclick="trigger(this)"><option value=""></option></select></div></th>
-<th class="num awareness"><div><select id="selectAwareness" onclick="trigger(this)"><option value=""></option></select></div></th>
+<th class="num might"><div><select id="selectMight" onchange="trigger(this)"><option value=""></option></select></div></th>
+<th class="num willpower"><div><select id="selectWillpower" onchange="trigger(this)"><option value=""></option></select></div></th>
+<th class="num knowledge"><div><select id="selectKnowledge" onchange="trigger(this)"><option value=""></option></select></div></th>
+<th class="num awareness"><div><select id="selectAwareness" onchange="trigger(this)"><option value=""></option></select></div></th>
 </tr></thead><tbody>
 
 <tr class="warrior white no-ck override-ck MoR" style="display:none;">
@@ -1818,6 +1818,6 @@ cards.
 	</form><div class="popup" onclick="myFunction()"><img src="etc/donate-bitcoin.svg" class="donate">
 						<span class="popuptext" id="myPopup">Donations Address<br><br>
 						<img src="etc/bitcoin.png" width=200px height=200px><br><br>
-						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div></td><td class="fees">Server Fees: $55.80/yr</td><td class="version">v1.1.1.181105</td></tr></tfoot>
+						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div></td><td class="fees">Server Fees: $55.80/yr</td><td class="version">v1.1.2.181105</td></tr></tfoot>
 </table></body></html>
-<script type="text/javascript" src="heroes.js?version=v1.1.1.181105"></script>
+<script type="text/javascript" src="heroes.js?version=v1.1.2.181105"></script>

@@ -14,7 +14,7 @@ import (
 )
 
 const htmlFile = "heroes.html"
-const version = "v1.1.1.181105"
+const version = "v1.1.2.181105"
 
 var archetypes = map[string]struct{}{
 	"Warrior": {},
@@ -144,38 +144,38 @@ func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<th class=\"heroic\">Heroic Feat</th>\n")
 	fmt.Fprintf(w, "</tr>\n\n")
 	fmt.Fprintf(w, "<tr>\n")
-	fmt.Fprintf(w, "<th class=\"expansion\"><div><select id=\"selectExp\" onclick=\"trigger(this)\">\n")
+	fmt.Fprintf(w, "<th class=\"expansion\"><div><select id=\"selectExp\" onchange=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
 	exps := uniqueSortedExps()
 	for _, exp := range exps {
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", exp, exp)
 	}
 	fmt.Fprintf(w, "</select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"hero\"><div><select id=\"selectCK\" onclick=\"trigger(this)\">\n")
+	fmt.Fprintf(w, "<th class=\"hero\"><div><select id=\"selectCK\" onchange=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
 	fmt.Fprintf(w, "<option value=\"override-ck\" selected=\"selected\">Override CK</option>\n")
 	fmt.Fprintf(w, "<option value=\"ck-only\">CK Only</option>\n")
 	fmt.Fprintf(w, "<option value=\"no-ck\">No CK</option>\n")
 	fmt.Fprintf(w, "</select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"image\"><div><select id=\"selectClass\" onclick=\"trigger(this)\">\n")
+	fmt.Fprintf(w, "<th class=\"image\"><div><select id=\"selectClass\" onchange=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
 	for k := range archetypes {
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", strings.ToLower(k), k)
 	}
 	fmt.Fprintf(w, "</select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num speed\"><div><select id=\"selectSpeed\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num health\"><div><select id=\"selectHealth\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num stamina\"><div><select id=\"selectStamina\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num dice\"><div><select id=\"selectDefense\" onclick=\"trigger(this)\">\n")
+	fmt.Fprintf(w, "<th class=\"num speed\"><div><select id=\"selectSpeed\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num health\"><div><select id=\"selectHealth\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num stamina\"><div><select id=\"selectStamina\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num dice\"><div><select id=\"selectDefense\" onchange=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
 	fmt.Fprintf(w, "<option value=\"brown\">b</option>\n")
 	fmt.Fprintf(w, "<option value=\"white\">W</option>\n")
 	fmt.Fprintf(w, "<option value=\"black\">B</option>\n")
 	fmt.Fprintf(w, "</select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num might\"><div><select id=\"selectMight\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num willpower\"><div><select id=\"selectWillpower\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num knowledge\"><div><select id=\"selectKnowledge\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num awareness\"><div><select id=\"selectAwareness\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num might\"><div><select id=\"selectMight\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num willpower\"><div><select id=\"selectWillpower\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num knowledge\"><div><select id=\"selectKnowledge\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num awareness\"><div><select id=\"selectAwareness\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
 	fmt.Fprintf(w, "</tr></thead><tbody>\n\n")
 }
 
