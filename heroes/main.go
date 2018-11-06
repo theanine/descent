@@ -14,6 +14,7 @@ import (
 )
 
 const htmlFile = "heroes.html"
+const version = "v1.1.1.181105"
 
 var archetypes = map[string]struct{}{
 	"Warrior": {},
@@ -119,8 +120,10 @@ func uniqueSortedExps() []string {
 
 func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<html><head>\n")
+	fmt.Fprintf(w, "<title>Coufee: Journeys in Hero Selection</title>\n")
+	fmt.Fprintf(w, "<meta name=\"description\" content=\"Free Web tutorials\">\n")
 	fmt.Fprintf(w, "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n")
-	fmt.Fprintf(w, "<link rel=\"stylesheet\" type=\"text/css\" href=\"heroes.css\">\n")
+	fmt.Fprintf(w, "<link rel=\"stylesheet\" type=\"text/css\" href=\"heroes.css?version=%s\">\n", version)
 	fmt.Fprintf(w, "<link rel=\"icon\" type=\"image/png\" href=\"etc/favicon.png\">\n")
 	fmt.Fprintf(w, "</head><body onload=\"onload()\">\n")
 
@@ -222,12 +225,12 @@ func outputFooter(w *bufio.Writer) {
 						<img src="etc/bitcoin.png" width=200px height=200px><br><br>
 						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div>`)
 	fmt.Fprintf(w, "</td><td class=\"fees\">Server Fees: $55.80/yr")
-	fmt.Fprintf(w, "</td><td class=\"version\">v1.1.1.181105")
+	fmt.Fprintf(w, "</td><td class=\"version\">%s", version)
 	fmt.Fprintf(w, "</td></tr></tfoot>\n")
 	fmt.Fprintf(w, "</table>")
 
 	fmt.Fprintf(w, "</body></html>\n")
-	fmt.Fprintf(w, "<script type=\"text/javascript\" src=\"heroes.js\"></script>\n")
+	fmt.Fprintf(w, "<script type=\"text/javascript\" src=\"heroes.js?version=%s\"></script>\n", version)
 }
 
 func fixHeroes() {
