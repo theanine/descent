@@ -14,7 +14,7 @@ import (
 )
 
 const htmlFile = "heroes.html"
-const version = "v1.1.2.181105"
+const version = "v1.1.3.181106"
 
 var archetypes = map[string]struct{}{
 	"Warrior": {},
@@ -121,7 +121,11 @@ func uniqueSortedExps() []string {
 func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<html><head>\n")
 	fmt.Fprintf(w, "<title>Coufee: Journeys in Hero Selection</title>\n")
-	fmt.Fprintf(w, "<meta name=\"description\" content=\"Free Web tutorials\">\n")
+	fmt.Fprintf(w, "<meta name=\"description\" content=\"%s\">\n", `With over 100+ heroes to choose from, it's painful to choose a character.
+
+For owners of Descent: Journeys in the Dark (Second Edition), this Hero Selector makes the decision that much easier for newbies, casuals, and veterans.
+
+Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 	fmt.Fprintf(w, "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n")
 	fmt.Fprintf(w, "<link rel=\"stylesheet\" type=\"text/css\" href=\"heroes.css?version=%s\">\n", version)
 	fmt.Fprintf(w, "<link rel=\"icon\" type=\"image/png\" href=\"etc/favicon.png\">\n")
