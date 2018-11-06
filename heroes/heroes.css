@@ -182,6 +182,18 @@ table tfoot td{
 select {
 	border: 0px;
 	width: 100%;
+	text-indent: 1px;
+	text-overflow: '';
+}
+
+select.normal {
+	-webkit-appearance: auto;
+	-moz-appearance: auto;
+}
+
+select.blank {
+	-webkit-appearance: none;
+	-moz-appearance: none;
 }
 
 .donateArea {

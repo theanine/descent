@@ -122,7 +122,7 @@ func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n")
 	fmt.Fprintf(w, "<link rel=\"stylesheet\" type=\"text/css\" href=\"heroes.css\">\n")
 	fmt.Fprintf(w, "<link rel=\"icon\" type=\"image/png\" href=\"etc/favicon.png\">\n")
-	fmt.Fprintf(w, "</head><body onload=\"showHideRows()\">\n")
+	fmt.Fprintf(w, "</head><body onload=\"onload()\">\n")
 
 	// table
 	fmt.Fprintf(w, "<table id=\"heroTable\"><thead><tr>\n")
@@ -141,38 +141,38 @@ func outputHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<th class=\"heroic\">Heroic Feat</th>\n")
 	fmt.Fprintf(w, "</tr>\n\n")
 	fmt.Fprintf(w, "<tr>\n")
-	fmt.Fprintf(w, "<th class=\"expansion\"><div><select id=\"selectExp\" onclick=\"showHideRows()\">\n")
+	fmt.Fprintf(w, "<th class=\"expansion\"><div><select id=\"selectExp\" onclick=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
 	exps := uniqueSortedExps()
 	for _, exp := range exps {
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", exp, exp)
 	}
 	fmt.Fprintf(w, "</select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"hero\"><div><select id=\"selectCK\" onclick=\"showHideRows()\">\n")
+	fmt.Fprintf(w, "<th class=\"hero\"><div><select id=\"selectCK\" onclick=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
 	fmt.Fprintf(w, "<option value=\"override-ck\" selected=\"selected\">Override CK</option>\n")
 	fmt.Fprintf(w, "<option value=\"ck-only\">CK Only</option>\n")
 	fmt.Fprintf(w, "<option value=\"no-ck\">No CK</option>\n")
 	fmt.Fprintf(w, "</select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"image\"><div><select id=\"selectClass\" onclick=\"showHideRows()\">\n")
+	fmt.Fprintf(w, "<th class=\"image\"><div><select id=\"selectClass\" onclick=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
 	for k := range archetypes {
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", strings.ToLower(k), k)
 	}
 	fmt.Fprintf(w, "</select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num speed\"><div><select id=\"selectSpeed\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num health\"><div><select id=\"selectHealth\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num stamina\"><div><select id=\"selectStamina\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num dice\"><div><select id=\"selectDefense\" onclick=\"showHideRows()\">\n")
+	fmt.Fprintf(w, "<th class=\"num speed\"><div><select id=\"selectSpeed\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num health\"><div><select id=\"selectHealth\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num stamina\"><div><select id=\"selectStamina\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num dice\"><div><select id=\"selectDefense\" onclick=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
 	fmt.Fprintf(w, "<option value=\"brown\">b</option>\n")
 	fmt.Fprintf(w, "<option value=\"white\">W</option>\n")
 	fmt.Fprintf(w, "<option value=\"black\">B</option>\n")
 	fmt.Fprintf(w, "</select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num might\"><div><select id=\"selectMight\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num willpower\"><div><select id=\"selectWillpower\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num knowledge\"><div><select id=\"selectKnowledge\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num awareness\"><div><select id=\"selectAwareness\" onclick=\"showHideRows()\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num might\"><div><select id=\"selectMight\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num willpower\"><div><select id=\"selectWillpower\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num knowledge\"><div><select id=\"selectKnowledge\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<th class=\"num awareness\"><div><select id=\"selectAwareness\" onclick=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
 	fmt.Fprintf(w, "</tr></thead><tbody>\n\n")
 }
 
@@ -222,7 +222,7 @@ func outputFooter(w *bufio.Writer) {
 						<img src="etc/bitcoin.png" width=200px height=200px><br><br>
 						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div>`)
 	fmt.Fprintf(w, "</td><td class=\"fees\">Server Fees: $55.80/yr")
-	fmt.Fprintf(w, "</td><td class=\"version\">v1.1.0.181104")
+	fmt.Fprintf(w, "</td><td class=\"version\">v1.1.1.181105")
 	fmt.Fprintf(w, "</td></tr></tfoot>\n")
 	fmt.Fprintf(w, "</table>")
 

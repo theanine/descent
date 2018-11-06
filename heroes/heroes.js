@@ -14,6 +14,31 @@ function toTitleCase(str) {
 	});
 }
 
+function trigger(select)
+{
+	showHideArrows($(select));
+	showHideRows();
+}
+
+function onload()
+{
+	$("select").each(function() {
+		showHideArrows($(this));
+	});
+	showHideRows();
+}
+
+function showHideArrows(select)
+{
+	if (select.val() == "") {
+		select.removeClass("blank");
+		select.addClass("normal");
+	} else {
+		select.removeClass("normal");
+		select.addClass("blank");
+	}
+}
+
 function showHideRows()
 {
 	var e = $("#selectExp").val();
