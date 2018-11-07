@@ -38,6 +38,15 @@ function onload()
 		showHideArrows($(this));
 	});
 	showHideRows();
+	// $("#heroTable").tablesorter();
+	
+	$("#heroTable").tablesorter({
+		sortList       : [[2,0]],
+		// widgets        : ['zebra', 'columns'],
+		usNumberFormat : true,
+		sortReset      : false,
+		sortRestart    : true
+	});
 }
 
 function showHideArrows(select)
@@ -59,7 +68,7 @@ function showHideRows()
 	var d = $("#selectDefense").val();
 	$("tr", "#heroTable").each(function(index, tr){
 		$(tr).show();
-		if (typeof $(tr).attr("class") === "undefined")
+		if (typeof $(tr).attr("class") === "undefined" || $(tr).attr("class") === "tablesorter-headerRow")
 			return;
 		if (c != "" && !$(tr).hasClass(c))
 			$(tr).hide();
@@ -102,6 +111,8 @@ function loadSelects()
 		var selected = $('#select'+toTitleCase(attr)).val();
 		var arr = [];
 		$("tr", "#heroTable").each(function(index, tr) {
+			if (typeof $(tr).attr("class") === "undefined" || $(tr).attr("class") === "tablesorter-headerRow")
+				return;
 			$('td.'+attr, tr).each(function(index, td) {
 				if (selected != "" || $(tr).is(":visible"))
 					arr.push($(td).text());

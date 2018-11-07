@@ -14,13 +14,13 @@ import (
 )
 
 const htmlFile = "heroes.html"
-const version = "v1.1.6.181107"
+const version = "v1.2.0.181107"
 
-var archetypes = map[string]struct{}{
-	"Warrior": {},
-	"Healer":  {},
-	"Scout":   {},
-	"Mage":    {},
+var archetypes = []string{
+	"Healer",
+	"Mage",
+	"Scout",
+	"Warrior",
 }
 
 var expansions = map[string]string{
@@ -127,12 +127,14 @@ For owners of Descent: Journeys in the Dark (Second Edition), this Hero Selector
 
 Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 	fmt.Fprintf(w, "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n")
+	fmt.Fprintf(w, "<script src=\"jquery.tablesorter.min.js\"></script>\n")
+	fmt.Fprintf(w, "<script src=\"jquery.tablesorter.widgets.min.js\"></script>\n")
 	fmt.Fprintf(w, "<link rel=\"stylesheet\" type=\"text/css\" href=\"heroes.css?version=%s\">\n", version)
 	fmt.Fprintf(w, "<link rel=\"icon\" type=\"image/png\" href=\"etc/favicon.png\">\n")
 	fmt.Fprintf(w, "</head><body onload=\"onload()\">\n")
 
 	// table
-	fmt.Fprintf(w, "<table id=\"heroTable\"><thead><tr>\n")
+	fmt.Fprintf(w, "<table id=\"heroTable\" class=\"tablesorter\"><thead><tr>\n")
 	fmt.Fprintf(w, "<th class=\"expansion\">Exp</th>\n")
 	fmt.Fprintf(w, "<th class=\"hero\">Name</th>\n")
 	fmt.Fprintf(w, "<th class=\"image\">Hero</th>\n")
@@ -148,38 +150,40 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 	fmt.Fprintf(w, "<th class=\"heroic\">Heroic Feat</th>\n")
 	fmt.Fprintf(w, "</tr>\n\n")
 	fmt.Fprintf(w, "<tr>\n")
-	fmt.Fprintf(w, "<th class=\"expansion\"><div><select id=\"selectExp\" onchange=\"trigger(this)\">\n")
+	fmt.Fprintf(w, "<td class=\"expansion\"><div><select id=\"selectExp\" onchange=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
 	exps := uniqueSortedExps()
 	for _, exp := range exps {
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", exp, exp)
 	}
 	fmt.Fprintf(w, "</select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"hero\"><div><select id=\"selectCK\" onchange=\"trigger(this)\">\n")
+	fmt.Fprintf(w, "<td class=\"hero\"><div><select id=\"selectCK\" onchange=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
 	fmt.Fprintf(w, "<option value=\"override-ck\" selected=\"selected\">Override CK</option>\n")
 	fmt.Fprintf(w, "<option value=\"ck-only\">CK Only</option>\n")
 	fmt.Fprintf(w, "<option value=\"no-ck\">No CK</option>\n")
 	fmt.Fprintf(w, "</select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"image\"><div><select id=\"selectClass\" onchange=\"trigger(this)\">\n")
+	fmt.Fprintf(w, "<td class=\"image\"><div><select id=\"selectClass\" onchange=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
-	for k := range archetypes {
+	for _, k := range archetypes {
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", strings.ToLower(k), k)
 	}
 	fmt.Fprintf(w, "</select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num speed\"><div><select id=\"selectSpeed\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num health\"><div><select id=\"selectHealth\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num stamina\"><div><select id=\"selectStamina\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num dice\"><div><select id=\"selectDefense\" onchange=\"trigger(this)\">\n")
+	fmt.Fprintf(w, "<td class=\"num speed\"><div><select id=\"selectSpeed\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<td class=\"num health\"><div><select id=\"selectHealth\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<td class=\"num stamina\"><div><select id=\"selectStamina\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<td class=\"num dice\"><div><select id=\"selectDefense\" onchange=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
 	fmt.Fprintf(w, "<option value=\"brown\">b</option>\n")
 	fmt.Fprintf(w, "<option value=\"white\">W</option>\n")
 	fmt.Fprintf(w, "<option value=\"black\">B</option>\n")
 	fmt.Fprintf(w, "</select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num might\"><div><select id=\"selectMight\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num willpower\"><div><select id=\"selectWillpower\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num knowledge\"><div><select id=\"selectKnowledge\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
-	fmt.Fprintf(w, "<th class=\"num awareness\"><div><select id=\"selectAwareness\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<td class=\"num might\"><div><select id=\"selectMight\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<td class=\"num willpower\"><div><select id=\"selectWillpower\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<td class=\"num knowledge\"><div><select id=\"selectKnowledge\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<td class=\"num awareness\"><div><select id=\"selectAwareness\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></th>\n")
+	fmt.Fprintf(w, "<td class=\"ability\"><div></div></th>\n")
+	fmt.Fprintf(w, "<td class=\"heroic\"><div></div></th>\n")
 	fmt.Fprintf(w, "</tr></thead><tbody>\n\n")
 }
 
@@ -196,12 +200,23 @@ func outputTable(w *bufio.Writer) {
 		fmt.Fprintf(w, "<div class=\"divImage\">")
 		fmt.Fprintf(w, "<img src=\"%s\" class=\"hero\">", h.img)
 		fmt.Fprintf(w, "<img src=\"%s\" class=\"archetype\">", "classes/"+strings.ToLower(h.archetype)+".png")
-		fmt.Fprintf(w, "</div>")
+		fmt.Fprintf(w, "%c</div>", h.archetype[0])
 		fmt.Fprintf(w, "</span></td>\n")
 		fmt.Fprintf(w, "<td class=\"num speed\">%d</td>\n", h.speed)
 		fmt.Fprintf(w, "<td class=\"num health\">%d</td>\n", h.health)
 		fmt.Fprintf(w, "<td class=\"num stamina\">%d</td>\n", h.stamina)
-		fmt.Fprintf(w, "<td class=\"num dice\"><img src=\"%s\" class=\"die\"></td>\n", "attributes/"+h.die+"die.png")
+		die := 0
+		if h.die == "brown" {
+			die = 1
+		} else if h.die == "white" {
+			die = 2
+		} else if h.die == "black" {
+			die = 3
+		} else {
+			panic(h.die)
+		}
+		fmt.Fprintf(w, "<td class=\"num dice\"><img src=\"%s\" class=\"die\">", "attributes/"+h.die+"die.png")
+		fmt.Fprintf(w, "<div class=\"die\">%d</div></td>\n", die)
 		fmt.Fprintf(w, "<td class=\"num might\">%d</td>\n", h.might)
 		fmt.Fprintf(w, "<td class=\"num willpower\">%d</td>\n", h.willpower)
 		fmt.Fprintf(w, "<td class=\"num knowledge\">%d</td>\n", h.knowledge)
@@ -229,8 +244,10 @@ func outputFooter(w *bufio.Writer) {
 						<img src="etc/bitcoin.png" width=200px height=200px><br><br>
 						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div>`)
 	fmt.Fprintf(w, "</td><td class=\"fees\">Server Fees: $55.80/yr")
-	fmt.Fprintf(w, "</td><td class=\"version\">%s", version)
-	fmt.Fprintf(w, "</td></tr></tfoot>\n")
+	fmt.Fprintf(w, "</td><td class=\"version\">%s</td>\n", version)
+	fmt.Fprintf(w, "<td></td><td></td><td></td><td></td><td></td>\n")
+	fmt.Fprintf(w, "<td></td><td></td><td></td><td></td><td></td>\n")
+	fmt.Fprintf(w, "</tr></tfoot>\n")
 	fmt.Fprintf(w, "</table>")
 
 	fmt.Fprintf(w, "</body></html>\n")
