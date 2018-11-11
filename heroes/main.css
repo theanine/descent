@@ -25,6 +25,7 @@ img#logo {
 	position: absolute;
 	top: 0;
 	right: 0;
+	-webkit-filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 1));
 }
 
 ul#menu {
@@ -32,6 +33,7 @@ ul#menu {
 	right: 10vh;
 	top: calc(50vh + 112px); /* 112px = half height of logo */
 	transform:translateY(-50%);
+	-webkit-filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 1));
 }
 
 img.coming {
