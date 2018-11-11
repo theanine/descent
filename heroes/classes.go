@@ -337,10 +337,10 @@ func fixClasses() {
 
 func outputCHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<html><head>\n")
-	fmt.Fprintf(w, "<title>Coufee: Journeys in Hero Selection</title>\n")
-	fmt.Fprintf(w, "<meta name=\"description\" content=\"%s\">\n", `With over 100+ heroes to choose from, it's painful to choose a character.
+	fmt.Fprintf(w, "<title>Coufee: Journeys in Class Selection</title>\n")
+	fmt.Fprintf(w, "<meta name=\"description\" content=\"%s\">\n", `With over 25+ classes and 200+ skills to choose from, it's painful to choose a character.
 
-For owners of Descent: Journeys in the Dark (Second Edition), this Hero Selector makes the decision that much easier for newbies, casuals, and veterans.
+For owners of Descent: Journeys in the Dark (Second Edition), this Class Selector makes the decision that much easier for newbies, casuals, and veterans.
 
 Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 	fmt.Fprintf(w, "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n")

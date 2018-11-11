@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-const version = "v2.0.2.181110"
+const version = "v2.0.3.181110"
 const downloadEnabled = false
 
 var archetypes = []string{
