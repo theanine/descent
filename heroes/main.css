@@ -1,0 +1,48 @@
+@font-face {
+	font-family: 'Garamond';
+	src: url('fonts/Gara_Scenario_Desc.ttf'); 
+	src: 
+		local('Gara Scenario Descent'),
+		local('Gara-Scenario-Descent-Regular'),
+		url('fonts/Gara_Scenario_Desc.ttf') 
+		format('truetype');
+}
+
+html {
+	overflow: hidden;
+}
+
+body {
+	font-family: 'Garamond';
+	overflow: hidden;
+	max-height: 100vh;
+	background-position: left bottom;
+	background-size: cover;
+	margin: 0;
+}
+
+img#logo {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+ul#menu {
+	position: absolute;
+	right: 10vh;
+	top: calc(50vh + 112px); /* 112px = half height of logo */
+	transform:translateY(-50%);
+}
+
+img.coming {
+	content:url(etc/coming-soon.png);
+	position: relative;
+	top: -15px;
+	right: -10px;
+	height: 50px;
+	float: right;
+}
+
+a.button {
+  text-decoration:none;
+}

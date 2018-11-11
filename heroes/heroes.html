@@ -8,10 +8,10 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="jquery.tablesorter.min.js"></script>
 <script src="jquery.tablesorter.widgets.min.js"></script>
-<link rel="stylesheet" type="text/css" href="heroes.css?version=v1.2.0.181107">
+<link rel="stylesheet" type="text/css" href="heroes.css?version=v2.0.0.181110">
 <link rel="icon" type="image/png" href="etc/favicon.png">
 </head><body onload="onload()">
-<table id="heroTable" class="tablesorter"><thead><tr>
+<table id="heroTable" class="tablesorter"><thead class="heroes"><tr>
 <th class="expansion">Exp</th>
 <th class="hero">Name</th>
 <th class="image">Hero</th>
@@ -47,36 +47,36 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!">
 <option value="TT">TT</option>
 <option value="ToC">ToC</option>
 <option value="VoD">VoD</option>
-</select></div></th>
+</select></div></td>
 <td class="hero"><div><select id="selectCK" onchange="trigger(this)">
 <option value=""></option>
 <option value="override-ck" selected="selected">Override CK</option>
 <option value="ck-only">CK Only</option>
 <option value="no-ck">No CK</option>
-</select></div></th>
+</select></div></td>
 <td class="image"><div><select id="selectClass" onchange="trigger(this)">
 <option value=""></option>
 <option value="healer">Healer</option>
 <option value="mage">Mage</option>
 <option value="scout">Scout</option>
 <option value="warrior">Warrior</option>
-</select></div></th>
-<td class="num speed"><div><select id="selectSpeed" onchange="trigger(this)"><option value=""></option></select></div></th>
-<td class="num health"><div><select id="selectHealth" onchange="trigger(this)"><option value=""></option></select></div></th>
-<td class="num stamina"><div><select id="selectStamina" onchange="trigger(this)"><option value=""></option></select></div></th>
+</select></div></td>
+<td class="num speed"><div><select id="selectSpeed" onchange="trigger(this)"><option value=""></option></select></div></td>
+<td class="num health"><div><select id="selectHealth" onchange="trigger(this)"><option value=""></option></select></div></td>
+<td class="num stamina"><div><select id="selectStamina" onchange="trigger(this)"><option value=""></option></select></div></td>
 <td class="num dice"><div><select id="selectDefense" onchange="trigger(this)">
 <option value=""></option>
 <option value="brown">b</option>
 <option value="white">W</option>
 <option value="black">B</option>
-</select></div></th>
-<td class="num might"><div><select id="selectMight" onchange="trigger(this)"><option value=""></option></select></div></th>
-<td class="num willpower"><div><select id="selectWillpower" onchange="trigger(this)"><option value=""></option></select></div></th>
-<td class="num knowledge"><div><select id="selectKnowledge" onchange="trigger(this)"><option value=""></option></select></div></th>
-<td class="num awareness"><div><select id="selectAwareness" onchange="trigger(this)"><option value=""></option></select></div></th>
-<td class="ability"><div></div></th>
-<td class="heroic"><div></div></th>
-</tr></thead><tbody>
+</select></div></td>
+<td class="num might"><div><select id="selectMight" onchange="trigger(this)"><option value=""></option></select></div></td>
+<td class="num willpower"><div><select id="selectWillpower" onchange="trigger(this)"><option value=""></option></select></div></td>
+<td class="num knowledge"><div><select id="selectKnowledge" onchange="trigger(this)"><option value=""></option></select></div></td>
+<td class="num awareness"><div><select id="selectAwareness" onchange="trigger(this)"><option value=""></option></select></div></td>
+<td class="ability"><div></div></td>
+<td class="heroic"><div></div></td>
+</tr></thead><tbody class="heroes">
 
 <tr class="warrior white no-ck override-ck MoR" style="display:none;">
 <td class="expansion"><img src="expansions/Manor_of_Ravens.svg" class="expansion"></td>
@@ -1817,7 +1817,7 @@ cards.
 </tr>
 
 </tbody>
-<tfoot><tr><td class="donateArea">
+<tfoot class="heroes"><tr><td class="donateArea">
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 	<input type="hidden" name="cmd" value="_s-xclick">
 	<input type="hidden" name="hosted_button_id" value="85ZEFVNEAXV3A">
@@ -1826,9 +1826,9 @@ cards.
 	</form><div class="popup" onclick="myFunction()"><img src="etc/donate-bitcoin.svg" class="donate">
 						<span class="popuptext" id="myPopup">Donations Address<br><br>
 						<img src="etc/bitcoin.png" width=200px height=200px><br><br>
-						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div></td><td class="fees">Server Fees: $55.80/yr</td><td class="version">v1.2.0.181107</td>
+						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div></td><td class="fees">Server Fees: $55.80/yr</td><td class="version">v2.0.0.181110</td>
 <td></td><td></td><td></td><td></td><td></td>
 <td></td><td></td><td></td><td></td><td></td>
 </tr></tfoot>
 </table></body></html>
-<script type="text/javascript" src="heroes.js?version=v1.2.0.181107"></script>
+<script type="text/javascript" src="heroes.js?version=v2.0.0.181110"></script>

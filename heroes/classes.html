@@ -1,0 +1,194 @@
+<html><head>
+<title>Coufee: Journeys in Hero Selection</title>
+<meta name="description" content="With over 100+ heroes to choose from, it's painful to choose a character.
+
+For owners of Descent: Journeys in the Dark (Second Edition), this Hero Selector makes the decision that much easier for newbies, casuals, and veterans.
+
+Send your heroes to get some Coufee and they'll be adventuring in no time!">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="jquery.tablesorter.min.js"></script>
+<script src="jquery.tablesorter.widgets.min.js"></script>
+<link rel="stylesheet" type="text/css" href="heroes.css?version=v2.0.0.181110">
+<link rel="icon" type="image/png" href="etc/favicon.png">
+</head><body>
+<table id="classTable" class="tablesorter"><thead class="classes"><tr style="width:100%!"(MISSING)>
+<th class="expansion">Exp</th>
+<th class="class">Class</th>
+<th class="skill">Skills</th>
+</tr>
+
+<tr>
+<td class="expansion"><div><select id="selectExp" onchange="trigger(this)">
+<option value=""></option>
+<option value="1E">1E</option>
+<option value="2E">2E</option>
+<option value="BotW">BotW</option>
+<option value="CoD">CoD</option>
+<option value="CotF">CotF</option>
+<option value="GoD">GoD</option>
+<option value="LP">LP</option>
+<option value="LoR">LoR</option>
+<option value="LotW">LotW</option>
+<option value="MoR">MoR</option>
+<option value="OotO">OotO</option>
+<option value="SoE">SoE</option>
+<option value="SoN">SoN</option>
+<option value="SotS">SotS</option>
+<option value="TT">TT</option>
+<option value="ToC">ToC</option>
+<option value="VoD">VoD</option>
+</select></div></td>
+<td class="class"><div><select id="selectClass" onchange="trigger(this)">
+<option value=""></option>
+<option value="healer">Healer</option>
+<option value="mage">Mage</option>
+<option value="scout">Scout</option>
+<option value="warrior">Warrior</option>
+</select></div></td>
+<td class="skill"><div></div></td>
+</tr></thead><tbody class="classes">
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/Labyrinth_of_Ruin.svg" class="expansion"></td>
+<td class="class"><span title=""><a href="http://descent2e.wikia.com/wiki/Apothecary" class="class"><div class="divImage"><img src="classes/generic_healer.png" class="class"><div class="className">Apothecary</div>H</div></a></span></td>
+<td class="skill"><img src="skills/Brew_Elixir.png" class="skill"><img src="skills/Concoction.png" class="skill"><img src="skills/Herbal_Lore.png" class="skill"><img src="skills/Inky_Substance.png" class="skill"><img src="skills/Bottled_Courage.png" class="skill"><img src="skills/Protective_Tonic.png" class="skill"><img src="skills/Secret_Formula.png" class="skill"><img src="skills/Hidden_Stash.png" class="skill"><img src="skills/Potent_Remedies.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/Shadow_of_Nerekhall.svg" class="expansion"></td>
+<td class="class"><span title=""><a href="http://descent2e.wikia.com/wiki/Bard" class="class"><div class="divImage"><img src="classes/generic_healer.png" class="class"><div class="className">Bard</div>H</div></a></span></td>
+<td class="skill"><img src="skills/Song_of_Mending.png" class="skill"><img src="skills/Dissonance.png" class="skill"><img src="skills/Peaceful_Rest.png" class="skill"><img src="skills/Understudy.png" class="skill"><img src="skills/Aria_of_War.png" class="skill"><img src="skills/Concentration.png" class="skill"><img src="skills/Rehersal.png" class="skill"><img src="skills/Cacophony.png" class="skill"><img src="skills/Wayfarer.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion">2E</td>
+<td class="class"><span title="Similar to traditional clerics, Disciples specialize in healing their allies and punishing their enemies with divine justice."><a href="http://descent2e.wikia.com/wiki/Disciple" class="class"><div class="divImage"><img src="classes/generic_healer.png" class="class"><div class="className">Disciple</div>H</div></a></span></td>
+<td class="skill"><img src="skills/Prayer_of_Healing.png" class="skill"><img src="skills/Armor_of_Faith.png" class="skill"><img src="skills/Blessed_Strike.png" class="skill"><img src="skills/Cleansing_Touch.png" class="skill"><img src="skills/Divine_Fury.png" class="skill"><img src="skills/Prayer_of_Peace.png" class="skill"><img src="skills/Time_of_Need.png" class="skill"><img src="skills/Holy_Power.png" class="skill"><img src="skills/Radiant_Light.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/The_Trollfens.svg" class="expansion"></td>
+<td class="class"><span title="The Prophet class has several skills that interact with the insight token. This token does not have an inherent function, and is used specifically with the Prophet class. When a player chooses the Prophet class during Hero Setup, they place the insight token in their play area. There is only one insight token. During a game, it is either in the Prophet player’s play area or on a player’s Hero sheet. Each time a player is instructed to gain the insight token, they takes the insight token from its current location and places it on their Hero sheet. Only one player can have the insight token on his Hero sheet at a time. Each time the insight token is discarded (normally to trigger an effect from one of the Prophet’s skills), it is removed from its current location on the Hero sheet and placed in the Prophet player’s play area."><a href="http://descent2e.wikia.com/wiki/Prophet" class="class"><div class="divImage"><img src="classes/generic_healer.png" class="class"><div class="className">Prophet</div>H</div></a></span></td>
+<td class="skill"><img src="skills/Soothing_Insight.png" class="skill"><img src="skills/Battle_Vision.png" class="skill"><img src="skills/Forewarning.png" class="skill"><img src="skills/Grim_Fate.png" class="skill"><img src="skills/All-Seeing.png" class="skill"><img src="skills/Lifeline.png" class="skill"><img src="skills/Victory_Foretold.png" class="skill"><img src="skills/Focused_Insights.png" class="skill"><img src="skills/Omniscience.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion">2E</td>
+<td class="class"><span title="Spiritspeakers exist in harmony with the surrounding environment, able to commune with nature and the spirits. While useful as healers, they are not specialized in it like the Disciple. The Spiritspeaker is closer to a white mage, using abilities to buff up allies and discourage attackers."><a href="http://descent2e.wikia.com/wiki/Spiritspeaker" class="class"><div class="divImage"><img src="classes/generic_healer.png" class="class"><div class="className">Spiritspeaker</div>H</div></a></span></td>
+<td class="skill"><img src="skills/Stoneskin.png" class="skill"><img src="skills/Drain_Spirit.png" class="skill"><img src="skills/Healing_Rain.png" class="skill"><img src="skills/Shared_Pain.png" class="skill"><img src="skills/Cloud_of_Mist.png" class="skill"><img src="skills/Nature's_Bounty.png" class="skill"><img src="skills/Tempest.png" class="skill"><img src="skills/Ancestor_Spirits.png" class="skill"><img src="skills/Vigor.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/The_Chains_that_Rust.svg" class="expansion"></td>
+<td class="class"><span title="As a hybrid class, it gets a limited number of skills itself, and cannot gain the high-end skills of the class it hybridizes with. For example, were it to hybridize with the Stalker class, the Watchman would be able to purchase any class card of the Stalker class (as well as any class card of the Watchman class itself) except Ambush or Upper Hand, since either of those would cost 3 experience points."><a href="http://descent2e.wikia.com/wiki/Watchman" class="class"><div class="divImage"><img src="classes/generic_healer.png" class="class"><div class="className">Watchman</div>H</div></a></span></td>
+<td class="skill"><img src="skills/Vigilance.png" class="skill"><img src="skills/Quick_Recover.png" class="skill"><img src="skills/Trailblazer.png" class="skill"><img src="skills/Unity.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/The_Chains_that_Rust.svg" class="expansion"></td>
+<td class="class"><span title="As a hybrid class, it gets a limited number of skills itself, and cannot gain the high-end skills of the class it hybridizes with. For example, were it to hybridize with the Berserker class, the Battlemage would be able to purchase any class card of the Berserker class (as well as any class card of the Battlemage class itself) except Death Rage or Execute, since either of those would cost 3 experience points."><a href="http://descent2e.wikia.com/wiki/Battlemage" class="class"><div class="divImage"><img src="classes/generic_mage.png" class="class"><div class="className">Battlemage</div>M</div></a></span></td>
+<td class="skill"><img src="skills/Arcane_Veteran.png" class="skill"><img src="skills/Planar_Weapon.png" class="skill"><img src="skills/Runic_Weave.png" class="skill"><img src="skills/Death_Siphon.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/Shadow_of_Nerekhall.svg" class="expansion"></td>
+<td class="class"><span title="The Conjurer stands ready to distract the overlord’s monsters with his images. The Conjurer can use his images for any number of tricks, such as redirecting his line of sight, slowing down monsters, or granting himself more dice for attack or defense."><a href="http://descent2e.wikia.com/wiki/Conjurer" class="class"><div class="divImage"><img src="classes/generic_mage.png" class="class"><div class="className">Conjurer</div>M</div></a></span></td>
+<td class="skill"><img src="skills/Channeling.png" class="skill"><img src="skills/Mirror_Image.png" class="skill"><img src="skills/Illusory_Path.png" class="skill"><img src="skills/Many_Friends.png" class="skill"><img src="skills/Refraction.png" class="skill"><img src="skills/Blinding_Light.png" class="skill"><img src="skills/Focus_Fire.png" class="skill"><img src="skills/Sleight_of_Mind.png" class="skill"><img src="skills/Prismatic_Assault.png" class="skill"><img src="skills/Vortex.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/Lair_of_the_Wyrm.svg" class="expansion"></td>
+<td class="class"><span title="A Geomancer is a wizard dedicated to the elemental power of earth. A skilled Geomancer can use the earth below his enemies against them, wielding lava and stone at his whim. The Geomancer is also able to summon a stone sentry to do his bidding."><a href="http://descent2e.wikia.com/wiki/Geomancer" class="class"><div class="divImage"><img src="classes/generic_mage.png" class="class"><div class="className">Geomancer</div>M</div></a></span></td>
+<td class="skill"><img src="skills/Terracall.png" class="skill"><img src="skills/Earthen_Anguish.png" class="skill"><img src="skills/Quaking_Word.png" class="skill"><img src="skills/Stone_Tongue.png" class="skill"><img src="skills/Ley_Line.png" class="skill"><img src="skills/Molten_Fury.png" class="skill"><img src="skills/Ways_of_Stone.png" class="skill"><img src="skills/Cataclysm.png" class="skill"><img src="skills/Gravity_Spike.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/Labyrinth_of_Ruin.svg" class="expansion"></td>
+<td class="class"><span title=""><a href="http://descent2e.wikia.com/wiki/Hexer" class="class"><div class="divImage"><img src="classes/generic_mage.png" class="class"><div class="className">Hexer</div>M</div></a></span></td>
+<td class="skill"><img src="skills/Enfeebling_Hex.png" class="skill"><img src="skills/Affliction.png" class="skill"><img src="skills/Plague_Spasm.png" class="skill"><img src="skills/Viral_Hex.png" class="skill"><img src="skills/Crippling_Curse.png" class="skill"><img src="skills/Fel_Command.png" class="skill"><img src="skills/Internal_Rot.png" class="skill"><img src="skills/Accursed_Arms.png" class="skill"><img src="skills/Plague_Cloud.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion">2E</td>
+<td class="class"><span title=""><a href="http://descent2e.wikia.com/wiki/Necromancer" class="class"><div class="divImage"><img src="classes/generic_mage.png" class="class"><div class="className">Necromancer</div>M</div></a></span></td>
+<td class="skill"><img src="skills/Raise_Dead.png" class="skill"><img src="skills/Corpse_Blast.png" class="skill"><img src="skills/Deathly_Haste.png" class="skill"><img src="skills/Fury_of_Undeath.png" class="skill"><img src="skills/Dark_Pact.png" class="skill"><img src="skills/Undead_Might.png" class="skill"><img src="skills/Vampiric_Blood.png" class="skill"><img src="skills/Army_of_Death.png" class="skill"><img src="skills/Dying_Command.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion">2E</td>
+<td class="class"><span title=""><a href="http://descent2e.wikia.com/wiki/Runemaster" class="class"><div class="divImage"><img src="classes/generic_mage.png" class="class"><div class="className">Runemaster</div>M</div></a></span></td>
+<td class="skill"><img src="skills/Runic_Knowledge.png" class="skill"><img src="skills/Exploding_Rune.png" class="skill"><img src="skills/Ghost_Armor.png" class="skill"><img src="skills/Inscribe_Rune.png" class="skill"><img src="skills/Iron_Will.png" class="skill"><img src="skills/Rune_Mastery.png" class="skill"><img src="skills/Runic_Sorcery.png" class="skill"><img src="skills/Break_the_Rune.png" class="skill"><img src="skills/Quick_Casting.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/Labyrinth_of_Ruin.svg" class="expansion"></td>
+<td class="class"><span title="The mighty Beastmaster is a hunter of unparalleled skill, and with his loyal wolf at his side, he’s prepared to stalk his prey through any wilderness."><a href="http://descent2e.wikia.com/wiki/Beastmaster" class="class"><div class="divImage"><img src="classes/generic_warrior.png" class="class"><div class="className">Beastmaster</div>W</div></a></span></td>
+<td class="skill"><img src="skills/Bound_by_the_Hunt.png" class="skill"><img src="skills/Bestial_Rage.png" class="skill"><img src="skills/Stalker.png" class="skill"><img src="skills/Survivalist.png" class="skill"><img src="skills/Feral_Frenzy.png" class="skill"><img src="skills/Savagery.png" class="skill"><img src="skills/Shadow_Hunter.png" class="skill"><img src="skills/Changing_Skins.png" class="skill"><img src="skills/Predator.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion">2E</td>
+<td class="class"><span title=""><a href="http://descent2e.wikia.com/wiki/Berserker" class="class"><div class="divImage"><img src="classes/generic_warrior.png" class="class"><div class="className">Berserker</div>W</div></a></span></td>
+<td class="skill"><img src="skills/Rage.png" class="skill"><img src="skills/Brute.png" class="skill"><img src="skills/Counter_Attack.png" class="skill"><img src="skills/Cripple.png" class="skill"><img src="skills/Charge.png" class="skill"><img src="skills/Weapon_Mastery.png" class="skill"><img src="skills/Whirlwind.png" class="skill"><img src="skills/Death_Rage.png" class="skill"><img src="skills/Execute.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/Lair_of_the_Wyrm.svg" class="expansion"></td>
+<td class="class"><span title="The Champion class involves the use of Valor tokens, which are exclusive to it and serve as a personal currency for the activation of its skills. These token can also be given to other heroes. With some of his skills, the Champion can allow others to , for example, add one &lt;img src=&#34;https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115&#34; 	 alt=&#34;Heart&#34;  	class=&#34;&#34; 	 style=&#34;vertical-align: sub&#34;  	data-image-key=&#34;Heart.png&#34; 	data-image-name=&#34;Heart.png&#34; 	 	 width=&#34;15&#34;  	 height=&#34;14&#34;  	 	 	 	&gt; to an attack result."><a href="http://descent2e.wikia.com/wiki/Champion" class="class"><div class="divImage"><img src="classes/generic_warrior.png" class="class"><div class="className">Champion</div>W</div></a></span></td>
+<td class="skill"><img src="skills/Valor_of_Heroes.png" class="skill"><img src="skills/A_Living_Legend.png" class="skill"><img src="skills/Glory_of_Battle.png" class="skill"><img src="skills/Inspiring_Presence.png" class="skill"><img src="skills/Motivating_Charge.png" class="skill"><img src="skills/No_Mercy.png" class="skill"><img src="skills/Stoic_Resolve.png" class="skill"><img src="skills/For_the_Cause.png" class="skill"><img src="skills/Valorous_Strike.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion">2E</td>
+<td class="class"><span title=""><a href="http://descent2e.wikia.com/wiki/Knight" class="class"><div class="divImage"><img src="classes/generic_warrior.png" class="class"><div class="className">Knight</div>W</div></a></span></td>
+<td class="skill"><img src="skills/Oath_of_Honor.png" class="skill"><img src="skills/Advance.png" class="skill"><img src="skills/Challenge.png" class="skill"><img src="skills/Defend.png" class="skill"><img src="skills/Defense_Training.png" class="skill"><img src="skills/Guard.png" class="skill"><img src="skills/Shield_Slam.png" class="skill"><img src="skills/Inspiration.png" class="skill"><img src="skills/Stalwart.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/Manor_of_Ravens.svg" class="expansion"></td>
+<td class="class"><span title=""><a href="http://descent2e.wikia.com/wiki/Marshal" class="class"><div class="divImage"><img src="classes/generic_warrior.png" class="class"><div class="className">Marshal</div>W</div></a></span></td>
+<td class="skill"><img src="skills/Retribution.png" class="skill"><img src="skills/Just_Reward.png" class="skill"><img src="skills/Shockwave.png" class="skill"><img src="skills/Zealous_Fire.png" class="skill"><img src="skills/By_the_Book.png" class="skill"><img src="skills/I_am_the_Law.png" class="skill"><img src="skills/Vigilant_Watch.png" class="skill"><img src="skills/Crushing_Blow.png" class="skill"><img src="skills/Last_Stand.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/Shadow_of_Nerekhall.svg" class="expansion"></td>
+<td class="class"><span title="While some Warriors perform best when given one enormous weapon, the Skirmisher excels with a weapon in each hand. The Skirmisher is light and fast, but still capable of dealing out damage. Even the overlord’s most powerful minions will quickly learn to fear the speed and power of the Skirmisher."><a href="http://descent2e.wikia.com/wiki/Skirmisher" class="class"><div class="divImage"><img src="classes/generic_warrior.png" class="class"><div class="className">Skirmisher</div>W</div></a></span></td>
+<td class="skill"><img src="skills/Dual_Strike.png" class="skill"><img src="skills/Back_in_Action.png" class="skill"><img src="skills/Deep_Wounds.png" class="skill"><img src="skills/Keen_Edge.png" class="skill"><img src="skills/Born_in_Battle.png" class="skill"><img src="skills/Ever_in_Motion.png" class="skill"><img src="skills/Unrelenting.png" class="skill"><img src="skills/Carve_a_Path.png" class="skill"><img src="skills/Unstoppable.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/The_Chains_that_Rust.svg" class="expansion"></td>
+<td class="class"><span title="As a hybrid class, it gets a limited number of skills itself, and cannot gain the high-end skills of the class it hybridizes with. For example, were it to hybridize with the Runemaster class, the Steelcaster would be able to purchase any class card of the Runemaster class (as well as any class card of the Steelcaster class itself) except Break the Rune or Quick Casting, since either of those would cost 3 experience points."><a href="http://descent2e.wikia.com/wiki/Steelcaster" class="class"><div class="divImage"><img src="classes/generic_warrior.png" class="class"><div class="className">Steelcaster</div>W</div></a></span></td>
+<td class="skill"><img src="skills/Runeguard.png" class="skill"><img src="skills/Rune_Grafting.png" class="skill"><img src="skills/Shield_Mage.png" class="skill"><img src="skills/Iron_Blooded.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/Manor_of_Ravens.svg" class="expansion"></td>
+<td class="class"><span title="This class&#39; main feature is tracking, done through the usage of the tracking token, unique to this class.  This allows the Bounty Hunter to restrict and deal extra damage to a single focused target. There is only 1 tracking token, which is placed on the base of a chosen monster during gameplay."><a href="http://descent2e.wikia.com/wiki/Bounty_Hunter" class="class"><div class="divImage"><img src="classes/generic_scout.png" class="class"><div class="className">Bounty Hunter</div>S</div></a></span></td>
+<td class="skill"><img src="skills/Chosen_Target.png" class="skill"><img src="skills/Lie_In_Wait.png" class="skill"><img src="skills/Longshot.png" class="skill"><img src="skills/Not_So_Fast.png" class="skill"><img src="skills/Dark_Iron_Chains.png" class="skill"><img src="skills/Evil_Eye.png" class="skill"><img src="skills/Undercover.png" class="skill"><img src="skills/Payday.png" class="skill"><img src="skills/Rapid_Fire.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/The_Chains_that_Rust.svg" class="expansion"></td>
+<td class="class"><span title="As a hybrid class, it gets a limited number of skills itself, and cannot gain the high-end skills of the class it hybridizes with. For example, were it to hybridize with the Bard class, the Monk would be able to purchase any class card of the Bard class (as well as any class card of the Monk class itself) except Cacophony or Wayfarer, since either of those would cost 3 experience points."><a href="http://descent2e.wikia.com/wiki/Monk" class="class"><div class="divImage"><img src="classes/generic_scout.png" class="class"><div class="className">Monk</div>S</div></a></span></td>
+<td class="skill"><img src="skills/Greater_Calling.png" class="skill"><img src="skills/Inner_Balance.png" class="skill"><img src="skills/Openhanded.png" class="skill"><img src="skills/Vow_of_Freedom.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/Shadow_of_Nerekhall.svg" class="expansion"></td>
+<td class="class"><span title=""><a href="http://descent2e.wikia.com/wiki/Shadow_Walker" class="class"><div class="divImage"><img src="classes/generic_scout.png" class="class"><div class="className">Shadow Walker</div>S</div></a></span></td>
+<td class="skill"><img src="skills/Soul_Bound.png" class="skill"><img src="skills/Dark_Servant.png" class="skill"><img src="skills/Faithful_Friend.png" class="skill"><img src="skills/Through_the_Veil.png" class="skill"><img src="skills/Dark_Shift.png" class="skill"><img src="skills/Endless_Void.png" class="skill"><img src="skills/Otherworldly.png" class="skill"><img src="skills/Shadow_Puppet.png" class="skill"><img src="skills/Shadow_Step.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/The_Trollfens.svg" class="expansion"></td>
+<td class="class"><span title="As a class its main feature is the laying of trap tokens through the terrain, and skills that interact with them.  When a player chooses the Stalker class during Hero Setup, they place the trap tokens in a supply in their play area. Each time the Stalker uses an ability that places one trap token, they take one traptoken from the supply and places it on the map as instructed."><a href="http://descent2e.wikia.com/wiki/Stalker" class="class"><div class="divImage"><img src="classes/generic_scout.png" class="class"><div class="className">Stalker</div>S</div></a></span></td>
+<td class="skill"><img src="skills/Set_Trap.png" class="skill"><img src="skills/Exploit.png" class="skill"><img src="skills/Hunter's_Mark.png" class="skill"><img src="skills/Makeshift_Trap.png" class="skill"><img src="skills/Easy_Prey.png" class="skill"><img src="skills/Lay_of_the_Land.png" class="skill"><img src="skills/Poison_Barbs.png" class="skill"><img src="skills/Ambush.png" class="skill"><img src="skills/Upper_Hand.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion">2E</td>
+<td class="class"><span title=""><a href="http://descent2e.wikia.com/wiki/Thief" class="class"><div class="divImage"><img src="classes/generic_scout.png" class="class"><div class="className">Thief</div>S</div></a></span></td>
+<td class="skill"><img src="skills/Greedy.png" class="skill"><img src="skills/Appraisal.png" class="skill"><img src="skills/Dirty_Tricks.png" class="skill"><img src="skills/Sneaky.png" class="skill"><img src="skills/Caltrops.png" class="skill"><img src="skills/Tumble.png" class="skill"><img src="skills/Unseen.png" class="skill"><img src="skills/Bushwhack.png" class="skill"><img src="skills/Lurk.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion"><img src="expansions/Labyrinth_of_Ruin.svg" class="expansion"></td>
+<td class="class"><span title="The avaricious Treasure Hunter may excel at claiming wealth and uncovering relics, but he’s more than capable of defending himself – and his newfound riches – should his situation demand it."><a href="http://descent2e.wikia.com/wiki/Treasure_Hunter" class="class"><div class="divImage"><img src="classes/generic_scout.png" class="class"><div class="className">Treasure Hunter</div>S</div></a></span></td>
+<td class="skill"><img src="skills/Delver.png" class="skill"><img src="skills/Dungeoneer.png" class="skill"><img src="skills/Gold_Rush.png" class="skill"><img src="skills/Survey.png" class="skill"><img src="skills/Guard_the_Spoils.png" class="skill"><img src="skills/Lure_of_Fortune.png" class="skill"><img src="skills/Sleight_of_Hand.png" class="skill"><img src="skills/Finder's_Keeper's.png" class="skill"><img src="skills/Trail_of_Riches.png" class="skill"></td></tr>
+
+<tr class="" style="">
+<td class="expansion">2E</td>
+<td class="class"><span title=""><a href="http://descent2e.wikia.com/wiki/Wildlander" class="class"><div class="divImage"><img src="classes/generic_scout.png" class="class"><div class="className">Wildlander</div>S</div></a></span></td>
+<td class="skill"><img src="skills/Nimble.png" class="skill"><img src="skills/Accurate.png" class="skill"><img src="skills/Danger_Sense.png" class="skill"><img src="skills/Eagle_Eyes.png" class="skill"><img src="skills/Bow_Mastery.png" class="skill"><img src="skills/First_Strike.png" class="skill"><img src="skills/Fleet_of_Foot.png" class="skill"><img src="skills/Black_Arrow.png" class="skill"><img src="skills/Running_Shot.png" class="skill"></td></tr>
+
+</tbody>
+<tfoot class="classes"><tr><td class="donateArea">
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+	<input type="hidden" name="cmd" value="_s-xclick">
+	<input type="hidden" name="hosted_button_id" value="85ZEFVNEAXV3A">
+	<input type="image" src="etc/donate-paypal.svg" border="0" name="submit" alt="PayPal" class="donate">
+	<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+	</form><div class="popup" onclick="myFunction()"><img src="etc/donate-bitcoin.svg" class="donate">
+						<span class="popuptext" id="myPopup">Donations Address<br><br>
+						<img src="etc/bitcoin.png" width=200px height=200px><br><br>
+						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div></td><td class="fees">Server Fees: $55.80/yr</td><td class="version">v2.0.0.181110</td>
+</tr></tfoot>
+</table></body></html>
+<script type="text/javascript" src="heroes.js?version=v2.0.0.181110"></script>

@@ -1,0 +1,94 @@
+<html>
+<head>
+<style type="text/css">
+@font-face {
+	font-family: 'Garamond';
+	src: url('fonts/Gara_Scenario_Desc.ttf'); 
+	src: 
+		local('Gara Scenario Descent'),
+		local('Gara-Scenario-Descent-Regular'),
+		url('fonts/Gara_Scenario_Desc.ttf') 
+		format('truetype');
+}
+
+html {
+	overflow: hidden;
+	/*box-sizing: border-box;*/
+}
+
+body {
+	font-family: 'Garamond';
+	overflow: hidden;
+    /*overflow-y: scroll;*/
+	/*padding-bottom: 30px;*/
+	/*padding-top: 70px;*/
+	/*background-color: #363636;*/
+	/*min-height: 100vh;*/
+	max-height: 100vh;
+	/*background-color: #1976D2;*/
+	/*background-image: radial-gradient( circle at top right, #64B5F6 0%, #1976D2 90% );*/
+	/*background-repeat: no-repeat;*/
+	/*background-attachment: scroll;*/
+	/*background-position: right 70px;*/
+	/*background-position: right -800px;*/
+	background-position: left bottom;
+	background-size: cover;
+	margin: 0;
+	/*box-sizing: border-box;*/
+}
+
+img#logo {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+ul#menu {
+	position: absolute;
+	right: 10vh;
+	top: calc(50vh + 112px); /* 112px = half height of logo */
+	transform:translateY(-50%);
+}
+
+img.coming {
+	content:url(etc/coming-soon.png);
+	position: relative;
+	top: -15px;
+	right: -10px;
+	height: 50px;
+	float: right;
+}
+
+a.button {
+  text-decoration:none;
+}
+
+/*div.something { height: 3000px; width: 10px; }*/
+/*header { position: absolute; width: 100%; top: 0; left: 0; height: 70px; z-index: 500; background-color: #ddd; }*/
+</style>
+<link rel="stylesheet" type="text/css" href="dark-nav-buttons/darkbutton.css">
+</head>
+<body style="background-image:url(etc/backdrop.jpg)">
+<img src="etc/logo.png" id="logo">
+<!-- <div id="content"> -->
+<ul class="vertical-list" id="menu">
+	<li><a href='heroes.html' class='button'>Hero Selector</a></li>
+	<li><a href='classes.html' class='button'>Class Selector</a></li>
+	<li><a href='shop.html' class='button' onclick="return false;">Shop Browser<img class="coming"></a></li>
+	<li><a href='campaign.html' class='button' onclick="return false;">Campaign Selector<img class="coming"></a></li>
+	<li><a href='quest.html' class='button' onclick="return false;">Quest Selector<img class="coming"></a></li>
+	<li><a href='monsters.html' class='button' onclick="return false;">Monster Selector<img class="coming"></a></li>
+	<li><a href='card.html' class='button' onclick="return false;">Overlord Card Selector<img class="coming"></a></li>
+	<li><a href='plot.html' class='button' onclick="return false;">Plot Selector<img class="coming"></a></li>
+	<!-- <li class="search"><input type="text" class="search-input" name="search" value="Search" onclick="$(this).val('');" /><input type="submit" class="search-submit" /></li> -->
+</ul><!-- 
+<ul class="button-list" id="menu">
+	<li><a href='/' class='button' onclick="return false;">Home</a></li>
+	<li><a href='/' class='button' onclick="return false;">About</a></li>
+	<li><a href='/' class='button' onclick="return false;">Portfolio</a></li>
+	<li><a href='/' class='button' onclick="return false;">Blog</a></li>
+	<li class="search"><input type="text" class="search-input" name="search" value="Search" onclick="$(this).val('');" /><input type="submit" class="search-submit" /></li>
+</ul> -->
+<!-- </div> -->
+</body>
+</html>
