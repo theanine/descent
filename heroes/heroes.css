@@ -417,3 +417,36 @@ select.blank {
     from {opacity: 0;}
     to {opacity:1 ;}
 }
+
+/* fixes for mobile*/
+@media only screen and (max-device-width: 1024px) {
+	div.className {
+		font-size: 6px;
+		bottom: 27px;
+	}
+
+	img.class {
+		width: calc(250px / 3);
+		height: calc(387px / 3);
+	}
+	
+	img.skill {
+		width: calc(250px / 3);
+		height: calc(387px / 3);
+	}
+
+	img.skill:hover {
+	  transition: all 0.5s;
+	  -webkit-transition: all 0.5s;
+	}
+
+	table th.class, table td.class{
+		min-width:calc(250px / 3);
+		max-width:calc(250px / 3);
+	}
+
+	table th.skill, table td.skill{
+		min-width:833.33px;
+		max-width:833.33px;
+	}
+}
