@@ -29,6 +29,7 @@ type class struct {
 	name        string
 	img         string
 	archetype   string
+	hybrid      bool
 	equipment   []string
 	description string
 	expansion   string
@@ -170,6 +171,7 @@ func classesGen() {
 		}
 
 		wikiCount := 0
+		meta.hybrid = false
 		content.Find("a").Each(func(i int, a *goquery.Selection) {
 			text := strings.TrimSpace(a.Text())
 			if len(text) == 0 {
@@ -179,6 +181,7 @@ func classesGen() {
 				return
 			}
 			if text == "Heroes" || text == "Hybrid" {
+				meta.hybrid = true
 				return
 			}
 			if href, ok := a.Attr("href"); ok {
@@ -387,7 +390,20 @@ func outputCTable(w *bufio.Writer) {
 		exists := true
 		if _, err := os.Stat(c.img); os.IsNotExist(err) {
 			exists = false
-			c.img = "classes/generic_" + strings.ToLower(c.archetype) + ".png"
+			arch := strings.ToLower(c.archetype)
+			if c.hybrid {
+				if arch == "mage" {
+					c.img = "classes/generic_mage_warrior.png"
+				} else if arch == "warrior" {
+					c.img = "classes/generic_warrior_mage.png"
+				} else if arch == "scout" {
+					c.img = "classes/generic_scout_healer.png"
+				} else if arch == "healer" {
+					c.img = "classes/generic_healer_scout.png"
+				}
+			} else {
+				c.img = "classes/generic_" + arch + ".png"
+			}
 		}
 		fmt.Fprintf(w, "<img src=\"%s\" class=\"class\">", c.img)
 		if !exists {
