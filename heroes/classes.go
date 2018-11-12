@@ -8,6 +8,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -377,53 +378,145 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 	fmt.Fprintf(w, "</tr></thead><tbody class=\"classes\">\n\n")
 }
 
+func outputCTableRow(w *bufio.Writer, c1 class, c2 *class) {
+	fmt.Fprintf(w, "<tr class=\"\" style=\"\">\n")
+	fmt.Fprintf(w, "<td class=\"expansion\">%s</td>\n", c1.expImg)
+	fmt.Fprintf(w, "<td class=\"class\">")
+	fmt.Fprintf(w, "<span title=\"%s\">", html.EscapeString(c1.description))
+	fmt.Fprintf(w, "<a href=\"%s\" class=\"class\">", c1.url)
+	fmt.Fprintf(w, "<div class=\"divImage\">")
+	exists := true
+	if _, err := os.Stat(c1.img); os.IsNotExist(err) {
+		exists = false
+		arch := strings.ToLower(c1.archetype)
+		if c1.hybrid {
+			if arch == "mage" {
+				c1.img = "classes/generic_mage_warrior.png"
+			} else if arch == "warrior" {
+				c1.img = "classes/generic_warrior_mage.png"
+			} else if arch == "scout" {
+				c1.img = "classes/generic_scout_healer.png"
+			} else if arch == "healer" {
+				c1.img = "classes/generic_healer_scout.png"
+			}
+		} else {
+			c1.img = "classes/generic_" + arch + ".png"
+		}
+	}
+	fmt.Fprintf(w, "<img src=\"%s\" class=\"class\">", c1.img)
+	if !exists {
+		if !c1.hybrid {
+			fmt.Fprintf(w, "<div class=\"className\">%s</div>", c1.name)
+		} else {
+			fmt.Fprintf(w, "<div class=\"className hybrid\">%s<br>%s</div>", c1.name, c2.name)
+		}
+	}
+	fmt.Fprintf(w, "%c</div>", c1.archetype[0])
+	fmt.Fprintf(w, "</a></span></td>\n")
+
+	// for _, e := range c1.equipment {
+	// 	// TODO: add these
+	// }
+	fmt.Fprintf(w, "<td class=\"skill\">")
+
+	var skillPool []skill
+	for _, s := range c1.skills {
+		if c1.hybrid {
+			if s.xp == 0 {
+				continue
+			}
+		}
+		skillPool = append(skillPool, s)
+	}
+	if c1.hybrid {
+		for _, s := range c2.skills {
+			if s.xp == 3 {
+				continue
+			}
+			skillPool = append(skillPool, s)
+		}
+	}
+
+	sort.Slice(skillPool, func(i, j int) bool { return skillPool[i].xp < skillPool[j].xp })
+	for _, s := range skillPool {
+		img := s.img
+		if img == "" {
+			img = "skills/blank.png"
+		}
+		fmt.Fprintf(w, "<img src=\"%s\" class=\"skill\">", img)
+	}
+	fmt.Fprintf(w, "</td></tr>\n\n")
+}
+
 func outputCTable(w *bufio.Writer) {
 	outputCHeader(w)
 
 	for _, c := range classes {
-		fmt.Fprintf(w, "<tr class=\"\" style=\"\">\n")
-		fmt.Fprintf(w, "<td class=\"expansion\">%s</td>\n", c.expImg)
-		fmt.Fprintf(w, "<td class=\"class\">")
-		fmt.Fprintf(w, "<span title=\"%s\">", html.EscapeString(c.description))
-		fmt.Fprintf(w, "<a href=\"%s\" class=\"class\">", c.url)
-		fmt.Fprintf(w, "<div class=\"divImage\">")
-		exists := true
-		if _, err := os.Stat(c.img); os.IsNotExist(err) {
-			exists = false
-			arch := strings.ToLower(c.archetype)
-			if c.hybrid {
-				if arch == "mage" {
-					c.img = "classes/generic_mage_warrior.png"
-				} else if arch == "warrior" {
-					c.img = "classes/generic_warrior_mage.png"
-				} else if arch == "scout" {
-					c.img = "classes/generic_scout_healer.png"
-				} else if arch == "healer" {
-					c.img = "classes/generic_healer_scout.png"
-				}
-			} else {
-				c.img = "classes/generic_" + arch + ".png"
-			}
+		if !c.hybrid {
+			outputCTableRow(w, c, nil)
+			continue
 		}
-		fmt.Fprintf(w, "<img src=\"%s\" class=\"class\">", c.img)
-		if !exists {
-			fmt.Fprintf(w, "<div class=\"className\">%s</div>", c.name)
-		}
-		fmt.Fprintf(w, "%c</div>", c.archetype[0])
-		fmt.Fprintf(w, "</a></span></td>\n")
 
-		// for _, e := range c.equipment {
-		// 	// TODO: add these
-		// }
-		fmt.Fprintf(w, "<td class=\"skill\">")
-		for _, s := range c.skills {
-			img := s.img
-			if img == "" {
-				img = "skills/blank.png"
+		a := strings.ToLower(c.archetype)
+		for _, c2 := range classes {
+			if c2.hybrid {
+				continue
 			}
-			fmt.Fprintf(w, "<img src=\"%s\" class=\"skill\">", img)
+			a2 := strings.ToLower(c2.archetype)
+			if a == "mage" || a2 == "mage" {
+				if a == "warrior" || a2 == "warrior" {
+					outputCTableRow(w, c, &c2)
+				}
+			}
+			if a == "scout" || a2 == "scout" {
+				if a == "healer" || a2 == "healer" {
+					outputCTableRow(w, c, &c2)
+				}
+			}
 		}
-		fmt.Fprintf(w, "</td></tr>\n\n")
+		// fmt.Fprintf(w, "<tr class=\"\" style=\"\">\n")
+		// fmt.Fprintf(w, "<td class=\"expansion\">%s</td>\n", c.expImg)
+		// fmt.Fprintf(w, "<td class=\"class\">")
+		// fmt.Fprintf(w, "<span title=\"%s\">", html.EscapeString(c.description))
+		// fmt.Fprintf(w, "<a href=\"%s\" class=\"class\">", c.url)
+		// fmt.Fprintf(w, "<div class=\"divImage\">")
+		// exists := true
+		// if _, err := os.Stat(c.img); os.IsNotExist(err) {
+		// 	exists = false
+		// 	arch := strings.ToLower(c.archetype)
+		// 	if c.hybrid {
+		// 		if arch == "mage" {
+		// 			c.img = "classes/generic_mage_warrior.png"
+		// 		} else if arch == "warrior" {
+		// 			c.img = "classes/generic_warrior_mage.png"
+		// 		} else if arch == "scout" {
+		// 			c.img = "classes/generic_scout_healer.png"
+		// 		} else if arch == "healer" {
+		// 			c.img = "classes/generic_healer_scout.png"
+		// 		}
+		// 	} else {
+		// 		c.img = "classes/generic_" + arch + ".png"
+		// 	}
+		// }
+		// fmt.Fprintf(w, "<img src=\"%s\" class=\"class\">", c.img)
+		// if !exists {
+		// 	fmt.Fprintf(w, "<div class=\"className\">%s</div>", c.name)
+		// }
+		// fmt.Fprintf(w, "%c</div>", c.archetype[0])
+		// fmt.Fprintf(w, "</a></span></td>\n")
+
+		// // for _, e := range c.equipment {
+		// // 	// TODO: add these
+		// // }
+		// fmt.Fprintf(w, "<td class=\"skill\">")
+		// for _, s := range c.skills {
+		// 	img := s.img
+		// 	if img == "" {
+		// 		img = "skills/blank.png"
+		// 	}
+		// 	fmt.Fprintf(w, "<img src=\"%s\" class=\"skill\">", img)
+		// }
+		// fmt.Fprintf(w, "</td></tr>\n\n")
 	}
 
 	outputCFooter(w)

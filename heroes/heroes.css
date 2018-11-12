@@ -68,6 +68,10 @@ div.className {
 	bottom: 42px;
 }
 
+div.hybrid {
+	bottom: 40px;
+}
+
 img.hero {
 	position: relative;
 	top: 0;
@@ -222,8 +226,8 @@ table th.class, table td.class{
 }
 
 table th.skill, table td.skill{
-	min-width:1250px;
-	max-width:1250px;
+	min-width:1375px;
+	max-width:1375px;
 }
 
 table th.hero, table td.hero{
