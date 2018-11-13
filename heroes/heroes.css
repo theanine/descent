@@ -64,12 +64,15 @@ div.className {
 	width: 100%;
 	text-align: center;
 	position: absolute;
-	/*bottom: 47px;*/
-	bottom: 42px;
+	top: 73%;
+	bottom: 19%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 div.hybrid {
-	bottom: 40px;
+	line-height: 0.75;
 }
 
 img.hero {
@@ -426,17 +429,16 @@ select.blank {
 @media only screen and (max-device-width: 1024px) {
 	div.className {
 		font-size: 6px;
-		bottom: 27px;
 	}
 
 	img.class {
-		width: calc(250px / 3);
-		height: calc(387px / 3);
+		width: calc(250px / 3.2);
+		height: calc(387px / 3.2);
 	}
 	
 	img.skill {
-		width: calc(250px / 3);
-		height: calc(387px / 3);
+		width: calc(250px / 3.2);
+		height: calc(387px / 3.2);
 	}
 
 	img.skill:hover {
@@ -445,12 +447,12 @@ select.blank {
 	}
 
 	table th.class, table td.class{
-		min-width:calc(250px / 3);
-		max-width:calc(250px / 3);
+		min-width:calc(250px / 3.2);
+		max-width:calc(250px / 3.2);
 	}
 
 	table th.skill, table td.skill{
-		min-width:833.33px;
-		max-width:833.33px;
+		min-width:860px;
+		max-width:860px;
 	}
 }
