@@ -59,7 +59,8 @@ div.divImage {
 }
 
 div.className {
-	font-size: 8px;
+	/*font-size: 8px;*/
+	font-size: 0.5vw;
 	font-family: 'Windlass';
 	width: 100%;
 	text-align: center;
@@ -85,8 +86,6 @@ img.class {
 	position: relative;
 	top: 0;
 	left: 0;
-	width: calc(250px / 2);
-	height: calc(387px / 2);
 	z-index: -1;
 }
 
@@ -103,24 +102,25 @@ img.archetype {
 	height: 35px;
 }
 
-img.skill {
-	/*zoom: 45%;*/
-	width: calc(250px / 2);
-	height: calc(387px / 2);
-}
-
-img.skill {
+img.skill,img.equipment {
   border: none;
   margin: 0 auto;
 }
 
-img.skill:hover {
+img.skill:hover,img.equipment:hover {
   -webkit-transform: scale(2);
   -moz-transform: scale(2);
   -o-transform: scale(2);
   transform: scale(2);
   transition: all 0.4s;
   -webkit-transition: all 0.4s;
+}
+
+img.eItem {
+	float:left;
+}
+img.eFamiliar,img.eSkill {
+	float:right;
 }
 
 .archetype {
@@ -175,7 +175,7 @@ img.die {
 	/*-webkit-filter: drop-shadow(0px 0px 0px rgba(0,0,0,0.80));*/
 }
 
-th.skill {
+th.skill,th.equipment {
 	width: 100%;
 	text-align: center;
 }
@@ -223,14 +223,32 @@ table th.expansion, table td.expansion{
 	max-width:28px;
 }
 
+img.skill,img.equipment,img.class {
+	/*zoom: 45%;*/
+	/*width: calc(250px / 2);*/
+	/*height: calc(387px / 2);*/
+	width: calc((100vw - 28px - 30px) / 14);
+}
+
 table th.class, table td.class{
-	min-width:calc(250px / 2);
-	max-width:calc(250px / 2);
+	/*min-width:calc(250px / 2);*/
+	/*max-width:calc(250px / 2);*/
+	min-width:calc((100vw - 28px - 30px) / 14);
+	max-width:calc((100vw - 28px - 30px) / 14);
+}
+
+table th.equipment, table td.equipment{
+	/*min-width:calc(4 * 125px);*/
+	/*max-width:calc(4 * 125px);*/
+	min-width:calc(4 * (100vw - 28px - 30px) / 14);
+	max-width:calc(4 * (100vw - 28px - 30px) / 14);
 }
 
 table th.skill, table td.skill{
-	min-width:1375px;
-	max-width:1375px;
+	/*min-width:calc(9 * 125px);*/
+	/*max-width:calc(9 * 125px);*/
+	min-width:calc(9 * (100vw - 28px - 30px) / 14);
+	max-width:calc(9 * (100vw - 28px - 30px) / 14);
 }
 
 table th.hero, table td.hero{
@@ -427,8 +445,17 @@ select.blank {
 
 /* fixes for mobile*/
 @media only screen and (max-device-width: 1024px) {
-	div.className {
-		font-size: 6px;
+	img.skill:hover,img.equipment:hover {
+		-webkit-transform: scale(2.25);
+		-moz-transform: scale(2.25);
+		-o-transform: scale(2.25);
+		transform: scale(2.25);
+		transition: all 0.3s;
+		-webkit-transition: all 0.3s;
+	}
+
+	/*div.className {
+		font-size: 5px;
 	}
 
 	img.class {
@@ -436,12 +463,12 @@ select.blank {
 		height: calc(387px / 3.2);
 	}
 	
-	img.skill {
+	img.skill,img.equipment {
 		width: calc(250px / 3.2);
 		height: calc(387px / 3.2);
 	}
 
-	img.skill:hover {
+	img.skill:hover,img.equipment:hover {
 	  transition: all 0.5s;
 	  -webkit-transition: all 0.5s;
 	}
@@ -451,8 +478,13 @@ select.blank {
 		max-width:calc(250px / 3.2);
 	}
 
-	table th.skill, table td.skill{
-		min-width:860px;
-		max-width:860px;
+	table table th.equipment, table td.equipment{
+		min-width:calc(4 * 250px / 3.2);
+		max-width:calc(4 * 250px / 3.2);
 	}
+
+	table th.skill, table td.skill{
+		min-width:calc(9 * 250px / 3.2);
+		max-width:calc(9 * 250px / 3.2);
+	}*/
 }

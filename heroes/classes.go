@@ -17,6 +17,7 @@ import (
 )
 
 const classesHtml = "classes.html"
+const startingSkillsInEquipmentSection = true
 
 type skill struct {
 	name string
@@ -26,12 +27,18 @@ type skill struct {
 	img  string
 }
 
+type equipment struct {
+	name string
+	typ  string // "Familiar", "Item", "Skill"
+	img  string
+}
+
 type class struct {
 	name        string
 	img         string
 	archetype   string
 	hybrid      bool
-	equipment   []string
+	equipments  []equipment
 	description string
 	expansion   string
 	expImg      string
@@ -62,9 +69,9 @@ func dumpClasses() {
 	for _, c := range classes {
 		// fmt.Printf("[%s] [%s] [%s] [%s] [%s]\n", c.expansion, c.name, c.archetype, c.equipment, c.description)
 		fmt.Printf("%s|%s|%s|", c.expansion, c.name, c.archetype)
-		for i, e := range c.equipment {
+		for i, e := range c.equipments {
 			fmt.Printf("%s", e)
-			if i < len(c.equipment)-1 {
+			if i < len(c.equipments)-1 {
 				fmt.Printf(",")
 			}
 		}
@@ -240,8 +247,33 @@ func classesGen() {
 			if strings.Contains(strings.ToLower(text), "starting equipment") {
 				p.Find("a").Each(func(i int, a *goquery.Selection) {
 					if href, ok := a.Attr("href"); ok {
-						href = "https://descent2e.wikia.com/wiki/" + strings.Split(href, "/wiki/")[1]
-						meta.equipment = append(meta.equipment, href)
+						href := "https://descent2e.wikia.com/wiki/" + strings.Split(href, "/wiki/")[1]
+						doc, err := goquery.NewDocument(href)
+						if err != nil {
+							panic(fmt.Sprintf("error on parsing: %s", err))
+						}
+						e := equipment{}
+						e.name = strings.TrimSpace(doc.Find(".wikitable").Find("div").Eq(0).Text())
+						for i, s := range meta.skills {
+							if s.name == e.name {
+								if startingSkillsInEquipmentSection {
+									meta.skills = append(meta.skills[:i], meta.skills[i+1:]...)
+									break
+								} else {
+									return
+								}
+							}
+						}
+						e.typ = strings.TrimSpace(doc.Find(".wikitable").Find("tr").Eq(7).Find("td").Eq(1).Text())
+						if src, ok := doc.Find(".wikitable").Find("img").Eq(0).Attr("src"); ok {
+							e.img = strings.Split(src, "/scale-to-width-down")[0]
+							if e.img[:10] == "data:image" {
+								if src, ok := doc.Find(".wikitable").Find("img").Eq(0).Attr("data-src"); ok {
+									e.img = strings.Split(src, "/scale-to-width-down")[0]
+								}
+							}
+							meta.equipments = append(meta.equipments, e)
+						}
 					}
 					return
 				})
@@ -358,7 +390,8 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 	fmt.Fprintf(w, "<table id=\"classTable\" class=\"tablesorter\"><thead class=\"classes\"><tr style=\"width:100%\">\n")
 	fmt.Fprintf(w, "<th class=\"expansion\">Exp</th>\n")
 	fmt.Fprintf(w, "<th class=\"class\">Class</th>\n")
-	fmt.Fprintf(w, "<th class=\"skill\">Skills</th>\n")
+	fmt.Fprintf(w, "<th class=\"equipment\">Starting Equipment</th>\n")
+	fmt.Fprintf(w, "<th class=\"skill\">Skill Tree</th>\n")
 	fmt.Fprintf(w, "</tr>\n\n")
 	fmt.Fprintf(w, "<tr>\n")
 	fmt.Fprintf(w, "<td class=\"expansion\"><div><select id=\"selectExp\" onchange=\"trigger(this)\">\n")
@@ -374,6 +407,7 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", strings.ToLower(k), k)
 	}
 	fmt.Fprintf(w, "</select></div></td>\n")
+	fmt.Fprintf(w, "<td class=\"equipment\"><div></div></td>\n")
 	fmt.Fprintf(w, "<td class=\"skill\"><div></div></td>\n")
 	fmt.Fprintf(w, "</tr></thead><tbody class=\"classes\">\n\n")
 }
@@ -414,9 +448,58 @@ func outputCTableRow(w *bufio.Writer, c1 class, c2 *class) {
 	fmt.Fprintf(w, "%c</div>", c1.archetype[0])
 	fmt.Fprintf(w, "</a></span></td>\n")
 
-	// for _, e := range c1.equipment {
-	// 	// TODO: add these
-	// }
+	sort.Slice(c1.equipments, func(i, j int) bool {
+		// Item -> Skill -> Familiar
+		if c1.equipments[i].typ == "Item" {
+			return true
+		}
+		if c1.equipments[i].typ == "Skill" {
+			if c1.equipments[j].typ == "Item" {
+				return false
+			} else {
+				return true
+			}
+		}
+		if c1.equipments[i].typ == "Familiar" {
+			return false
+		}
+		return false
+	})
+	if c1.hybrid {
+		sort.Slice(c2.equipments, func(i, j int) bool {
+			// Item -> Skill -> Familiar
+			if c2.equipments[i].typ == "Item" {
+				return true
+			}
+			if c2.equipments[i].typ == "Skill" {
+				if c2.equipments[j].typ == "Item" {
+					return false
+				} else {
+					return true
+				}
+			}
+			if c2.equipments[i].typ == "Familiar" {
+				return false
+			}
+			return false
+		})
+	}
+	fmt.Fprintf(w, "<td class=\"equipment\">")
+	for _, e := range c1.equipments {
+		if e.img == "" {
+			e.img = "skills/blank.png"
+		}
+		fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\">", e.img, e.typ)
+	}
+	if c1.hybrid {
+		for _, e := range c2.equipments {
+			if e.img == "" {
+				e.img = "skills/blank.png"
+			}
+			fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\">", e.img, e.typ)
+		}
+	}
+	fmt.Fprintf(w, "</td>")
 	fmt.Fprintf(w, "<td class=\"skill\">")
 
 	var skillPool []skill
@@ -474,49 +557,6 @@ func outputCTable(w *bufio.Writer) {
 				}
 			}
 		}
-		// fmt.Fprintf(w, "<tr class=\"\" style=\"\">\n")
-		// fmt.Fprintf(w, "<td class=\"expansion\">%s</td>\n", c.expImg)
-		// fmt.Fprintf(w, "<td class=\"class\">")
-		// fmt.Fprintf(w, "<span title=\"%s\">", html.EscapeString(c.description))
-		// fmt.Fprintf(w, "<a href=\"%s\" class=\"class\">", c.url)
-		// fmt.Fprintf(w, "<div class=\"divImage\">")
-		// exists := true
-		// if _, err := os.Stat(c.img); os.IsNotExist(err) {
-		// 	exists = false
-		// 	arch := strings.ToLower(c.archetype)
-		// 	if c.hybrid {
-		// 		if arch == "mage" {
-		// 			c.img = "classes/generic_mage_warrior.png"
-		// 		} else if arch == "warrior" {
-		// 			c.img = "classes/generic_warrior_mage.png"
-		// 		} else if arch == "scout" {
-		// 			c.img = "classes/generic_scout_healer.png"
-		// 		} else if arch == "healer" {
-		// 			c.img = "classes/generic_healer_scout.png"
-		// 		}
-		// 	} else {
-		// 		c.img = "classes/generic_" + arch + ".png"
-		// 	}
-		// }
-		// fmt.Fprintf(w, "<img src=\"%s\" class=\"class\">", c.img)
-		// if !exists {
-		// 	fmt.Fprintf(w, "<div class=\"className\">%s</div>", c.name)
-		// }
-		// fmt.Fprintf(w, "%c</div>", c.archetype[0])
-		// fmt.Fprintf(w, "</a></span></td>\n")
-
-		// // for _, e := range c.equipment {
-		// // 	// TODO: add these
-		// // }
-		// fmt.Fprintf(w, "<td class=\"skill\">")
-		// for _, s := range c.skills {
-		// 	img := s.img
-		// 	if img == "" {
-		// 		img = "skills/blank.png"
-		// 	}
-		// 	fmt.Fprintf(w, "<img src=\"%s\" class=\"skill\">", img)
-		// }
-		// fmt.Fprintf(w, "</td></tr>\n\n")
 	}
 
 	outputCFooter(w)
@@ -538,6 +578,7 @@ func outputCFooter(w *bufio.Writer) {
 						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div>`)
 	fmt.Fprintf(w, "</td><td class=\"fees\">Server Fees: $55.80/yr")
 	fmt.Fprintf(w, "</td><td class=\"version\">%s</td>\n", version)
+	fmt.Fprintf(w, "<td></td>\n")
 	fmt.Fprintf(w, "</tr></tfoot>\n")
 	fmt.Fprintf(w, "</table>")
 
