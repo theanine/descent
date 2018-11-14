@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-const version = "v2.2.0.181113"
+const version = "v2.3.0.181114"
 const downloadEnabled = false
 
 var archetypes = []string{
@@ -16,24 +16,26 @@ var archetypes = []string{
 }
 
 var expansions = map[string]string{
-	"Bonds of the Wild":             "BotW",
-	"Crown of Destiny":              "CoD",
-	"Crusade of the Forgotten":      "CotF",
-	"Guardians of Deephall":         "GoD",
-	"Labyrinth of Ruin":             "LoR",
-	"Lair of the Wyrm":              "LotW",
-	"Manor of Ravens":               "MoR",
-	"Oath of the Outcast":           "OotO",
-	"Raythen Lieutenant Pack":       "LP",
-	"Second Edition Base Game":      "2E",
-	"Second Edition Conversion Kit": "1E",
-	"Serena Lieutenant Pack":        "LP",
-	"Shadow of Nerekhall":           "SoN",
-	"Shards of Everdark":            "SoE",
-	"Stewards of the Secret":        "SotS",
-	"The Trollfens":                 "TT",
-	"Treaty of Champions":           "ToC",
-	"Visions of Dawn":               "VoD",
+	"bonds of the wild":             "BotW",
+	"crown of destiny":              "CoD",
+	"crusade of the forgotten":      "CotF",
+	"guardians of deephall":         "GoD",
+	"labyrinth of ruin":             "LoR",
+	"lair of the wyrm":              "LotW",
+	"manor of ravens":               "MoR",
+	"mists of bilehall":             "MoB",
+	"oath of the outcast":           "OotO",
+	"raythen lieutenant pack":       "LP",
+	"second edition base game":      "2E",
+	"second edition conversion kit": "1E",
+	"serena lieutenant pack":        "LP",
+	"shadow of nerekhall":           "SoN",
+	"shards of everdark":            "SoE",
+	"stewards of the secret":        "SotS",
+	"the chains that rust":          "TCtR",
+	"the trollfens":                 "TT",
+	"treaty of champions":           "ToC",
+	"visions of dawn":               "VoD",
 }
 
 func usage() {

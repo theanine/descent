@@ -40,13 +40,15 @@ function onload()
 	showHideRows();
 	// $("#heroTable").tablesorter();
 	
-	$("#heroTable").tablesorter({
-		sortList       : [[2,0]],
-		// widgets        : ['zebra', 'columns'],
-		usNumberFormat : true,
-		sortReset      : false,
-		sortRestart    : true
-	});
+	if ($("#heroTable").length) {
+		$("#heroTable").tablesorter({
+			sortList       : [[2,0]],
+			// widgets        : ['zebra', 'columns'],
+			usNumberFormat : true,
+			sortReset      : false,
+			sortRestart    : true
+		});
+	}
 }
 
 function showHideArrows(select)
@@ -60,32 +62,36 @@ function showHideArrows(select)
 	}
 }
 
+function showHideRow(tr)
+{
+	var e = $("#selectExp");
+	var k = $("#selectCK");
+	var c = $("#selectClass");
+	var d = $("#selectDefense");
+	
+	$(tr).show();
+	if (typeof $(tr).attr("class") === "undefined" || $(tr).attr("class") === "tablesorter-headerRow")
+		return;
+	if (c.length && c.val() != "" && !$(tr).hasClass(c.val()))
+		$(tr).hide();
+	if (d.length && d.val() != "" && !$(tr).hasClass(d.val()))
+		$(tr).hide();
+	if (k.length && k.val() != "" && !$(tr).hasClass(k.val()))
+		$(tr).hide();
+	if (e.length && e.val() != "" && !$(tr).hasClass(e.val()))
+		$(tr).hide();
+	
+	$.each(attrs, function (i, attr) {
+		var s = $("#select"+toTitleCase(attr));
+		if (s.length && s.val() != "" && $('td.'+attr, tr).text() != s.val())
+			$(tr).hide();
+	});
+}
+
 function showHideRows()
 {
-	var e = $("#selectExp").val();
-	var k = $("#selectCK").val();
-	var c = $("#selectClass").val();
-	var d = $("#selectDefense").val();
-	$("tr", "#heroTable").each(function(index, tr){
-		$(tr).show();
-		if (typeof $(tr).attr("class") === "undefined" || $(tr).attr("class") === "tablesorter-headerRow")
-			return;
-		if (c != "" && !$(tr).hasClass(c))
-			$(tr).hide();
-		if (d != "" && !$(tr).hasClass(d))
-			$(tr).hide();
-		if (k != "" && !$(tr).hasClass(k))
-			$(tr).hide();
-		if (e != "" && !$(tr).hasClass(e))
-			$(tr).hide();
-		
-		$.each(attrs, function (i, attr) {
-			var s = $("#select"+toTitleCase(attr)).val();
-			if (s != "" && $('td.'+attr, tr).text() != s)
-				$(tr).hide();
-		});
-	});
-	
+	$("tr", "#heroTable").each(function(index, tr){showHideRow(tr)});
+	$("tr", "#classTable").each(function(index, tr){showHideRow(tr)});
 	loadSelects();
 }
 

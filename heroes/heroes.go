@@ -72,10 +72,10 @@ func downloadImages() {
 	}
 }
 
-func uniqueSortedExps() []string {
+func heroUniqSortExps() []string {
 	expMap := make(map[string]struct{})
-	for _, exp := range expansions {
-		expMap[exp] = struct{}{}
+	for _, h := range heroes {
+		expMap[expansions[strings.ToLower(h.expansion)]] = struct{}{}
 	}
 	var exps []string
 	for exp := range expMap {
@@ -119,7 +119,7 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 	fmt.Fprintf(w, "<tr>\n")
 	fmt.Fprintf(w, "<td class=\"expansion\"><div><select id=\"selectExp\" onchange=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
-	exps := uniqueSortedExps()
+	exps := heroUniqSortExps()
 	for _, exp := range exps {
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", exp, exp)
 	}
@@ -158,7 +158,8 @@ func outputTable(w *bufio.Writer) {
 	outputHeader(w)
 
 	for _, h := range heroes {
-		fmt.Fprintf(w, "<tr class=\"%s %s %s %s\" style=\"display:none;\">\n", strings.ToLower(h.archetype), h.die, h.trClass, expansions[h.expansion])
+		exp := expansions[strings.ToLower(h.expansion)]
+		fmt.Fprintf(w, "<tr class=\"%s %s %s %s\" style=\"display:none;\">\n", strings.ToLower(h.archetype), h.die, h.trClass, exp)
 		fmt.Fprintf(w, "<td class=\"expansion\">%s</td>\n", h.expImg)
 		fmt.Fprintf(w, "<td class=\"hero\"><a href=\"%s\">%s</a></td>\n", h.url, h.name)
 		// fmt.Fprintf(w, "<td class=\"image\"><img src=\"%s\"></td>\n", image+".png")

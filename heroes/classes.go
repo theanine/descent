@@ -371,6 +371,19 @@ func fixClasses() {
 	}
 }
 
+func classUniqSortExps() []string {
+	expMap := make(map[string]struct{})
+	for _, c := range classes {
+		expMap[expansions[strings.ToLower(c.expansion)]] = struct{}{}
+	}
+	var exps []string
+	for exp := range expMap {
+		exps = append(exps, exp)
+	}
+	sort.Strings(exps)
+	return exps
+}
+
 func outputCHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<html><head>\n")
 	fmt.Fprintf(w, "<title>Coufee: Journeys in Class Selection</title>\n")
@@ -384,7 +397,7 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 	fmt.Fprintf(w, "<script src=\"jquery.tablesorter.widgets.min.js\"></script>\n")
 	fmt.Fprintf(w, "<link rel=\"stylesheet\" type=\"text/css\" href=\"heroes.css?version=%s\">\n", version)
 	fmt.Fprintf(w, "<link rel=\"icon\" type=\"image/png\" href=\"etc/favicon.png\">\n")
-	fmt.Fprintf(w, "</head><body>\n")
+	fmt.Fprintf(w, "</head><body onload=\"onload()\">\n")
 
 	// table
 	fmt.Fprintf(w, "<table id=\"classTable\" class=\"tablesorter\"><thead class=\"classes\"><tr style=\"width:100%\">\n")
@@ -396,7 +409,7 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 	fmt.Fprintf(w, "<tr>\n")
 	fmt.Fprintf(w, "<td class=\"expansion\"><div><select id=\"selectExp\" onchange=\"trigger(this)\">\n")
 	fmt.Fprintf(w, "<option value=\"\"></option>\n")
-	exps := uniqueSortedExps()
+	exps := classUniqSortExps()
 	for _, exp := range exps {
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", exp, exp)
 	}
@@ -413,7 +426,8 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 }
 
 func outputCTableRow(w *bufio.Writer, c1 class, c2 *class) {
-	fmt.Fprintf(w, "<tr class=\"\" style=\"\">\n")
+	exp := expansions[strings.ToLower(c1.expansion)]
+	fmt.Fprintf(w, "<tr class=\"%s %s\" style=\"display:none;\">\n", strings.ToLower(c1.archetype), exp)
 	fmt.Fprintf(w, "<td class=\"expansion\">%s</td>\n", c1.expImg)
 	fmt.Fprintf(w, "<td class=\"class\">")
 	fmt.Fprintf(w, "<span title=\"%s\">", html.EscapeString(c1.description))
