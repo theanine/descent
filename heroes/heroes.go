@@ -37,6 +37,7 @@ type hero struct {
 	ability     string // html (may contain img tags)
 	heroic      string // html (may contain img tags)
 	quote       string
+	backstory   string
 }
 
 var heroes []hero
@@ -164,7 +165,11 @@ func outputTable(w *bufio.Writer) {
 		fmt.Fprintf(w, "<td class=\"hero\"><a href=\"%s\">%s</a></td>\n", h.url, h.name)
 		// fmt.Fprintf(w, "<td class=\"image\"><img src=\"%s\"></td>\n", image+".png")
 		fmt.Fprintf(w, "<td class=\"image\">")
-		fmt.Fprintf(w, "<span title=\"%s\">", html.EscapeString(h.quote))
+		if h.backstory == "" {
+			fmt.Fprintf(w, "<span title=\"%s\" class=\"quote\">", h.quote)
+		} else {
+			fmt.Fprintf(w, "<span title=\"%s\n\n%s\" class=\"quote\">", h.quote, h.backstory)
+		}
 		fmt.Fprintf(w, "<div class=\"divImage\">")
 		fmt.Fprintf(w, "<img src=\"%s\" class=\"hero\">", h.img)
 		fmt.Fprintf(w, "<img src=\"%s\" class=\"archetype\">", "classes/"+strings.ToLower(h.archetype)+".png")
@@ -280,6 +285,18 @@ func fixHeroes() {
 		} else if heroes[i].expansion == "Second Edition Conversion Kit" {
 			heroes[i].expImg = "1E"
 		}
+
+		// h.quote
+		heroes[i].quote = html.EscapeString(heroes[i].quote)
+		heroes[i].quote = strings.Replace(heroes[i].quote, "&#34;", "", -1)
+		heroes[i].quote = strings.Replace(heroes[i].quote, "“", "", -1)
+		heroes[i].quote = strings.Replace(heroes[i].quote, "”", "", -1)
+
+		// h.backstory
+		heroes[i].backstory = html.EscapeString(heroes[i].backstory)
+		heroes[i].backstory = strings.Replace(heroes[i].backstory, "&#34;", "", -1)
+		heroes[i].backstory = strings.Replace(heroes[i].backstory, "“", "", -1)
+		heroes[i].backstory = strings.Replace(heroes[i].backstory, "”", "", -1)
 	}
 }
 
@@ -372,6 +389,18 @@ func heroesGen() {
 				panic(fmt.Sprintf("error on parsing: %s", err))
 			}
 
+			foundBio := false
+			doc.Find("#mw-content-text").Children().Each(func(i int, c *goquery.Selection) {
+				if !foundBio && goquery.NodeName(c) == "h2" {
+					if strings.TrimSpace(c.Find("span").Eq(0).Text()) == "Biography" {
+						foundBio = true
+					}
+				} else if foundBio && goquery.NodeName(c) == "p" {
+					foundBio = false
+					meta.backstory = strings.TrimSpace(c.Text())
+				}
+			})
+
 			characters := doc.Find("tbody")
 
 			characters.Find("a").Each(func(i int, a *goquery.Selection) {
@@ -396,6 +425,7 @@ func heroesGen() {
 				h.archetype = meta.archetype
 				h.expansion = meta.expansion
 				h.description = meta.description
+				h.backstory = meta.backstory
 				heroes = append(heroes, h)
 			}
 
@@ -407,6 +437,7 @@ func heroesGen() {
 				h.archetype = meta.archetype
 				h.expansion = "Second Edition Conversion Kit"
 				h.description = meta.description
+				h.backstory = meta.backstory
 				heroes = append(heroes, h)
 			}
 		}

@@ -51,6 +51,10 @@ form {
 	margin: 0px;
 }
 
+span.quote {
+	font-style: italic;
+}
+
 div.divImage {
 	position: relative;
 	top: 0;
