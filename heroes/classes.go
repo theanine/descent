@@ -419,6 +419,19 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 	for _, k := range archetypes {
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", strings.ToLower(k), k)
 	}
+	for _, k := range archetypes {
+		switch k {
+		case "Mage":
+			k += "/Warrior"
+		case "Warrior":
+			k += "/Mage"
+		case "Scout":
+			k += "/Healer"
+		case "Healer":
+			k += "/Scout"
+		}
+		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", strings.ToLower(k), k)
+	}
 	fmt.Fprintf(w, "</select></div></td>\n")
 	fmt.Fprintf(w, "<td class=\"equipment\"><div></div></td>\n")
 	fmt.Fprintf(w, "<td class=\"skill\"><div></div></td>\n")
@@ -426,8 +439,13 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 }
 
 func outputCTableRow(w *bufio.Writer, c1 class, c2 *class) {
+	arch1 := strings.ToLower(c1.archetype)
+	var arch2 string
+	if c1.hybrid {
+		arch2 = strings.ToLower(c1.archetype) + "/" + strings.ToLower(c2.archetype)
+	}
 	exp := expansions[strings.ToLower(c1.expansion)]
-	fmt.Fprintf(w, "<tr class=\"%s %s\" style=\"display:none;\">\n", strings.ToLower(c1.archetype), exp)
+	fmt.Fprintf(w, "<tr class=\"%s %s %s\" style=\"display:none;\">\n", arch1, arch2, exp)
 	fmt.Fprintf(w, "<td class=\"expansion\">%s</td>\n", c1.expImg)
 	fmt.Fprintf(w, "<td class=\"class\">")
 	fmt.Fprintf(w, "<span title=\"%s\">", html.EscapeString(c1.description))
