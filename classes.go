@@ -111,6 +111,22 @@ func sImgRtoL(img string) (string, error) {
 	return "skills/" + file, nil
 }
 
+func eImgRtoL(img string) (string, error) {
+	parts := strings.Split(img, "/")
+	if len(parts) <= 7 {
+		return "", fmt.Errorf("unexpected skill img string (<7 parts): %s\n", img)
+	}
+	parts = strings.Split(parts[7], "_-_")
+	if len(parts) <= 1 {
+		return "", fmt.Errorf("unexpected skill img string (no '_-_'): %s\n", img)
+	}
+	file, err := url.QueryUnescape(parts[1])
+	if err != nil {
+		return "", err
+	}
+	return "equipment/" + file, nil
+}
+
 func downloadCImages() {
 	for _, c := range classes {
 		var conf utils.Config
@@ -133,6 +149,23 @@ func downloadCImages() {
 			if s.img != "" {
 				conf.Url = s.img
 				outfile, err := sImgRtoL(s.img)
+				if err != nil {
+					panic(err)
+				}
+				conf.Outfile = outfile
+				if _, err := utils.Wget(conf); err != nil {
+					conf.Url = strings.Split(conf.Url, "/revision/latest")[0]
+					if _, err := utils.Wget(conf); err != nil {
+						panic(fmt.Sprintf("%s: %s\n", conf.Url, err))
+					}
+				}
+			}
+		}
+
+		for _, e := range c.equipments {
+			if e.img != "" {
+				conf.Url = e.img
+				outfile, err := eImgRtoL(e.img)
 				if err != nil {
 					panic(err)
 				}
@@ -364,6 +397,13 @@ func fixClasses() {
 		for j, s := range c.skills {
 			if s.img != "" {
 				if classes[i].skills[j].img, err = sImgRtoL(s.img); err != nil {
+					panic(err)
+				}
+			}
+		}
+		for j, e := range c.equipments {
+			if e.img != "" {
+				if classes[i].equipments[j].img, err = eImgRtoL(e.img); err != nil {
 					panic(err)
 				}
 			}

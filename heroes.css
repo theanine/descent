@@ -51,6 +51,14 @@ form {
 	margin: 0px;
 }
 
+/*
+// NOTE: this adds a scrollbar to classes.html
+span {
+	position: relative;
+	top: 0;
+	left: 0;
+}*/
+
 span.quote {
 	font-style: italic;
 }
@@ -60,6 +68,21 @@ div.divImage {
 	top: 0;
 	left: 0;
 	font-size: 0px;
+	display:inline-block;
+}
+
+div.archetype {
+	color: #FFFF00;
+	font-size: 12px;
+	font-family: 'Windlass';
+	position: absolute;
+	top: 70%;
+	bottom: 0%;
+	width: 100%;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
 }
 
 div.className {
@@ -72,6 +95,23 @@ div.className {
 	top: 73%;
 	bottom: 19%;
 	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div.quantity {
+	/*font-size: 8px;*/
+	color: #FFFF00;
+	font-size: 1vw;
+	font-family: 'Windlass';
+	width: 20%;
+	position: absolute;
+	top: 0%;
+	bottom: 85%;
+	left: 80%;
+	right: 0%;
+	display: flex;
+	text-align: center;
 	align-items: center;
 	justify-content: center;
 }
@@ -94,8 +134,11 @@ img.class {
 }
 
 a.class{
-  color:black;
-  text-decoration:none;
+	position: relative;
+	top: 0;
+	left: 0;
+	color:black;
+	text-decoration:none;
 }
 
 img.archetype {
@@ -106,18 +149,19 @@ img.archetype {
 	height: 35px;
 }
 
-img.skill,img.equipment {
+img.class,img.skill,img.equipment,img.cards {
   border: none;
   margin: 0 auto;
 }
 
-img.skill:hover,img.equipment:hover {
-  -webkit-transform: scale(2);
-  -moz-transform: scale(2);
-  -o-transform: scale(2);
-  transform: scale(2);
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
+img.skill:hover,img.equipment:hover,img.cards:hover {
+	-webkit-transform: scale(2);
+	-moz-transform: scale(2);
+	-o-transform: scale(2);
+	transform: scale(2);
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+	z-index: 10;
 }
 
 img.eItem {
@@ -179,7 +223,7 @@ img.die {
 	/*-webkit-filter: drop-shadow(0px 0px 0px rgba(0,0,0,0.80));*/
 }
 
-th.skill,th.equipment {
+th.skill,th.equipment,th.cards {
 	width: 100%;
 	text-align: center;
 }
@@ -227,7 +271,7 @@ table th.expansion, table td.expansion{
 	max-width:28px;
 }
 
-img.skill,img.equipment,img.class {
+img.skill,img.equipment,img.class,img.cards {
 	/*zoom: 45%;*/
 	/*width: calc(250px / 2);*/
 	/*height: calc(387px / 2);*/
@@ -248,11 +292,16 @@ table th.equipment, table td.equipment{
 	max-width:calc(4 * (100vw - 28px - 30px) / 14);
 }
 
-table th.skill, table td.skill{
+table th.skill, table td.skill {
 	/*min-width:calc(9 * 125px);*/
 	/*max-width:calc(9 * 125px);*/
 	min-width:calc(9 * (100vw - 28px - 30px) / 14);
 	max-width:calc(9 * (100vw - 28px - 30px) / 14);
+}
+
+table td.cards, table td.cards {
+	min-width:calc(11 * (100vw - 28px - 30px) / 14);
+	max-width:calc(11 * (100vw - 28px - 30px) / 14);
 }
 
 table th.hero, table td.hero{
@@ -266,8 +315,8 @@ table th.image, table td.image{
 }
 
 table th.archetype, table td.archetype{
-	min-width:75px;
-	max-width:75px;
+	min-width:calc(1 * (100vw - 28px - 30px) / 14);
+	max-width:calc(1 * (100vw - 28px - 30px) / 14);
 	text-align: center;
 }
 
@@ -394,57 +443,57 @@ select.blank {
 
 /* Popup container */
 .popup {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
 }
 
 /* The actual popup (appears on top) */
 .popup .popuptext {
 	font-weight: bold;
-    visibility: hidden;
-    width: 400px;
-    height: 285px;
-    background-color: #ccc;
-    color: #000;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
+	visibility: hidden;
+	width: 400px;
+	height: 285px;
+	background-color: #ccc;
+	color: #000;
+	text-align: center;
+	border-radius: 6px;
+	padding: 8px 0;
+	position: absolute;
+	z-index: 1;
+	bottom: 125%;
+	left: 50%;
+	margin-left: -80px;
 }
 
 /* Popup arrow */
 .popup .popuptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #ccc transparent transparent transparent;
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #ccc transparent transparent transparent;
 }
 
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .popup .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s
+	visibility: visible;
+	-webkit-animation: fadeIn 1s;
+	animation: fadeIn 1s
 }
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-    from {opacity: 0;} 
-    to {opacity: 1;}
+	from {opacity: 0;} 
+	to {opacity: 1;}
 }
 
 @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
+	from {opacity: 0;}
+	to {opacity:1 ;}
 }
 
 /* fixes for mobile*/
