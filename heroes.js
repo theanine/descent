@@ -68,6 +68,7 @@ function showHideRow(tr)
 	var k = $("#selectCK");
 	var c = $("#selectClass");
 	var d = $("#selectDefense");
+	var o = $("#selectCards");
 	
 	$(tr).show();
 	if (typeof $(tr).attr("class") === "undefined" || $(tr).attr("class") === "tablesorter-headerRow")
@@ -81,6 +82,16 @@ function showHideRow(tr)
 	if (e.length && e.val() != "" && !$(tr).hasClass(e.val()))
 		$(tr).hide();
 	
+	$(tr).find('div.cardContainer').each(function(index, div){
+		$(div).show()
+		if (o.length && o.val() != "") {
+			if (typeof $(div).attr("class") === "undefined")
+				return;
+			if (!$(div).hasClass(o.val()))
+				$(div).hide();
+		}
+	});
+	
 	$.each(attrs, function (i, attr) {
 		var s = $("#select"+toTitleCase(attr));
 		if (s.length && s.val() != "" && $('td.'+attr, tr).text() != s.val())
@@ -92,6 +103,7 @@ function showHideRows()
 {
 	$("tr", "#heroTable").each(function(index, tr){showHideRow(tr)});
 	$("tr", "#classTable").each(function(index, tr){showHideRow(tr)});
+	$("tr", "#overlordTable").each(function(index, tr){showHideRow(tr)});
 	loadSelects();
 }
 

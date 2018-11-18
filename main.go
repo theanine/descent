@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-const version = "v2.5.1.181116"
+const version = "v3.0.0.181118"
 const downloadEnabled = false
 
 var archetypes = []string{
@@ -43,7 +43,8 @@ func usage() {
 
 Options:
   -h, --heroes     Generate heroes.html
-  -c, --classes    Generate classes.html`)
+  -c, --classes    Generate classes.html
+  -o, --overlord   Generate overlord.html`)
 	os.Exit(1)
 }
 
@@ -56,5 +57,8 @@ func main() {
 	}
 	if len(os.Args) == 1 || os.Args[1] == "-c" || os.Args[1] == "--classes" {
 		classesGen()
+	}
+	if len(os.Args) == 1 || os.Args[1] == "-o" || os.Args[1] == "--overlord" {
+		overlordGen()
 	}
 }

@@ -71,9 +71,30 @@ div.divImage {
 	display:inline-block;
 }
 
+td.cards {
+	position: relative;
+	top: 0;
+	left: 0;
+	font-size: 0px;
+	/*display:inline-block;*/
+}
+
+img.cards {
+	position: relative;
+}
+
+div.cardContainer {
+	position: relative;
+	top: 0;
+	left: 0;
+	font-size: 0px;
+	display:inline-block;
+}
+
 div.archetype {
 	color: #FFFF00;
-	font-size: 12px;
+	/*font-size: 12px;*/
+	font-size: 0.7vw;
 	font-family: 'Windlass';
 	position: absolute;
 	top: 70%;
@@ -133,6 +154,13 @@ img.class {
 	z-index: -1;
 }
 
+img.overlord {
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
 a.class{
 	position: relative;
 	top: 0;
@@ -149,19 +177,19 @@ img.archetype {
 	height: 35px;
 }
 
-img.class,img.skill,img.equipment,img.cards {
-  border: none;
-  margin: 0 auto;
+img.class,img.skill,img.equipment,img.cards,img.overlord {
+	border: none;
+	margin: 0 auto;
 }
 
-img.skill:hover,img.equipment:hover,img.cards:hover {
+img.skill:hover,img.equipment:hover,div.cardContainer:hover {
 	-webkit-transform: scale(2);
 	-moz-transform: scale(2);
 	-o-transform: scale(2);
 	transform: scale(2);
 	transition: all 0.4s;
 	-webkit-transition: all 0.4s;
-	z-index: 10;
+	z-index: 1;
 }
 
 img.eItem {
@@ -171,7 +199,7 @@ img.eFamiliar,img.eSkill {
 	float:right;
 }
 
-.archetype {
+img.archetype {
 /* 	-webkit-filter: drop-shadow(0px 0px 0px rgba(255,255,255,0.80)); */
 	-webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 1));
 	-webkit-transition: all 0.5s linear;
@@ -180,7 +208,7 @@ img.eFamiliar,img.eSkill {
 	
 }
 
-.archetype:hover {
+img.archetype:hover {
 	/*-webkit-filter: drop-shadow(0px 0px 0px rgba(255,255,255,0.80));*/
 /* 	-webkit-filter: drop-shadow(0px 0px 8px rgba(0, 231, 255, 0.8)); */
 }
@@ -271,11 +299,18 @@ table th.expansion, table td.expansion{
 	max-width:28px;
 }
 
-img.skill,img.equipment,img.class,img.cards {
+img.skill,img.equipment,img.class,img.cards,img.overlord {
 	/*zoom: 45%;*/
 	/*width: calc(250px / 2);*/
 	/*height: calc(387px / 2);*/
 	width: calc((100vw - 28px - 30px) / 14);
+}
+
+table th.cards, table td.cards{
+	/*min-width:calc(250px / 2);*/
+	/*max-width:calc(250px / 2);*/
+	min-width:calc(11 * (100vw - 28px - 30px) / 14);
+	max-width:calc(11 * (100vw - 28px - 30px) / 14);
 }
 
 table th.class, table td.class{
@@ -352,6 +387,13 @@ table thead.classes{
 	/*overflow: auto;*/
 }
 
+table thead.overlord{
+	display:block;
+	height:35px;
+	overflow: hidden;
+	/*overflow: auto;*/
+}
+
 table tbody.heroes{
 	display:block;
 	height:calc(99.5vh - 58px - 26px);  /* Fallback for browsers that don't support Custom Properties */
@@ -366,6 +408,19 @@ table tbody.heroes{
 }
 
 table tbody.classes{
+	display:block;
+	height:calc(99.5vh - 38px - 26px);  /* Fallback for browsers that don't support Custom Properties */
+	height:calc((var(--vh, 1vh) * 100) - 68px);
+	/* with bottom scrollbar */
+	/*height:calc(99.5vh - 61px - 26px);*/  /* Fallback for browsers that don't support Custom Properties */
+	/*height:calc((var(--vh, 1vh) * 100) - 91px);*/
+
+	/* scroll, not auto, for smooth scrolling on iDevices */
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+
+table tbody.overlord{
 	display:block;
 	height:calc(99.5vh - 38px - 26px);  /* Fallback for browsers that don't support Custom Properties */
 	height:calc((var(--vh, 1vh) * 100) - 68px);
