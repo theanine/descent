@@ -433,8 +433,8 @@ For owners of Descent: Journeys in the Dark (Second Edition), this Class Selecto
 
 Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 	fmt.Fprintf(w, "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n")
-	fmt.Fprintf(w, "<script src=\"jquery.tablesorter.min.js\"></script>\n")
-	fmt.Fprintf(w, "<script src=\"jquery.tablesorter.widgets.min.js\"></script>\n")
+	fmt.Fprintf(w, "<script src=\"lib/tablesorter/jquery.tablesorter.min.js\"></script>\n")
+	fmt.Fprintf(w, "<script src=\"lib/tablesorter/jquery.tablesorter.widgets.min.js\"></script>\n")
 	fmt.Fprintf(w, "<link rel=\"stylesheet\" type=\"text/css\" href=\"heroes.css?version=%s\">\n", version)
 	fmt.Fprintf(w, "<link rel=\"icon\" type=\"image/png\" href=\"etc/favicon.png\">\n")
 	fmt.Fprintf(w, "</head><body onload=\"onload()\">\n")
