@@ -97,13 +97,47 @@ function showHideRow(tr)
 		if (s.length && s.val() != "" && $('td.'+attr, tr).text() != s.val())
 			$(tr).hide();
 	});
+
+	$(tr).find(".cards div.cardContainer").each(function(index, e){removeJumps(e)});
+	$(tr).find(".skill img.skill").each(function(index, e){removeJumps(e)});
+	$(tr).find(".equipment img.equipment").each(function(index, e){removeJumps(e)});
+}
+
+function removeJumps(e)
+{
+	$(e).removeClass("jumpDown");
+	$(e).removeClass("jumpUp");
+	$(e).removeClass("jumpLeft");
+	$(e).removeClass("jumpRight");
+}
+
+function specialJump(e, jump)
+{
+	$(e).addClass(jump);
 }
 
 function showHideRows()
 {
 	$("tr", "#heroTable").each(function(index, tr){showHideRow(tr)});
+	
 	$("tr", "#classTable").each(function(index, tr){showHideRow(tr)});
+	var td = $("#classTable tbody").find("tr:visible:first").find(".skill");
+	var card = td.find("img.skill");
+	var cardWidth = Math.floor(td.width() / card.width());
+	$("#classTable tbody").find("tr:visible:first").find(".skill img.skill").each(function(index, e){specialJump(e, "jumpDown")});
+	$("#classTable tbody").find("tr:visible:last").find(".skill img.skill").each(function(index, e){specialJump(e, "jumpUp")});
+	$("#classTable tbody").find("tr:visible").find(".skill img.skill:eq("+(cardWidth-1)+")").each(function(index, e){specialJump(e, "jumpLeft")});
+	$("#classTable tbody").find("tr:visible:first").find(".equipment img.equipment").each(function(index, e){specialJump(e, "jumpDown")});
+	$("#classTable tbody").find("tr:visible:last").find(".equipment img.equipment").each(function(index, e){specialJump(e, "jumpUp")});
+
 	$("tr", "#overlordTable").each(function(index, tr){showHideRow(tr)});
+	var td = $("#overlordTable tbody").find("tr:visible:first").find(".cards");
+	var card = td.find("div.cardContainer");
+	var cardWidth = Math.floor(td.width() / card.width());
+	$("#overlordTable tbody").find("tr:visible:first").find(".cards div.cardContainer").each(function(index, e){specialJump(e, "jumpDown")});
+	$("#overlordTable tbody").find("tr:visible:last").find(".cards div.cardContainer").each(function(index, e){specialJump(e, "jumpUp")});
+	$("#overlordTable tbody").find("tr:visible").find(".cards div.cardContainer:visible:eq("+(cardWidth-1)+")").each(function(index, e){specialJump(e, "jumpLeft")});
+
 	loadSelects();
 }
 

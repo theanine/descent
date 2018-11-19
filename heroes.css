@@ -192,6 +192,41 @@ img.skill:hover,img.equipment:hover,div.cardContainer:hover {
 	z-index: 1;
 }
 
+div.cardContainer.jumpLeft:hover, img.skill.jumpLeft:hover, img.equipment.jumpLeft:hover {
+	-webkit-transform: scale(2) translateX(-25%);
+	-moz-transform: scale(2) translateX(-25%);
+	-o-transform: scale(2) translateX(-25%);
+	transform: scale(2) translateX(-25%);
+}
+
+div.cardContainer.jumpUp:hover, img.skill.jumpUp:hover, img.equipment.jumpUp:hover {
+	-webkit-transform: scale(2) translateY(-25%);
+	-moz-transform: scale(2) translateY(-25%);
+	-o-transform: scale(2) translateY(-25%);
+	transform: scale(2) translateY(-25%);
+}
+
+div.cardContainer.jumpUp.jumpLeft:hover, img.skill.jumpUp.jumpLeft:hover, img.equipment.jumpUp.jumpLeft:hover {
+	-webkit-transform: scale(2) translateY(-25%) translateX(-25%);
+	-moz-transform: scale(2) translateY(-25%) translateX(-25%);
+	-o-transform: scale(2) translateY(-25%) translateX(-25%);
+	transform: scale(2) translateY(-25%) translateX(-25%);
+}
+
+div.cardContainer.jumpDown:hover, img.skill.jumpDown:hover, img.equipment.jumpDown:hover {
+	-webkit-transform: scale(2) translateY(25%);
+	-moz-transform: scale(2) translateY(25%);
+	-o-transform: scale(2) translateY(25%);
+	transform: scale(2) translateY(25%);
+}
+
+div.cardContainer.jumpDown.jumpLeft:hover, img.skill.jumpDown.jumpLeft:hover, img.equipment.jumpDown.jumpLeft:hover {
+	-webkit-transform: scale(2) translateY(25%) translateX(-25%);
+	-moz-transform: scale(2) translateY(25%) translateX(-25%);
+	-o-transform: scale(2) translateY(25%) translateX(-25%);
+	transform: scale(2) translateY(25%) translateX(-25%);
+}
+
 img.eItem {
 	float:left;
 }
