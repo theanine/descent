@@ -207,6 +207,7 @@ func outputFooter(w *bufio.Writer) {
 	fmt.Fprintf(w, "</tbody>\n")
 	fmt.Fprintf(w, "<tfoot class=\"heroes\"><tr><td class=\"donateArea\">\n")
 	fmt.Fprintf(w, `<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+	<input type="hidden" name="business" value="GAGMA422DQE9J">
 	<input type="hidden" name="cmd" value="_s-xclick">
 	<input type="hidden" name="hosted_button_id" value="85ZEFVNEAXV3A">
 	<input type="image" src="etc/donate-paypal.svg" border="0" name="submit" alt="PayPal" class="donate">

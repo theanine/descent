@@ -29,6 +29,7 @@ type card struct {
 	expansion string
 	expImg    string
 	typ       string
+	cost      int
 }
 
 type overlord struct {
@@ -44,17 +45,12 @@ func dumpOverlords() {
 	fmt.Printf("Overlords: %d\n", len(overlords))
 	for _, o := range overlords {
 		if o.description != "" {
-			fmt.Printf("[%s: %s]: ", o.archetype, o.description)
+			fmt.Printf("[%s: %s]\n", o.archetype, o.description)
 		} else {
-			fmt.Printf("[%s]: ", o.archetype)
+			fmt.Printf("[%s]\n", o.archetype)
 		}
-		for i, e := range o.cards {
-			for j := 0; int64(j) < e.qty; j++ {
-				fmt.Printf("%s", e.name)
-				if i < len(o.cards)-1 || int64(j) < e.qty-1 {
-					fmt.Printf(", ")
-				}
-			}
+		for _, e := range o.cards {
+			fmt.Printf("\t[%d] %dx %s\n", e.cost, e.qty, e.name)
 		}
 		fmt.Printf("\n")
 	}
@@ -151,6 +147,7 @@ func overlordGen() {
 				}
 
 				typeFound := false
+				costFound := false
 				wikitable := doc.Find(".wikitable")
 				wikitable.Find("td").Each(func(i int, t *goquery.Selection) {
 					text := strings.TrimSpace(t.Text())
@@ -160,6 +157,21 @@ func overlordGen() {
 					}
 					if text == "Type:" {
 						typeFound = true
+					}
+					if costFound {
+						olCard.cost = 0
+						val := strings.Split(text, " XP")[0]
+						if val != "-" {
+							var err error
+							olCard.cost, err = strconv.Atoi(val)
+							if err != nil {
+								log.Printf("%s\n", err)
+							}
+						}
+						costFound = false
+					}
+					if text == "XP cost:" {
+						costFound = true
 					}
 				})
 
@@ -232,7 +244,10 @@ func overlordGen() {
 }
 
 func fixOverlords() {
-	for i := range overlords {
+	for i, o := range overlords {
+		// c.cards
+		sort.Slice(o.cards, func(i, j int) bool { return o.cards[i].cost < o.cards[j].cost })
+
 		for j, c := range overlords[i].cards {
 			// c.img
 			if c.img != "" {
@@ -385,6 +400,7 @@ func outputOFooter(w *bufio.Writer) {
 	fmt.Fprintf(w, "</tbody>\n")
 	fmt.Fprintf(w, "<tfoot class=\"overlord\"><tr><td class=\"donateArea\">\n")
 	fmt.Fprintf(w, `<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+	<input type="hidden" name="business" value="GAGMA422DQE9J">
 	<input type="hidden" name="cmd" value="_s-xclick">
 	<input type="hidden" name="hosted_button_id" value="85ZEFVNEAXV3A">
 	<input type="image" src="etc/donate-paypal.svg" border="0" name="submit" alt="PayPal" class="donate">
