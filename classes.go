@@ -371,43 +371,38 @@ func classesGen() {
 }
 
 func fixClasses() {
-	for i := range classes {
-		// c.expImg
-		classes[i].expImg = ""
-		imgFile := "expansions/" + strings.Replace(classes[i].expansion, " ", "_", -1) + ".svg"
-		if strings.Contains(classes[i].expansion, "Lieutenant Pack") {
-			imgFile = "expansions/Lieutenant_Pack.png"
-		}
-		if _, err := os.Stat(imgFile); !os.IsNotExist(err) {
-			classes[i].expImg = fmt.Sprintf("<img src=\"%s\" class=\"expansion\">", imgFile)
-		} else if strings.ToLower(classes[i].expansion) == "second edition base game" {
-			classes[i].expImg = "2E"
-		} else if strings.ToLower(classes[i].expansion) == "second edition conversion kit" {
-			classes[i].expImg = "1E"
-		}
-	}
-
 	var err error
 	for i, c := range classes {
+		// c.expImg
+		c.expImg = ""
+		imgFile := "expansions/" + strings.Replace(c.expansion, " ", "_", -1) + ".svg"
+		if _, err := os.Stat(imgFile); !os.IsNotExist(err) {
+			c.expImg = fmt.Sprintf("<img src=\"%s\" class=\"expansion\">", imgFile)
+		} else if abbr, ok := expansions[strings.ToLower(c.expansion)]; ok {
+			c.expImg = abbr
+		}
+
 		if c.img != "" {
-			if classes[i].img, err = cImgRtoL(c.img, c.name); err != nil {
+			if c.img, err = cImgRtoL(c.img, c.name); err != nil {
 				panic(err)
 			}
 		}
 		for j, s := range c.skills {
 			if s.img != "" {
-				if classes[i].skills[j].img, err = sImgRtoL(s.img); err != nil {
+				if c.skills[j].img, err = sImgRtoL(s.img); err != nil {
 					panic(err)
 				}
 			}
 		}
 		for j, e := range c.equipments {
 			if e.img != "" {
-				if classes[i].equipments[j].img, err = eImgRtoL(e.img); err != nil {
+				if c.equipments[j].img, err = eImgRtoL(e.img); err != nil {
 					panic(err)
 				}
 			}
 		}
+
+		classes[i] = c
 	}
 }
 

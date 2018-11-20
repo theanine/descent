@@ -8,7 +8,7 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="lib/tablesorter/jquery.tablesorter.min.js"></script>
 <script src="lib/tablesorter/jquery.tablesorter.widgets.min.js"></script>
-<link rel="stylesheet" type="text/css" href="heroes.css?version=v3.1.1.181119">
+<link rel="stylesheet" type="text/css" href="heroes.css?version=v3.1.2.181119">
 <link rel="icon" type="image/png" href="etc/favicon.png">
 </head><body onload="onload()">
 <table id="heroTable" class="tablesorter"><thead class="heroes"><tr>
@@ -30,9 +30,9 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!">
 <tr>
 <td class="expansion"><div><select id="selectExp" onchange="trigger(this)">
 <option value=""></option>
-<option value="1E">1E</option>
 <option value="2E">2E</option>
 <option value="BotW">BotW</option>
+<option value="CK">CK</option>
 <option value="CoD">CoD</option>
 <option value="CotF">CotF</option>
 <option value="GoD">GoD</option>
@@ -114,8 +114,8 @@ When Andira Runehand first charged headlong into the demonic horde at Silverholt
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: Choose 1 hero within 3 spaces of you. Then, perform an attack that targets a monster within 3 spaces of you. The chosen hero recovers <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> equal to twice the amount of <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> the target monster suffers from this attack.</td>
 </tr>
 
-<tr class="healer white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="healer white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Andira_Runehand">Andira Runehand (CK)</a></td>
 <td class="image"><span title="Heroes are nothing without brave friends.
 
@@ -152,8 +152,8 @@ Arvel&#39;s mother was a Worldwalker, as was her mother before her. In fact, Arv
 <td class="heroic">Use on your turn. Return up to 2 of your Class cards to your Class deck. Then, gain any number of Class cards from your Class deck worth an equal amount of XP.</td>
 </tr>
 
-<tr class="scout white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="scout white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Arvel_Worldwalker">Arvel Worldwalker (CK)</a></td>
 <td class="image"><span title="This land is harsh and terrible, I grant you. But I have seen as harsh before and lived.
 
@@ -206,8 +206,8 @@ In each generation, a few brilliant minds provide small contributions to the gro
 <td class="heroic">Use at the start of your turn to move each other figure within 3 spaces of you 1 space.</td>
 </tr>
 
-<tr class="mage white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="mage white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Astarra">Astarra (CK)</a></td>
 <td class="image"><span title="The Rune Keepers said I was too unruly to be taught, so all I needed to know I&#39;ve learned on my own.
 
@@ -242,8 +242,8 @@ An individual claiming knowledge of the future is rarely well received, especial
 <td class="heroic">Use during your turn. Each hero in your line of sight recovers 2 <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> and 2 <img src="attributes/fatigue.png" alt="Fatigue" class="lzy lzyPlcHld " style="vertical-align: baseline" data-image-key="Fatigue.png" data-image-name="Fatigue.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054" width="10" height="15" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054" 	 alt="Fatigue"  	class="" 	 style="vertical-align: baseline"  	data-image-key="Fatigue.png" 	data-image-name="Fatigue.png" 	 	 width="10"  	 height="15"  	 	 	 	></noscript>.</td>
 </tr>
 
-<tr class="healer white ck-only override-ck 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="healer white ck-only override-ck CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Aurim">Aurim (CK)</a></td>
 <td class="image"><span title="Ah, the rare Quixinlan Rune Harness I&#39;ve read about! What a joy to see such wonders in person." class="quote"><div class="divImage"><img src="heroes-small/AurimCK.png" class="hero"><img src="classes/healer.png" class="archetype">H</div></span></td>
 <td class="num speed">5</td>
@@ -276,8 +276,8 @@ Avric Albright spent 3 years as a soldier assigned to the Citadel of Archaut bef
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: Roll 2 red power dice.  Each hero within 3 spaces of you (including yourself) may recover <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> equal to the <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> rolled.</td>
 </tr>
 
-<tr class="scout white ck-only override-ck 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="scout white ck-only override-ck CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Bogran_the_Shadow">Bogran the Shadow (CK)</a></td>
 <td class="image"><span title="I am a deadly wind, invisible and inescapable. You cannot see me, but you can see where I have been." class="quote"><div class="divImage"><img src="heroes-small/BogranTheShadowCK.png" class="hero"><img src="classes/scout.png" class="archetype">S</div></span></td>
 <td class="num speed">4</td>
@@ -310,8 +310,8 @@ The priests of Kellos took me in and gave me shelter. They asked me nothing of t
 <td class="heroic">Use after you defeat a monster. Roll 2 red power dice. You and each hero within 3 spaces of you recover <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> equal to the <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> rolled.</td>
 </tr>
 
-<tr class="healer white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="healer white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Brother_Gherinn">Brother Gherinn (CK)</a></td>
 <td class="image"><span title="I must strive to fight darkness, lest I be overtaken by the darkness that dwells within me.
 
@@ -328,8 +328,8 @@ The priests of Kellos took me in and gave me shelter. They asked me nothing of t
 <td class="heroic">Use after you defeat a monster to roll 2 red power dice. You and each hero within 3 spaces of you recover <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> equal to the <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> rolled.</td>
 </tr>
 
-<tr class="healer white ck-only override-ck 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="healer white ck-only override-ck CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Brother_Glyr">Brother Glyr (CK)</a></td>
 <td class="image"><span title="keep moving, ye hear? I&#39;ll not leave a one of ye behind!" class="quote"><div class="divImage"><img src="heroes-small/BrotherGlyrCK.png" class="hero"><img src="classes/healer.png" class="archetype">H</div></span></td>
 <td class="num speed">2</td>
@@ -362,8 +362,8 @@ The roots of my noble family can be traced back to the Dragon Wars and beyond. S
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: If Brightblaze is not on the map, place Brightblaze in an empty space adjacent to you. Then, immediately activate Brightblaze. Brightblaze also activates this turn as normal.</td>
 </tr>
 
-<tr class="mage white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="mage white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Challara">Challara (CK)</a></td>
 <td class="image"><span title="All I accomplish, every enemy I vanquish, is to the glory of my ancestors.
 
@@ -398,8 +398,8 @@ Although Corbin’s quick temper has left him few friends, those who walk beside
 <td class="heroic">Use when attacked, before you roll defense dice. After you roll defense dice, you may change each defense die to a different result of your choice.</td>
 </tr>
 
-<tr class="warrior white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Corbin">Corbin (CK)</a></td>
 <td class="image"><span title="The only way I&#39;ll stop fightin&#39; is if I take you down with me!
 
@@ -452,8 +452,8 @@ Gifted from birth by an unknown power, Mok has always been set apart. His impres
 <td class="heroic">Use at the start of your turn to look at the overlord&#39;s hand of Overlord cards. The overlord discards 1 card of your choice.</td>
 </tr>
 
-<tr class="healer white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="healer white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Elder_Mok">Elder Mok (CK)</a></td>
 <td class="image"><span title="The spirits are angry. I am angry too. When we get angry, people get hurt.
 
@@ -470,8 +470,8 @@ Gifted from birth by an unknown power, Mok has always been set apart. His impres
 <td class="heroic">Use at the start of your turn to look at the overlord&#39;s hand of Overlord cards. Discard 1 card of your choice.</td>
 </tr>
 
-<tr class="warrior brown ck-only override-ck 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior brown ck-only override-ck CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Eliam">Eliam (CK)</a></td>
 <td class="image"><span title="Battle is a dance of blades and wit." class="quote"><div class="divImage"><img src="heroes-small/EliamCK.png" class="hero"><img src="classes/warrior.png" class="archetype">W</div></span></td>
 <td class="num speed">5</td>
@@ -504,8 +504,8 @@ A hungry childhood on the streets taught Grey Ker that even the most despicable 
 <td class="heroic">Use at the start of your turn to receive 1 additional action this turn.</td>
 </tr>
 
-<tr class="scout white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="scout white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Grey_Ker">Grey Ker (CK)</a></td>
 <td class="image"><span title="I&#39;m not the thin line between black and white... I&#39;m the thin line between your life and your death.
 
@@ -558,8 +558,8 @@ As Quellen’s dubious title implies, he is an elf that no longer resides within
 <td class="heroic">Use at the start of your turn to increase your Stamina by 4 for the remainder of this turn. At the end of your turn, recover all of your <img src="attributes/fatigue.png" alt="Fatigue" class="lzy lzyPlcHld " style="vertical-align: baseline" data-image-key="Fatigue.png" data-image-name="Fatigue.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054" width="10" height="15" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054" 	 alt="Fatigue"  	class="" 	 style="vertical-align: baseline"  	data-image-key="Fatigue.png" 	data-image-name="Fatigue.png" 	 	 width="10"  	 height="15"  	 	 	 	></noscript>.</td>
 </tr>
 
-<tr class="warrior black ck-only override-ck 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior black ck-only override-ck CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Hugo_the_Glorious">Hugo the Glorious (CK)</a></td>
 <td class="image"><span title="The songs of my name and my triumphs should be heard in every corner of the world.
 
@@ -594,8 +594,8 @@ Screams of terror are nothing unique for Ispher: they follow him to each new tow
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: Choose yourself or an adjacent hero. That hero recovers 8 <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> and discards all conditions.</td>
 </tr>
 
-<tr class="healer white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="healer white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ispher">Ispher (CK)</a></td>
 <td class="image"><span title="Humans fear us, and we despise them.
 
@@ -630,8 +630,8 @@ The markings that brand Jaes bear dire warnings.  No one is to offer the wizard
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: Perform 1 attack with a Magic weapon. This attack gains <a href="http://descent2e.wikia.com/wiki/Pierce" title="Pierce">Pierce</a> 3.<br/>If you perform this attack with a Rune weapon, add 1 <img src="attributes/surge.png" alt="Surge" class="lzy lzyPlcHld " style="vertical-align: text-bottom" data-image-key="Surge.png" data-image-name="Surge.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" width="16" height="16" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" 	 alt="Surge"  	class="" 	 style="vertical-align: text-bottom"  	data-image-key="Surge.png" 	data-image-name="Surge.png" 	 	 width="16"  	 height="16"  	 	 	 	></noscript> to the results.</td>
 </tr>
 
-<tr class="mage white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="mage white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Jaes_the_Exile">Jaes the Exile (CK)</a></td>
 <td class="image"><span title="The dragon Wars almost destroyed my people. I will die before I let that happen again.
 
@@ -684,8 +684,8 @@ In stark contrast to his present career as a hero, Jonas was raised a thief and 
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: Test <img src="attributes/willpower.png" alt="Willpower" class="lzy lzyPlcHld " data-image-key="Willpower.png" data-image-name="Willpower.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/8/88/Willpower.png/revision/latest/scale-to-width-down/15?cb=20121013062622" width="15" height="15" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/8/88/Willpower.png/revision/latest/scale-to-width-down/15?cb=20121013062622" 	 alt="Willpower"  	class="" 	 	data-image-key="Willpower.png" 	data-image-name="Willpower.png" 	 	 width="15"  	 height="15"  	 	 	 	></noscript> for each minion monster within 3 spaces of you. Each time you pass, perform an attack with that monster that targets itself.</td>
 </tr>
 
-<tr class="healer white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="healer white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Jonas_the_Kind">Jonas the Kind (CK)</a></td>
 <td class="image"><span title="Surrender. It&#39;s never too late to repent!
 
@@ -720,8 +720,8 @@ In the oldest chronicles and most ancient of tales one can find allusions to a m
 <td class="heroic">Use when you perform an attack with a <i><b>Melee</b></i> weapon that targets a minion monster, after dice are rolled. You may change the result of each attack die and power die to a different result of your choice.</td>
 </tr>
 
-<tr class="warrior white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Karnon">Karnon (CK)</a></td>
 <td class="image"><span title="Karnon needs no help from little man. Karnon is Karnon.
 
@@ -738,8 +738,8 @@ In the oldest chronicles and most ancient of tales one can find allusions to a m
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: Choose a minion monster adjacent to you and roll the blue attack die. If you roll an X, you miss. Otherwise that monster is defeated. Regardless of the outcome, you suffer 1 <img src="attributes/fatigue.png" alt="Fatigue" class="lzy lzyPlcHld " style="vertical-align: baseline" data-image-key="Fatigue.png" data-image-name="Fatigue.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054" width="10" height="15" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054" 	 alt="Fatigue"  	class="" 	 style="vertical-align: baseline"  	data-image-key="Fatigue.png" 	data-image-name="Fatigue.png" 	 	 width="10"  	 height="15"  	 	 	 	></noscript>.</td>
 </tr>
 
-<tr class="scout white ck-only override-ck 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="scout white ck-only override-ck CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Kirga">Kirga (CK)</a></td>
 <td class="image"><span title="Knowing how to find things helps keep one hidden. And I know how to find anything..." class="quote"><div class="divImage"><img src="heroes-small/KirgaCK.png" class="hero"><img src="classes/scout.png" class="archetype">S</div></span></td>
 <td class="num speed">4</td>
@@ -772,8 +772,8 @@ Why should I worry? Haven’t found a fight yet that left me on the ground. So y
 <td class="heroic">Use when you perform an attack, after dice are rolled. Suffer 3 <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript>. Then, roll 3 red power dice and replace the results of your attack roll with the results of the red power dice.</td>
 </tr>
 
-<tr class="warrior white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Krutzbeck">Krutzbeck (CK)</a></td>
 <td class="image"><span title="Smash it. Crush it. If that doesn&#39;t work, smash it and crush it again.
 
@@ -790,8 +790,8 @@ Why should I worry? Haven’t found a fight yet that left me on the ground. So y
 <td class="heroic">Use when attacking, after dice are rolled. Roll 1 red power die, suffer <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> equal to the <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> rolled, and add the same amount of <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> to your attack roll.</td>
 </tr>
 
-<tr class="mage brown ck-only override-ck 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="mage brown ck-only override-ck CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Landrec_the_Wise">Landrec the Wise (CK)</a></td>
 <td class="image"><span title="Wisdom comes with age, but knowledge must always be searched for." class="quote"><div class="divImage"><img src="heroes-small/LandrecTheWiseCK.png" class="hero"><img src="classes/mage.png" class="archetype">M</div></span></td>
 <td class="num speed">3</td>
@@ -806,8 +806,8 @@ Why should I worry? Haven’t found a fight yet that left me on the ground. So y
 <td class="heroic">Use when performing an attack, before rolling dice. This attack gains:<br/> <img src="attributes/surge.png" alt="Surge" class="lzy lzyPlcHld " style="vertical-align: text-bottom" data-image-key="Surge.png" data-image-name="Surge.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" width="16" height="16" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" 	 alt="Surge"  	class="" 	 style="vertical-align: text-bottom"  	data-image-key="Surge.png" 	data-image-name="Surge.png" 	 	 width="16"  	 height="16"  	 	 	 	></noscript> <img src="attributes/surge.png" alt="Surge" class="lzy lzyPlcHld " style="vertical-align: text-bottom" data-image-key="Surge.png" data-image-name="Surge.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" width="16" height="16" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" 	 alt="Surge"  	class="" 	 style="vertical-align: text-bottom"  	data-image-key="Surge.png" 	data-image-name="Surge.png" 	 	 width="16"  	 height="16"  	 	 	 	></noscript>: +5 <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript></td>
 </tr>
 
-<tr class="warrior white ck-only override-ck 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior white ck-only override-ck CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Laughin_Buldar">Laughin Buldar (CK)</a></td>
 <td class="image"><span title="Courage, my brothers! Surrender yourselves to the joy of battle and we shall meet our destiny together!" class="quote"><div class="divImage"><img src="heroes-small/LaughinBuldarCK.png" class="hero"><img src="classes/warrior.png" class="archetype">W</div></span></td>
 <td class="num speed">3</td>
@@ -840,8 +840,8 @@ It was Laurel’s ancestors that soaked the barren plains of Di’zon with the b
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: Perform an attack with a Ranged weapon. If you roll an X, treat it as a blank result. This attack gains +10 Range, and adds 1 <img src="attributes/surge.png" alt="Surge" class="lzy lzyPlcHld " style="vertical-align: text-bottom" data-image-key="Surge.png" data-image-name="Surge.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" width="16" height="16" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" 	 alt="Surge"  	class="" 	 style="vertical-align: text-bottom"  	data-image-key="Surge.png" 	data-image-name="Surge.png" 	 	 width="16"  	 height="16"  	 	 	 	></noscript> to the results.</td>
 </tr>
 
-<tr class="scout white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="scout white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Laurel_of_Bloodwood">Laurel of Bloodwood (CK)</a></td>
 <td class="image"><span title="No matter what you hear, it was our bows that gave my home its name, not the autumn winds.
 
@@ -894,8 +894,8 @@ The many years of an elf’s life can weigh heavily upon him. From village to vi
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: Perform an attack. After you roll attack dice, you may change the attack die to a different result of your choice.</td>
 </tr>
 
-<tr class="scout white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="scout white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lindel">Lindel (CK)</a></td>
 <td class="image"><span title="There is so much sorrow in the world, I do what I may to end the cruelty that plagues this land.
 
@@ -948,8 +948,8 @@ Years ago, Lord Hawthorne and his men lay under siege in Seragart. When they pou
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: Perform an attack, then you may move up to 2 spaces and perform another attack against a different target.</td>
 </tr>
 
-<tr class="warrior white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lord_Hawthorne">Lord Hawthorne (CK)</a></td>
 <td class="image"><span title="If you decide to flee from me, you better hope you flee far enough.
 
@@ -984,8 +984,8 @@ From her birth, Lyssa&#39;s clan called her half-breed, more human than Katjie. 
 <td class="heroic">Use after you resolve an attack. Perform an additional attack that targets a figure adjacent to you. Replace 1 blue attack die with 1 power die of your choice, before dice are rolled. This attack ignores range.</td>
 </tr>
 
-<tr class="mage white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="mage white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Lyssa">Lyssa (CK)</a></td>
 <td class="image"><span title="My people are at one with nature.
 
@@ -1002,8 +1002,8 @@ From her birth, Lyssa&#39;s clan called her half-breed, more human than Katjie. 
 <td class="heroic">Use after an attack against you fails to deal at least 1 <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> to you. You may immediately move up to your Speed and perform an attack.</td>
 </tr>
 
-<tr class="mage white ck-only override-ck 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="mage white ck-only override-ck CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Mad_Carthos">Mad Carthos (CK)</a></td>
 <td class="image"><span title="If it&#39;s madness you seek power at any cost, then yes, you may call me mad." class="quote"><div class="divImage"><img src="heroes-small/MadCarthosCK.png" class="hero"><img src="classes/mage.png" class="archetype">M</div></span></td>
 <td class="num speed">4</td>
@@ -1036,8 +1036,8 @@ It is an honor for any acolyte from the order of Kellos to serve in the Vynelval
 <td class="heroic">Use when you are affected by an attack and suffer 1 or more <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript>. Reduce the amount of <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> by up to 5 and gain an equal amount of movement points.</td>
 </tr>
 
-<tr class="mage white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="mage white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Master_Thorn">Master Thorn (CK)</a></td>
 <td class="image"><span title="You can&#39;t see the path I walk, because they were not meant to be tread.
 
@@ -1072,8 +1072,8 @@ Mordrog has long fought to defend Terrinoth, but no matter how many monsters he 
 <td class="heroic">Use after you perform an attack that does not defeat a target. Perform an additional attack, using the same target. This attack adds 1 <img src="attributes/surge.png" alt="Surge" class="lzy lzyPlcHld " style="vertical-align: text-bottom" data-image-key="Surge.png" data-image-name="Surge.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" width="16" height="16" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" 	 alt="Surge"  	class="" 	 style="vertical-align: text-bottom"  	data-image-key="Surge.png" 	data-image-name="Surge.png" 	 	 width="16"  	 height="16"  	 	 	 	></noscript> to the results.</td>
 </tr>
 
-<tr class="warrior white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Mordrog">Mordrog (CK)</a></td>
 <td class="image"><span title="You call me beast. You call me animal. But I call you coward.
 
@@ -1108,8 +1108,8 @@ There are countless mighty warriors in Terrinoth, but in the eyes of Nanok of th
 <td class="heroic">Use after another hero performs an attack. Immediately perform an attack with a <i><b>Melee</b></i> weapon that targets 1 of the same monsters. Then, that hero may perform an attack that targets that same monster.</td>
 </tr>
 
-<tr class="warrior black ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior black ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Nanok_of_the_Blade">Nanok of the Blade (CK)</a></td>
 <td class="image"><span title="To wear armor is to fear that a foe might strike me. It is cowardice. I am no coward.
 
@@ -1144,8 +1144,8 @@ Nara the Fang emerged from the darkness one night, a masked avenger driving band
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: Choose any empty space within 3 spaces of your figure. Remove your figure from the map and place it in the chosen space. Then perform an attack. This attack gains Pierce 2.</td>
 </tr>
 
-<tr class="warrior white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Nara_the_Fang">Nara the Fang (CK)</a></td>
 <td class="image"><span title="I leap, I attack, I stab, I kill!
 
@@ -1180,8 +1180,8 @@ Inseparable companions from a young age, Okaluk and Rakash are committed to expl
 <td class="heroic">Use during your turn, even if you are knocked out. Roll 2 red power dice. You and each knocked-out hero within 3 spaces of you recover <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> equal to the <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> rolled.</td>
 </tr>
 
-<tr class="healer white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="healer white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Okaluk_and_Rakash">Okaluk and Rakash (CK)</a></td>
 <td class="image"><span title="You know my answer already, old friend. I could never abandon you.
 
@@ -1216,8 +1216,8 @@ No one knows how he lost his hand. It is rumored he slew everyone present when i
 <td class="heroic">Use when you are defeated to perform 1 <i><b>Melee</b></i> attack. For each monster you defeat during this heroic feat, you may perform 1 additional <i><b>Melee</b></i> attack. Then, you are knocked out.</td>
 </tr>
 
-<tr class="warrior white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/One_Fist">One Fist (CK)</a></td>
 <td class="image"><span title="I&#39;ve fought many battles and seen the worst the world has to offer. Do your worst. I have no fear.
 
@@ -1289,7 +1289,7 @@ To the big folk, gnomes are hardly worthy of notice, never to be respected and c
 </tr>
 
 <tr class="scout brown no-ck override-ck LP" style="display:none;">
-<td class="expansion"><img src="expansions/Lieutenant_Pack.png" class="expansion"></td>
+<td class="expansion">LP</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Raythen_(Hero)">Raythen</a></td>
 <td class="image"><span title="Just be careful, I&#39;d wager this place still has a few tricks up its sleeve.
 
@@ -1306,8 +1306,8 @@ Escaping the certain death of the Dunwarr expedition massacre, this clever rogue
 <td class="heroic">Use during your turn to search a search token adjacent to another hero. This is in addition to your 2 actions on your turn.</td>
 </tr>
 
-<tr class="scout white ck-only override-ck 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="scout white ck-only override-ck CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Red_Scorpion">Red Scorpion (CK)</a></td>
 <td class="image"><span title="Balance is the essence of success. To succeed, one must be balanced in all things." class="quote"><div class="divImage"><img src="heroes-small/RedScorpionCK.png" class="hero"><img src="classes/scout.png" class="archetype">S</div></span></td>
 <td class="num speed">5</td>
@@ -1400,8 +1400,8 @@ cards.
 </p></td>
 </tr>
 
-<tr class="scout white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="scout white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Ronan_of_the_Wild">Ronan of the Wild (CK)</a></td>
 <td class="image"><span title="The forest is stirring… but we’re prepared for anything.
 
@@ -1436,8 +1436,8 @@ As the youngest of seven brothers, Sahla spent much of his childhood imitating h
 <td class="heroic">Use at the start of your turn and choose a hero in your line of sight. Until the end of your turn, you may use 1 of that hero&#39;s skills as if it were your own.</td>
 </tr>
 
-<tr class="healer white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="healer white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Sahla">Sahla (CK)</a></td>
 <td class="image"><span title="Special powers are all well and good, but there are other paths to fame.
 
@@ -1455,7 +1455,7 @@ As the youngest of seven brothers, Sahla spent much of his childhood imitating h
 </tr>
 
 <tr class="healer brown no-ck override-ck LP" style="display:none;">
-<td class="expansion"><img src="expansions/Lieutenant_Pack.png" class="expansion"></td>
+<td class="expansion">LP</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Serena_(Hero)">Serena</a></td>
 <td class="image"><span title="I have waited in silence for far too long. Now the world will know my song.
 
@@ -1490,8 +1490,8 @@ Shiver forgot his true name centuries ago. He knows he did terrible things in se
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: Each figure adjacent to you is <a href="http://descent2e.wikia.com/wiki/Immobilized" title="Immobilized">Immobilized</a>.</td>
 </tr>
 
-<tr class="mage white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="mage white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Shiver">Shiver (CK)</a></td>
 <td class="image"><span title="My sins were grievous, but I have repented for millennia. How long was I meant to suffer for my crimes?
 
@@ -1526,8 +1526,8 @@ In her work as an assassin, she only killed at dawn. The sunset before the assas
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: You may move double your Speed. During this movement, each time you enter a space that contains a search token, you may suffer 1 <img src="attributes/fatigue.png" alt="Fatigue" class="lzy lzyPlcHld " style="vertical-align: baseline" data-image-key="Fatigue.png" data-image-name="Fatigue.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054" width="10" height="15" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/b/b4/Fatigue.png/revision/latest/scale-to-width-down/10?cb=20121016005054" 	 alt="Fatigue"  	class="" 	 style="vertical-align: baseline"  	data-image-key="Fatigue.png" 	data-image-name="Fatigue.png" 	 	 width="10"  	 height="15"  	 	 	 	></noscript> to search that search token.</td>
 </tr>
 
-<tr class="scout white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="scout white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Silhouette">Silhouette (CK)</a></td>
 <td class="image"><span title="Shhh... This will only hurt for a moment.
 
@@ -1564,8 +1564,8 @@ As an inspiration to his companions, Sir Valadir is responsible not just for the
 </p></td>
 </tr>
 
-<tr class="warrior white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Sir_Valadir">Sir Valadir (CK)</a></td>
 <td class="image"><span title="Ours is a noble crusade! We will fight gloriously and die with honor!
 
@@ -1600,8 +1600,8 @@ An oddity of his race, Steelhorns is one of the few minotaurs who does not prefe
 <td class="heroic">Use during your turn. Roll 1 power die of your choice. You and each figure adjacent to you suffers <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> equal to the <img src="attributes/health.png" alt="Heart" class="lzy lzyPlcHld " style="vertical-align: sub" data-image-key="Heart.png" data-image-name="Heart.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" width="15" height="14" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/d/d9/Heart.png/revision/latest/scale-to-width-down/15?cb=20121016005115" 	 alt="Heart"  	class="" 	 style="vertical-align: sub"  	data-image-key="Heart.png" 	data-image-name="Heart.png" 	 	 width="15"  	 height="14"  	 	 	 	></noscript> rolled. If you roll at least 1 <img src="attributes/surge.png" alt="Surge" class="lzy lzyPlcHld " style="vertical-align: text-bottom" data-image-key="Surge.png" data-image-name="Surge.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" width="16" height="16" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" 	 alt="Surge"  	class="" 	 style="vertical-align: text-bottom"  	data-image-key="Surge.png" 	data-image-name="Surge.png" 	 	 width="16"  	 height="16"  	 	 	 	></noscript>, you may also move each affected figure up to 1 space.</td>
 </tr>
 
-<tr class="warrior white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Steelhorns">Steelhorns (CK)</a></td>
 <td class="image"><span title="Humans have called us monsters throughout the ages, but we know who the real beasts are.
 
@@ -1654,8 +1654,8 @@ There was a time when the slums of Irram became infected with strange and wicked
 <td class="heroic">Use when a monster starts its activation or moves into a space adjacent to you. Immediately perform an attack that targets that monster. After the attack is resolved, the monster&#39;s activation resumes.</td>
 </tr>
 
-<tr class="warrior white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tahlia">Tahlia (CK)</a></td>
 <td class="image"><span title="Fools are fools, no matter where they are. They never see me coming.
 
@@ -1690,8 +1690,8 @@ Tatianna is a renowned huntress from a secluded tribe of female warriors living 
 <td class="heroic">Use when you perform an attack, after dice are rolled. Choose 1 of your target&#39;s defense dice and change the result to another result of your choice.</td>
 </tr>
 
-<tr class="scout white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="scout white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tatianna">Tatianna (CK)</a></td>
 <td class="image"><span title="I will journey where my tribe will not go and hunt that which no one else dares to hunt.
 
@@ -1726,8 +1726,8 @@ When the Cult of the Forgotten was first born, nine of Terrinoth’s most talent
 <td class="heroic">Use after rolling your attack dice to choose 2 additional valid targets for that attack. Each target rolls defense dice separately.</td>
 </tr>
 
-<tr class="scout white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="scout white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tetherys">Tetherys (CK)</a></td>
 <td class="image"><span title="Sometimes ever I don&#39;t know just where I will strike next.
 
@@ -1780,8 +1780,8 @@ Every seven years, for seven days, the hidden monastery of the Serpent’s Shado
 <td class="heroic">Use during your turn to choose an empty space within 3 spaces of your figure. Remove your figure from the map and place it in the chosen space.</td>
 </tr>
 
-<tr class="scout white ck-only override-ck 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="scout white ck-only override-ck CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Tobin_Farslayer">Tobin Farslayer (CK)</a></td>
 <td class="image"><span title="It matters not how far away you are. My bow can reach you." class="quote"><div class="divImage"><img src="heroes-small/TobinFarslayerCK.png" class="hero"><img src="classes/scout.png" class="archetype">S</div></span></td>
 <td class="num speed">4</td>
@@ -1832,8 +1832,8 @@ Many mistakenly attribute Trenloe’s title to his abilities: to march for days 
 <td class="heroic">Use when you perform an attack action, before dice are rolled. Choose and remove 1 defense die from the defense pool of your target.</td>
 </tr>
 
-<tr class="warrior white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Trenloe_the_Strong">Trenloe the Strong (CK)</a></td>
 <td class="image"><span title="Nothing will stand in the way of my ultimate quest!
 
@@ -1868,8 +1868,8 @@ Powerful and strange, the young sorceress known as Kel is a mystery to those aro
 <td class="heroic">Use during your turn to look at the top 5 cards of the Overlord deck. Place 1 of the cards on the bottom of the deck and randomly place the rest back on top.</td>
 </tr>
 
-<tr class="mage white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="mage white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Truthseer_Kel">Truthseer Kel (CK)</a></td>
 <td class="image"><span title="I see what others cannot, and into places others dare not.
 
@@ -1904,8 +1904,8 @@ As a dwarf with decades of experience in alchemical experimentation, Ulma Grimst
 <td class="heroic">Use during your turn to flip one of your facedown Potion Search cards faceup. In addition, each hero adjacent to you may also flip one of their facedown Potion Search cards faceup.</td>
 </tr>
 
-<tr class="warrior white ck-only override-ck 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="warrior white ck-only override-ck CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Varikas_the_Dead">Varikas the Dead (CK)</a></td>
 <td class="image"><span title="I have already died for freedom once before. If I must die again, I will not die alone." class="quote"><div class="divImage"><img src="heroes-small/VarikasTheDeadCK.png" class="hero"><img src="classes/warrior.png" class="archetype">W</div></span></td>
 <td class="num speed">3</td>
@@ -1938,8 +1938,8 @@ Vyrah worked for a prestigious household as a falconer for many years. As a rewa
 <td class="heroic"><img src="attributes/action.png" alt="Action" class="lzy lzyPlcHld " data-image-key="Action.png" data-image-name="Action.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" width="24" height="19" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/c/c2/Action.png/revision/latest?cb=20121015121410" 	 alt="Action"  	class="" 	 	data-image-key="Action.png" 	data-image-name="Action.png" 	 	 width="24"  	 height="19"  	 	 	 	></noscript>: <a href="http://descent2e.wikia.com/wiki/Skye" title="Skye">Skye</a> performs a Melee attack with a blue, red, and yellow die. This attack gains: <img src="attributes/surge.png" alt="Surge" class="lzy lzyPlcHld " style="vertical-align: text-bottom" data-image-key="Surge.png" data-image-name="Surge.png" data-src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" width="16" height="16" onload="if(typeof ImgLzy===&#39;object&#39;){ImgLzy.load(this)}"/><noscript><img src="https://vignette.wikia.nocookie.net/descent2e/images/1/1a/Surge.png/revision/latest/scale-to-width-down/16?cb=20121015120900" 	 alt="Surge"  	class="" 	 style="vertical-align: text-bottom"  	data-image-key="Surge.png" 	data-image-name="Surge.png" 	 	 width="16"  	 height="16"  	 	 	 	></noscript>: Stun</td>
 </tr>
 
-<tr class="scout white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="scout white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Vyrah_the_Falconer">Vyrah the Falconer (CK)</a></td>
 <td class="image"><span title="My loyal falcon sees far.
 
@@ -1992,8 +1992,8 @@ Few of the fae from the Aenlong are seen and fewer are known; their race is caug
 <td class="heroic">Use when a monster activates. Remove your figure from the map and place a hero token in your space. At the start of your next turn, replace that hero token with your figure.</td>
 </tr>
 
-<tr class="mage white ck-only 1E" style="display:none;">
-<td class="expansion">1E</td>
+<tr class="mage white ck-only CK" style="display:none;">
+<td class="expansion">CK</td>
 <td class="hero"><a href="http://descent2e.wikia.com/wiki/Zyla">Zyla (CK)</a></td>
 <td class="image"><span title="Can&#39;t hit what you can&#39;t catch!
 
@@ -2021,9 +2021,9 @@ Few of the fae from the Aenlong are seen and fewer are known; their race is caug
 	</form><div class="popup" onclick="myFunction()"><img src="etc/donate-bitcoin.svg" class="donate">
 						<span class="popuptext" id="myPopup">Donations Address<br><br>
 						<img src="etc/bitcoin.png" width=200px height=200px><br><br>
-						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div></td><td class="fees">Server Fees: $55.80/yr</td><td class="version">v3.1.1.181119</td>
+						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div></td><td class="fees">Server Fees: $55.80/yr</td><td class="version">v3.1.2.181119</td>
 <td></td><td></td><td></td><td></td><td></td>
 <td></td><td></td><td></td><td></td><td></td>
 </tr></tfoot>
 </table></body></html>
-<script type="text/javascript" src="heroes.js?version=v3.1.1.181119"></script>
+<script type="text/javascript" src="heroes.js?version=v3.1.2.181119"></script>

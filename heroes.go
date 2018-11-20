@@ -229,75 +229,72 @@ func outputFooter(w *bufio.Writer) {
 }
 
 func fixHeroes() {
-	for i := range heroes {
+	for i, h := range heroes {
 		// h.ck
-		heroes[i].ck = false
-		if heroes[i].expansion == "Second Edition Conversion Kit" {
-			heroes[i].ck = true
+		h.ck = false
+		if h.expansion == "Second Edition Conversion Kit" {
+			h.ck = true
 		}
 
 		// h.trClass
-		if heroes[i].ck {
-			heroes[i].trClass = "ck-only"
+		if h.ck {
+			h.trClass = "ck-only"
 		} else {
-			heroes[i].trClass = "no-ck"
+			h.trClass = "no-ck"
 		}
-		if i == 0 || heroes[i].name != heroes[i-1].name {
-			heroes[i].trClass += " override-ck"
+		if i == 0 || h.name != heroes[i-1].name {
+			h.trClass += " override-ck"
 		}
 
 		// h.img
-		heroes[i].img = "heroes-small/" + strings.Replace(heroes[i].name, " the ", " The ", -1)
-		heroes[i].img = strings.Replace(heroes[i].img, " of ", " Of ", -1)
-		heroes[i].img = strings.Replace(heroes[i].img, " and ", " And ", -1)
-		heroes[i].img = strings.Replace(heroes[i].img, " ", "", -1)
-		if heroes[i].ck {
-			heroes[i].img += "CK"
+		h.img = "heroes-small/" + strings.Replace(h.name, " the ", " The ", -1)
+		h.img = strings.Replace(h.img, " of ", " Of ", -1)
+		h.img = strings.Replace(h.img, " and ", " And ", -1)
+		h.img = strings.Replace(h.img, " ", "", -1)
+		if h.ck {
+			h.img += "CK"
 		}
-		heroes[i].img += ".png"
+		h.img += ".png"
 
 		// h.name
-		if heroes[i].ck {
-			heroes[i].name += " (CK)"
+		if h.ck {
+			h.name += " (CK)"
 		}
 
 		// h.die
-		heroes[i].die = strings.ToLower(heroes[i].defense)
-		if heroes[i].die == "1 gray" || heroes[i].die == "1 grey" {
-			heroes[i].die = "white"
-		} else if heroes[i].die == "1 black" {
-			heroes[i].die = "black"
-		} else if heroes[i].die == "1 brown" {
-			heroes[i].die = "brown"
+		h.die = strings.ToLower(h.defense)
+		if h.die == "1 gray" || h.die == "1 grey" {
+			h.die = "white"
+		} else if h.die == "1 black" {
+			h.die = "black"
+		} else if h.die == "1 brown" {
+			h.die = "brown"
 		} else {
-			panic(heroes[i].defense)
+			panic(h.defense)
 		}
 
 		// h.expImg
-		heroes[i].expImg = ""
-		imgFile := "expansions/" + strings.Replace(heroes[i].expansion, " ", "_", -1) + ".svg"
-		if strings.Contains(heroes[i].expansion, "Lieutenant Pack") {
-			imgFile = "expansions/Lieutenant_Pack.png"
-		}
+		h.expImg = ""
+		imgFile := "expansions/" + strings.Replace(h.expansion, " ", "_", -1) + ".svg"
 		if _, err := os.Stat(imgFile); !os.IsNotExist(err) {
-			heroes[i].expImg = fmt.Sprintf("<img src=\"%s\" class=\"expansion\">", imgFile)
-		} else if heroes[i].expansion == "Second Edition Base Game" {
-			heroes[i].expImg = "2E"
-		} else if heroes[i].expansion == "Second Edition Conversion Kit" {
-			heroes[i].expImg = "1E"
+			h.expImg = fmt.Sprintf("<img src=\"%s\" class=\"expansion\">", imgFile)
+		} else if abbr, ok := expansions[strings.ToLower(h.expansion)]; ok {
+			h.expImg = abbr
 		}
 
 		// h.quote
-		heroes[i].quote = html.EscapeString(heroes[i].quote)
-		heroes[i].quote = strings.Replace(heroes[i].quote, "&#34;", "", -1)
-		heroes[i].quote = strings.Replace(heroes[i].quote, "“", "", -1)
-		heroes[i].quote = strings.Replace(heroes[i].quote, "”", "", -1)
+		h.quote = html.EscapeString(h.quote)
+		h.quote = strings.Replace(h.quote, "&#34;", "", -1)
+		h.quote = strings.Replace(h.quote, "“", "", -1)
+		h.quote = strings.Replace(h.quote, "”", "", -1)
 
 		// h.backstory
-		heroes[i].backstory = html.EscapeString(heroes[i].backstory)
-		heroes[i].backstory = strings.Replace(heroes[i].backstory, "&#34;", "", -1)
-		heroes[i].backstory = strings.Replace(heroes[i].backstory, "“", "", -1)
-		heroes[i].backstory = strings.Replace(heroes[i].backstory, "”", "", -1)
+		h.backstory = html.EscapeString(h.backstory)
+		h.backstory = strings.Replace(h.backstory, "&#34;", "", -1)
+		h.backstory = strings.Replace(h.backstory, "“", "", -1)
+		h.backstory = strings.Replace(h.backstory, "”", "", -1)
+
+		heroes[i] = h
 	}
 }
 

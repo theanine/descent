@@ -298,8 +298,10 @@ td.num {
 
 td.expansion {
 	text-align: center;
-	font-size: 16pt;
-	font-family: "Adobe Garamond Pro", Garamond;
+	font-size: 10pt;
+	font-family: Windlass;
+    color: white;
+	text-shadow: -2px -2px 0 #000, -2px -1.5px 0 #000, -2px -1px 0 #000, -2px -0.5px 0 #000, -2px 0px 0 #000, -2px 0.5px 0 #000, -2px 1px 0 #000, -2px 1.5px 0 #000, -2px 2px 0 #000, -1.5px -2px 0 #000, -1.5px -1.5px 0 #000, -1.5px -1px 0 #000, -1.5px -0.5px 0 #000, -1.5px 0px 0 #000, -1.5px 0.5px 0 #000, -1.5px 1px 0 #000, -1.5px 1.5px 0 #000, -1.5px 2px 0 #000, -1px -2px 0 #000, -1px -1.5px 0 #000, -1px -1px 0 #000, -1px -0.5px 0 #000, -1px 0px 0 #000, -1px 0.5px 0 #000, -1px 1px 0 #000, -1px 1.5px 0 #000, -1px 2px 0 #000, -0.5px -2px 0 #000, -0.5px -1.5px 0 #000, -0.5px -1px 0 #000, -0.5px -0.5px 0 #000, -0.5px 0px 0 #000, -0.5px 0.5px 0 #000, -0.5px 1px 0 #000, -0.5px 1.5px 0 #000, -0.5px 2px 0 #000, 0px -2px 0 #000, 0px -1.5px 0 #000, 0px -1px 0 #000, 0px -0.5px 0 #000, 0px 0px 0 #000, 0px 0.5px 0 #000, 0px 1px 0 #000, 0px 1.5px 0 #000, 0px 2px 0 #000, 0.5px -2px 0 #000, 0.5px -1.5px 0 #000, 0.5px -1px 0 #000, 0.5px -0.5px 0 #000, 0.5px 0px 0 #000, 0.5px 0.5px 0 #000, 0.5px 1px 0 #000, 0.5px 1.5px 0 #000, 0.5px 2px 0 #000, 1px -2px 0 #000, 1px -1.5px 0 #000, 1px -1px 0 #000, 1px -0.5px 0 #000, 1px 0px 0 #000, 1px 0.5px 0 #000, 1px 1px 0 #000, 1px 1.5px 0 #000, 1px 2px 0 #000, 1.5px -2px 0 #000, 1.5px -1.5px 0 #000, 1.5px -1px 0 #000, 1.5px -0.5px 0 #000, 1.5px 0px 0 #000, 1.5px 0.5px 0 #000, 1.5px 1px 0 #000, 1.5px 1.5px 0 #000, 1.5px 2px 0 #000, 2px -2px 0 #000, 2px -1.5px 0 #000, 2px -1px 0 #000, 2px -0.5px 0 #000, 2px 0px 0 #000, 2px 0.5px 0 #000, 2px 1px 0 #000, 2px 1.5px 0 #000, 2px 2px 0 #000;
 }
 
 table {

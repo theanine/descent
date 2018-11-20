@@ -23,13 +23,13 @@ const overlordHtml = "overlord.html"
 const overlordImg = "olcards/Overlord_Card_Back.png"
 
 type card struct {
-	qty       int64
-	name      string
-	img       string
-	expansion string
-	expImg    string
-	typ       string
-	cost      int
+	qty    int64
+	name   string
+	img    string
+	exp    string
+	expImg string
+	typ    string
+	cost   int
 }
 
 type overlord struct {
@@ -277,16 +277,11 @@ func fixOverlords() {
 
 			// c.expImg
 			overlords[i].cards[j].expImg = ""
-			imgFile := "expansions/" + strings.Replace(overlords[i].cards[j].expansion, " ", "_", -1) + ".svg"
-			if strings.Contains(overlords[i].cards[j].expansion, "Lieutenant Pack") {
-				imgFile = "expansions/Lieutenant_Pack.png"
-			}
+			imgFile := "expansions/" + strings.Replace(c.exp, " ", "_", -1) + ".svg"
 			if _, err := os.Stat(imgFile); !os.IsNotExist(err) {
 				overlords[i].cards[j].expImg = fmt.Sprintf("<img src=\"%s\" class=\"expansion\">", imgFile)
-			} else if strings.ToLower(overlords[i].cards[j].expansion) == "second edition base game" {
-				overlords[i].cards[j].expImg = "2E"
-			} else if strings.ToLower(overlords[i].cards[j].expansion) == "second edition conversion kit" {
-				overlords[i].cards[j].expImg = "1E"
+			} else if abbr, ok := expansions[strings.ToLower(c.exp)]; ok {
+				overlords[i].cards[j].expImg = abbr
 			}
 		}
 	}
@@ -297,7 +292,7 @@ func overlordUniqSortExps() []string {
 	expMap := make(map[string]struct{})
 	for _, o := range overlords {
 		for _, c := range o.cards {
-			expMap[expansions[strings.ToLower(c.expansion)]] = struct{}{}
+			expMap[expansions[strings.ToLower(c.exp)]] = struct{}{}
 		}
 	}
 	var exps []string
