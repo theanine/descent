@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 )
 
@@ -119,9 +120,19 @@ Options:
 	os.Exit(1)
 }
 
+func serve() {
+	http.Handle("/", http.FileServer(http.Dir("./")))
+	if err := http.ListenAndServe(":8000", nil); err != nil {
+		panic(err)
+	}
+}
+
 func main() {
 	if len(os.Args) < 1 || len(os.Args) > 2 {
 		usage()
+	}
+	if len(os.Args) == 2 && (os.Args[1] == "-s" || os.Args[1] == "--serve") {
+		serve()
 	}
 	if len(os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--heroes" {
 		heroesGen()
