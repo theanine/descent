@@ -246,7 +246,25 @@ func overlordGen() {
 func fixOverlords() {
 	for i, o := range overlords {
 		// c.cards
-		sort.Slice(o.cards, func(i, j int) bool { return o.cards[i].cost < o.cards[j].cost })
+		sort.Slice(o.cards, func(i, j int) bool {
+			// Cost -> Qty -> Name
+			if o.cards[i].cost < o.cards[j].cost {
+				return true
+			}
+			if o.cards[i].cost > o.cards[j].cost {
+				return false
+			}
+			if o.cards[i].qty > o.cards[j].qty {
+				return true
+			}
+			if o.cards[i].qty < o.cards[j].qty {
+				return false
+			}
+			if o.cards[i].name < o.cards[j].name {
+				return true
+			}
+			return false
+		})
 
 		for j, c := range overlords[i].cards {
 			// c.img
