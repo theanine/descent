@@ -283,6 +283,7 @@ func fixOverlords() {
 			} else if abbr, ok := expansions[strings.ToLower(c.exp)]; ok {
 				overlords[i].cards[j].expImg = abbr
 			}
+			replaceErrata(&overlords[i].cards[j].img)
 		}
 	}
 

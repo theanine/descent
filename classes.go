@@ -387,19 +387,23 @@ func fixClasses() {
 				panic(err)
 			}
 		}
+
 		for j, s := range c.skills {
 			if s.img != "" {
 				if c.skills[j].img, err = sImgRtoL(s.img); err != nil {
 					panic(err)
 				}
 			}
+			replaceErrata(&classes[i].skills[j].img)
 		}
+
 		for j, e := range c.equipments {
 			if e.img != "" {
 				if c.equipments[j].img, err = eImgRtoL(e.img); err != nil {
 					panic(err)
 				}
 			}
+			replaceErrata(&classes[i].equipments[j].img)
 		}
 
 		classes[i] = c
