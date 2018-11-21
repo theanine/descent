@@ -263,12 +263,14 @@ func fixHeroes() {
 
 		// h.quote
 		h.quote = html.EscapeString(h.quote)
+		h.quote = strings.Replace(h.backstory, "’", "'", -1)
 		h.quote = strings.Replace(h.quote, "&#34;", "", -1)
 		h.quote = strings.Replace(h.quote, "“", "", -1)
 		h.quote = strings.Replace(h.quote, "”", "", -1)
 
 		// h.backstory
 		h.backstory = html.EscapeString(h.backstory)
+		h.backstory = strings.Replace(h.backstory, "’", "'", -1)
 		h.backstory = strings.Replace(h.backstory, "&#34;", "", -1)
 		h.backstory = strings.Replace(h.backstory, "“", "", -1)
 		h.backstory = strings.Replace(h.backstory, "”", "", -1)
