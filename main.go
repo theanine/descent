@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-const version = "v3.1.2.181119"
+const version = "v3.1.3.181121"
 const downloadEnabled = false
 
 func usage() {

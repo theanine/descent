@@ -517,11 +517,27 @@ select.blank {
 
 .fees {
 	padding-left: 10px;
+	white-space:nowrap;
+	/*width: 99%;*/
 	/*min-width: 515px;*/
-	width: 99%;
 	/*max-width: 943px;*/
 	/*display: block;*/
 	font-weight: bold;
+}
+
+.support {
+	padding-left: 10px;
+	white-space:nowrap;
+	/*min-width: 515px;*/
+	/*width: 99%;*/
+	/*max-width: 943px;*/
+	/*display: block;*/
+	font-weight: bold;
+}
+
+.support img {
+	height:1.04em;
+	display:inline;
 }
 
 .version {
@@ -632,4 +648,8 @@ select.blank {
 		min-width:calc(9 * 250px / 3.2);
 		max-width:calc(9 * 250px / 3.2);
 	}*/
+}
+
+.ability img, .heroic img, .text img {
+	height: 0.8em;
 }
