@@ -86,7 +86,7 @@ func heroUniqSortExps() []string {
 	return exps
 }
 
-func outputHeader(w *bufio.Writer) {
+func outputHHeader(w *bufio.Writer) {
 	fmt.Fprintf(w, "<html><head>\n")
 	fmt.Fprintf(w, "<title>Coufee: Journeys in Hero Selection</title>\n")
 	fmt.Fprintf(w, "<meta name=\"description\" content=\"%s\">\n", `With over 100+ heroes to choose from, it's painful to choose a character.
@@ -155,8 +155,8 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 	fmt.Fprintf(w, "</tr></thead><tbody class=\"heroes\">\n\n")
 }
 
-func outputTable(w *bufio.Writer) {
-	outputHeader(w)
+func outputHTable(w *bufio.Writer) {
+	outputHHeader(w)
 
 	for _, h := range heroes {
 		exp := expansions[strings.ToLower(h.expansion)]
@@ -199,33 +199,12 @@ func outputTable(w *bufio.Writer) {
 		fmt.Fprintf(w, "</tr>\n\n")
 	}
 
-	outputFooter(w)
+	outputHFooter(w)
 	w.Flush()
 }
 
-func outputFooter(w *bufio.Writer) {
-	fmt.Fprintf(w, "</tbody>\n")
-	fmt.Fprintf(w, "<tfoot class=\"heroes\"><tr><td class=\"donateArea\">\n")
-	fmt.Fprintf(w, `<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-	<input type="hidden" name="business" value="GAGMA422DQE9J">
-	<input type="hidden" name="cmd" value="_s-xclick">
-	<input type="hidden" name="hosted_button_id" value="85ZEFVNEAXV3A">
-	<input type="image" src="etc/donate-paypal.svg" border="0" name="submit" alt="PayPal" class="donate">
-	<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-	</form>`)
-	fmt.Fprintf(w, `<div class="popup" onclick="myFunction()"><img src="etc/donate-bitcoin.svg" class="donate">
-						<span class="popuptext" id="myPopup">Donations Address<br><br>
-						<img src="etc/bitcoin.png" width=200px height=200px><br><br>
-						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div>`)
-	fmt.Fprintf(w, "</td><td class=\"fees\">Server Fees: $55.80/yr")
-	fmt.Fprintf(w, "</td><td class=\"version\">%s</td>\n", version)
-	fmt.Fprintf(w, "<td></td><td></td><td></td><td></td><td></td>\n")
-	fmt.Fprintf(w, "<td></td><td></td><td></td><td></td><td></td>\n")
-	fmt.Fprintf(w, "</tr></tfoot>\n")
-	fmt.Fprintf(w, "</table>")
-
-	fmt.Fprintf(w, "</body></html>\n")
-	fmt.Fprintf(w, "<script type=\"text/javascript\" src=\"heroes.js?version=%s\"></script>\n", version)
+func outputHFooter(w *bufio.Writer) {
+	outputFooter(w, "heroes", 13)
 }
 
 func fixHeroes() {
@@ -296,38 +275,6 @@ func fixHeroes() {
 
 		heroes[i] = h
 	}
-}
-
-func iconHelper(src string, img *goquery.Selection) {
-	if strings.Contains(src, "Heart.png") {
-		img.SetAttr("src", "attributes/health.png")
-	} else if strings.Contains(src, "Fatigue.png") {
-		img.SetAttr("src", "attributes/fatigue.png")
-	} else if strings.Contains(src, "Surge.png") {
-		img.SetAttr("src", "attributes/surge.png")
-	} else if strings.Contains(src, "Shield.png") {
-		img.SetAttr("src", "attributes/defense.png")
-	} else if strings.Contains(src, "Action.png") {
-		img.SetAttr("src", "attributes/action.png")
-	} else if strings.Contains(src, "Willpower.png") {
-		img.SetAttr("src", "attributes/willpower.png")
-	} else if strings.Contains(src, "Knowledge.png") {
-		img.SetAttr("src", "attributes/knowledge.png")
-	} else if strings.Contains(src, "Awareness.png") {
-		img.SetAttr("src", "attributes/awareness.png")
-	}
-}
-
-func replaceIcons(td *goquery.Selection) *goquery.Selection {
-	td.Find("img").Each(func(i int, img *goquery.Selection) {
-		if src, ok := img.Attr("src"); ok {
-			iconHelper(src, img)
-		}
-		if src, ok := img.Attr("data-src"); ok {
-			iconHelper(src, img)
-		}
-	})
-	return td
 }
 
 func tdToAbility(td *goquery.Selection) string {
@@ -452,5 +399,5 @@ func heroesGen() {
 		downloadImages()
 	}
 	fixHeroes()
-	outputTable(w)
+	outputHTable(w)
 }

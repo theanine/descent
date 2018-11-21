@@ -411,24 +411,5 @@ func outputOTable(w *bufio.Writer) {
 }
 
 func outputOFooter(w *bufio.Writer) {
-	fmt.Fprintf(w, "</tbody>\n")
-	fmt.Fprintf(w, "<tfoot class=\"overlord\"><tr><td class=\"donateArea\">\n")
-	fmt.Fprintf(w, `<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-	<input type="hidden" name="business" value="GAGMA422DQE9J">
-	<input type="hidden" name="cmd" value="_s-xclick">
-	<input type="hidden" name="hosted_button_id" value="85ZEFVNEAXV3A">
-	<input type="image" src="etc/donate-paypal.svg" border="0" name="submit" alt="PayPal" class="donate">
-	<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-	</form>`)
-	fmt.Fprintf(w, `<div class="popup" onclick="myFunction()"><img src="etc/donate-bitcoin.svg" class="donate">
-						<span class="popuptext" id="myPopup">Donations Address<br><br>
-						<img src="etc/bitcoin.png" width=200px height=200px><br><br>
-						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div>`)
-	fmt.Fprintf(w, "</td><td class=\"fees\">Server Fees: $55.80/yr")
-	fmt.Fprintf(w, "</td><td class=\"version\">%s</td>\n", version)
-	fmt.Fprintf(w, "</tr></tfoot>\n")
-	fmt.Fprintf(w, "</table>")
-
-	fmt.Fprintf(w, "</body></html>\n")
-	fmt.Fprintf(w, "<script type=\"text/javascript\" src=\"heroes.js?version=%s\"></script>\n", version)
+	outputFooter(w, "overlord", 3)
 }
