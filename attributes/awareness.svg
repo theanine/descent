@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 63.999939 46.000061"
+   height="46.000061mm"
+   width="63.999939mm">
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-2.9527629e-5,-250.99996)"
+     id="layer1">
+    <g
+       transform="matrix(0.35177353,0,0,0.35222344,-0.7697294,222.2294)"
+       id="g4517">
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 7.5595236,165.0863 63.122023,157.52678 20.977678,180.01637 Z"
+         id="path4496" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 25.891369,190.22172 59.34226,207.04166 77.863093,164.33035 Z"
+         id="path4498" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 90.525297,167.35416 111.88095,212.14434 72.760416,211.1994 Z"
+         id="path4500" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 103.94345,163.19643 17.95387,43.65625 35.90774,-16.25298 z"
+         id="path4502" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 175.38095,164.89732 162.15178,180.58333 118.11756,158.8497 Z"
+         id="path4504" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 119.62946,149.21131 42.14435,6.99256 c 0,0 20.43824,-15.28395 21.7107,-17.82024 1.27245,-2.53628 -0.0126,-15.21519 -2.07886,-18.14286 C 179.33942,117.3131 160.38202,104.44603 148.07217,98.279016 135.76232,92.112002 120.3795,85.861505 108.47917,83.632438 96.578837,81.403371 88.052819,81.195637 76.381647,83.166685 64.710476,85.137733 51.716575,91.394941 40.254465,97.239581 28.792355,103.08422 12.349729,114.13842 8.2715868,118.22872 c -4.0781426,4.0903 -6.9179041,9.13343 -5.6447477,16.38662 1.2731563,7.25319 12.9770929,16.55755 18.1084649,17.5071 5.131372,0.94955 43.087319,-3.48957 43.087319,-3.48957 0,0 -4.321737,-6.196 -4.93662,-11.35074 -0.614882,-5.15475 0.275621,-13.19698 2.500734,-18.4979 2.225112,-5.30092 5.545297,-9.16931 9.861773,-12.28423 4.316476,-3.11492 10.002973,-5.3764 15.686013,-6.09348 5.68304,-0.717074 12.573462,-0.17301 18.032147,2.05791 5.45868,2.23093 10.74536,6.7997 14.01952,11.87382 3.27416,5.07412 4.67997,11.82134 4.90222,17.88705 0.22226,6.06572 -4.25895,16.98601 -4.25895,16.98601 z"
+         id="path4506" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 82.398808,139.10045 c -2.496556,-2.32366 -3.253191,-8.1909 -1.88988,-11.52828 1.363311,-3.33738 4.189407,-6.077 8.173733,-6.85082 3.984326,-0.77382 9.306654,-0.54903 12.425969,4.1105 3.11932,4.65952 2.54423,6.91721 2.07887,14.36309 0,0 -3.964724,-2.5213 -5.669644,-2.45685 -1.70492,0.0644 -2.587242,0.14963 -3.874256,1.93714 -1.287014,1.78751 -1.984375,5.05542 -1.984375,5.05542 0,0 -6.763861,-2.30654 -9.260417,-4.6302 z"
+         id="path4508" />
+    </g>
+  </g>
+</svg>
