@@ -259,7 +259,8 @@ img.expansion {
 }
 
 img.header {
-	width: 20px;
+	max-width: 20px;
+	max-height: 20px;
 }
 
 .dice {
@@ -410,64 +411,33 @@ table th.heroic, table td.heroic{
 	width:300px;
 }
 
+table thead {
+	display:block;
+	overflow: hidden;
+	/*overflow: auto;*/
+}
 table thead.heroes{
-	display:block;
-	height:55px;
-	overflow: hidden;
-	/*overflow: auto;*/
+	height:44px;
 }
-
-table thead.classes{
-	display:block;
+table thead.classes, table thead.overlord{
 	height:35px;
-	overflow: hidden;
-	/*overflow: auto;*/
 }
 
-table thead.overlord{
+table tbody {
 	display:block;
-	height:35px;
-	overflow: hidden;
-	/*overflow: auto;*/
+	/* scroll, not auto, for smooth scrolling on iDevices */
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 }
-
 table tbody.heroes{
-	display:block;
-	height:calc(99.5vh - 58px - 26px);  /* Fallback for browsers that don't support Custom Properties */
-	height:calc((var(--vh, 1vh) * 100) - 88px);
-	/* with bottom scrollbar */
-	/*height:calc(99.5vh - 61px - 26px);*/  /* Fallback for browsers that don't support Custom Properties */
-	/*height:calc((var(--vh, 1vh) * 100) - 91px);*/
-
-	/* scroll, not auto, for smooth scrolling on iDevices */
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
+	/* Fallback for browsers that don't support Custom Properties */
+	height:calc(99.5vh - 47px - 26px);
+	height:calc((var(--vh, 1vh) * 100) - 77px);
 }
-
-table tbody.classes{
-	display:block;
-	height:calc(99.5vh - 38px - 26px);  /* Fallback for browsers that don't support Custom Properties */
+table tbody.classes, table tbody.overlord{
+	/* Fallback for browsers that don't support Custom Properties */
+	height:calc(99.5vh - 38px - 26px);
 	height:calc((var(--vh, 1vh) * 100) - 68px);
-	/* with bottom scrollbar */
-	/*height:calc(99.5vh - 61px - 26px);*/  /* Fallback for browsers that don't support Custom Properties */
-	/*height:calc((var(--vh, 1vh) * 100) - 91px);*/
-
-	/* scroll, not auto, for smooth scrolling on iDevices */
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
-}
-
-table tbody.overlord{
-	display:block;
-	height:calc(99.5vh - 38px - 26px);  /* Fallback for browsers that don't support Custom Properties */
-	height:calc((var(--vh, 1vh) * 100) - 68px);
-	/* with bottom scrollbar */
-	/*height:calc(99.5vh - 61px - 26px);*/  /* Fallback for browsers that don't support Custom Properties */
-	/*height:calc((var(--vh, 1vh) * 100) - 91px);*/
-
-	/* scroll, not auto, for smooth scrolling on iDevices */
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
 }
 
 table tfoot{
