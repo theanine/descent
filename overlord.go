@@ -102,21 +102,30 @@ func overlordGen() {
 		panic(fmt.Sprintf("error on parsing: %s", err))
 	}
 
-	var decks []string
-
+	var decks []struct {
+		arch string
+		desc string
+	}
 	overlordMetadata := doc.Find("#mw-content-text").First()
 	headers := overlordMetadata.Find("h2")
-	headers.Each(func(i int, s1 *goquery.Selection) {
-		if s1.Find("span").Eq(0).Find("a").Length() > 0 {
-			// fmt.Printf("[%s]\n", s1.Find("span").Eq(0).Find("a").Text())
-			archetype := s1.Find("span").Eq(0).Find("a").Text()
-			if archetype == "Basic" {
-				archetype = "Basic I"
+	headers.Each(func(i int, h *goquery.Selection) {
+		if h.Find("span").Eq(0).Find("a").Length() > 0 {
+			deck := struct {
+				arch string
+				desc string
+			}{}
+			deck.arch = h.Find("span").Eq(0).Find("a").Text()
+			if deck.arch == "Basic" {
+				deck.arch = "Basic I"
 			}
-			if archetype == "Overlord Reward" {
-				archetype = "Reward"
+			if deck.arch == "Overlord Reward" {
+				deck.arch = "Reward"
 			}
-			decks = append(decks, archetype)
+
+			p := replaceIcons(h.NextFiltered("p"))
+			p.Find("img").ReplaceWithHtml("health")
+			deck.desc = p.Text()
+			decks = append(decks, deck)
 		}
 		return
 	})
@@ -126,7 +135,8 @@ func overlordGen() {
 	cardLists := overlordMetadata.Find("ul").Slice(2, goquery.ToEnd)
 	cardLists.Each(func(i int, u1 *goquery.Selection) {
 		olClass := overlord{}
-		olClass.archetype = decks[i]
+		olClass.archetype = decks[i].arch
+		olClass.description = decks[i].desc
 
 		u1.Find("li").Each(func(j int, l1 *goquery.Selection) {
 			olCard := card{}
