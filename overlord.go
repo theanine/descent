@@ -244,8 +244,11 @@ func overlordGen() {
 }
 
 func fixOverlords() {
+	sort.Slice(overlords, func(i, j int) bool {
+		return overlords[i].archetype < overlords[j].archetype
+	})
 	for i, o := range overlords {
-		// c.cards
+		// o.cards
 		sort.Slice(o.cards, func(i, j int) bool {
 			// Cost -> Qty -> Name
 			if o.cards[i].cost < o.cards[j].cost {
