@@ -9,6 +9,9 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
+const wikiUrlOld = "https://descent2e.wikia.com/wiki"
+const wikiUrl = "http://wiki.descent-community.org"
+
 var archetypes = []string{
 	"Healer",
 	"Mage",

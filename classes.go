@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"html"
+	"io/ioutil"
 	"log"
 	"net/url"
 	"os"
@@ -20,17 +21,19 @@ const classesHtml = "classes.html"
 const startingSkillsInEquipmentSection = true
 
 type skill struct {
-	name string
-	xp   int
-	text string
-	cost int
-	img  string
+	class string
+	name  string
+	xp    int
+	text  string
+	cost  int
+	img   string
 }
 
 type equipment struct {
-	name string
-	typ  string // "Familiar", "Item", "Skill"
-	img  string
+	class string
+	name  string
+	typ   string // "Familiar", "Item", "Skill"
+	img   string
 }
 
 type class struct {
@@ -46,6 +49,7 @@ type class struct {
 	url         string
 }
 
+var hybridMap = make(map[string]bool)
 var classes []class
 
 func filterText(str string) bool {
@@ -64,27 +68,55 @@ func filterText(str string) bool {
 	return false
 }
 
+func testClass(class string) {
+	c := genClass("http://wiki.descent-community.org/"+class, class)
+	c.expImg = ""
+	imgFile := "expansions/" + strings.Replace(c.expansion, " ", "_", -1) + ".svg"
+	if _, err := os.Stat(imgFile); !os.IsNotExist(err) {
+		c.expImg = fmt.Sprintf("<img src=\"%s\" class=\"expansion\">", imgFile)
+	} else if abbr, ok := expansions[strings.ToLower(c.expansion)]; ok {
+		c.expImg = abbr
+	}
+	c.dump()
+}
+
+func (c *class) dump() {
+	// fmt.Printf("[%s] [%s] [%s] [%s] [%s]\n", c.expansion, c.name, c.archetype, c.equipment, c.description)
+	fmt.Printf("%v|%s|%s|%s|%s|%s|%s|", c.hybrid, c.expansion, c.name, c.archetype, c.expImg, c.img, c.url)
+	for i, e := range c.equipments {
+		fmt.Printf("%v", e)
+		if i < len(c.equipments)-1 {
+			fmt.Printf(",")
+		}
+	}
+	for i, s := range c.skills {
+		fmt.Printf("%v", s)
+		if i < len(c.skills)-1 {
+			fmt.Printf(",")
+		}
+	}
+	fmt.Printf("|%s\n", c.description)
+}
+
 func dumpClasses() {
 	fmt.Printf("Classes: %d\n", len(classes))
 	for _, c := range classes {
-		// fmt.Printf("[%s] [%s] [%s] [%s] [%s]\n", c.expansion, c.name, c.archetype, c.equipment, c.description)
-		fmt.Printf("%s|%s|%s|", c.expansion, c.name, c.archetype)
-		for i, e := range c.equipments {
-			fmt.Printf("%s", e)
-			if i < len(c.equipments)-1 {
-				fmt.Printf(",")
-			}
-		}
-		fmt.Printf("|%s\n", c.description)
+		c.dump()
 	}
 }
 
 func cImgRtoL(img string, name string) (string, error) {
 	parts := strings.Split(img, "/")
-	if len(parts) <= 7 {
-		return "", fmt.Errorf("unexpected class img string (<7 parts): %s\n", img)
+	if len(parts) <= 5 {
+		return "", fmt.Errorf("unexpected class img string (<5 parts): %s\n", img)
 	}
-	file, err := url.QueryUnescape(parts[7])
+	var part string
+	if parts[3] == "thumb" {
+		part = parts[6]
+	} else {
+		part = parts[5]
+	}
+	file, err := url.QueryUnescape(part)
 	if err != nil {
 		return "", err
 	}
@@ -97,10 +129,14 @@ func cImgRtoL(img string, name string) (string, error) {
 
 func sImgRtoL(img string) (string, error) {
 	parts := strings.Split(img, "/")
-	if len(parts) <= 7 {
-		return "", fmt.Errorf("unexpected skill img string (<7 parts): %s\n", img)
+	if len(parts) <= 5 {
+		return "", fmt.Errorf("unexpected skill img string (<5 parts): %s\n", img)
 	}
-	parts = strings.Split(parts[7], "_-_")
+	if parts[3] == "thumb" {
+		parts = strings.Split(parts[6], "_-_")
+	} else {
+		parts = strings.Split(parts[5], "_-_")
+	}
 	if len(parts) <= 1 {
 		return "", fmt.Errorf("unexpected skill img string (no '_-_'): %s\n", img)
 	}
@@ -113,10 +149,14 @@ func sImgRtoL(img string) (string, error) {
 
 func eImgRtoL(img string) (string, error) {
 	parts := strings.Split(img, "/")
-	if len(parts) <= 7 {
-		return "", fmt.Errorf("unexpected skill img string (<7 parts): %s\n", img)
+	if len(parts) <= 5 {
+		return "", fmt.Errorf("unexpected skill img string (<5 parts): %s\n", img)
 	}
-	parts = strings.Split(parts[7], "_-_")
+	if parts[3] == "thumb" {
+		parts = strings.Split(parts[6], "_-_")
+	} else {
+		parts = strings.Split(parts[5], "_-_")
+	}
 	if len(parts) <= 1 {
 		return "", fmt.Errorf("unexpected skill img string (no '_-_'): %s\n", img)
 	}
@@ -181,177 +221,248 @@ func downloadCImages() {
 	}
 }
 
-func classesGen() {
-	doc, err := goquery.NewDocument("https://descent2e.wikia.com/wiki/Class")
+func genClass(url string, name string) class {
+	meta := class{}
+	meta.name = name
+	meta.url = url
+
+	doc, err := goquery.NewDocument(meta.url)
 	if err != nil {
 		panic(fmt.Sprintf("error on parsing: %s", err))
 	}
 
-	classMetadata := doc.Find(".mw-content-text").First()
-	classMetadata.Find("li").Each(func(i int, s1 *goquery.Selection) {
-		meta := class{}
-		meta.name = strings.TrimSpace(s1.Text())
-
-		classUrl, ok := s1.Find("a").Attr("href")
-		if !ok {
-			return
+	// meta.archetype = strings.TrimSuffix(strings.TrimSpace(doc.Find(".caption").Eq(1).Text()), ".")
+	doc.Find(".dablink").Remove()
+	doc.Find("div.notice").Remove()
+	content := doc.Find("#mw-content-text")
+	imageFound := false
+	if src, ok := content.Find(".thumbimage").Eq(0).Attr("srcset"); ok {
+		set := strings.Split(src, ", ")
+		if len(set) > 0 {
+			tmp := set[len(set)-1]
+			meta.img = strings.Split(tmp, " ")[0]
+			if meta.img != "" {
+				imageFound = true
+			}
 		}
-
-		meta.url = "http://descent2e.wikia.com" + classUrl
-		doc, err := goquery.NewDocument(meta.url)
-		if err != nil {
-			panic(fmt.Sprintf("error on parsing: %s", err))
-		}
-
-		// meta.archetype = strings.TrimSuffix(strings.TrimSpace(doc.Find(".caption").Eq(1).Text()), ".")
-		doc.Find(".dablink").Remove()
-		content := doc.Find("#mw-content-text")
+	}
+	if !imageFound {
 		src, ok := content.Find(".thumbimage").Eq(0).Attr("data-src")
 		if ok {
 			meta.img = strings.Split(src, "/scale-to-width-down")[0]
 		}
+	}
 
-		wikiCount := 0
-		meta.hybrid = false
-		content.Find("a").Each(func(i int, a *goquery.Selection) {
-			text := strings.TrimSpace(a.Text())
-			if len(text) == 0 {
+	content.Find(".mw-gallery-traditional").Remove()
+	content.Find("div.thumb").Remove()
+
+	wikiCount := 0
+	meta.hybrid = false
+	content.Find("a").Each(func(i int, a *goquery.Selection) {
+		text := strings.TrimSpace(a.Text())
+		if len(text) == 0 {
+			return
+		}
+		if text == "Heroes" {
+			return
+		}
+		if text == "Hybrid" {
+			meta.hybrid = true
+			return
+		}
+		if _, ok := a.Attr("href"); ok {
+			wikiCount++
+			if wikiCount == 1 {
+				meta.archetype = text
 				return
 			}
-			if strings.Contains(text, "stub") || strings.Contains(text, "expanding it or adding missing information") {
+			if wikiCount == 2 {
+				meta.expansion = text
 				return
 			}
-			if text == "Heroes" || text == "Hybrid" {
-				meta.hybrid = true
-				return
+		}
+	})
+
+	classTable := content.Find(".wikitable")
+	classTable.Find("tr").Each(func(i int, s1 *goquery.Selection) {
+		elements := s1.Find("td")
+		if elements.Length() == 0 {
+			return
+		}
+
+		sMeta := skill{}
+		sMeta.name = strings.TrimSpace(elements.Eq(0).Text())
+		sMeta.xp, _ = strconv.Atoi(strings.TrimSpace(elements.Eq(1).Text()))
+		sMeta.text = strings.TrimSpace(elements.Eq(2).Text())
+		sMeta.cost, _ = strconv.Atoi(strings.TrimSpace(elements.Eq(3).Text()))
+
+		aTag := elements.Eq(0).Find("a")
+		if skillUrl, ok := aTag.Attr("href"); ok {
+			skillUrl = wikiUrl + skillUrl
+			doc, err := goquery.NewDocument(skillUrl)
+			if err != nil {
+				panic(fmt.Sprintf("error on parsing: %s", err))
 			}
-			if href, ok := a.Attr("href"); ok {
-				if strings.HasPrefix(href, "/wiki/") {
-					wikiCount++
-					if wikiCount == 1 {
-						meta.archetype = text
-						return
-					}
-					if wikiCount == 2 {
-						meta.expansion = text
-						return
+
+			img := doc.Find(".wikitable").Find("a").First().Find("img").Eq(0)
+			imageFound := false
+			if src, ok := img.Attr("srcset"); ok {
+				set := strings.Split(src, ", ")
+				if len(set) > 0 {
+					tmp := set[len(set)-1]
+					sMeta.img = strings.Split(tmp, " ")[0]
+					if sMeta.img != "" {
+						imageFound = true
 					}
 				}
 			}
-		})
-
-		classTable := content.Find(".wikitable")
-		classTable.Find("tr").Each(func(i int, s1 *goquery.Selection) {
-			elements := s1.Find("td")
-			if elements.Length() == 0 {
-				return
-			}
-
-			sMeta := skill{}
-			sMeta.name = strings.TrimSpace(elements.Eq(0).Text())
-			sMeta.xp, _ = strconv.Atoi(strings.TrimSpace(elements.Eq(1).Text()))
-			sMeta.text = strings.TrimSpace(elements.Eq(2).Text())
-			sMeta.cost, _ = strconv.Atoi(strings.TrimSpace(elements.Eq(3).Text()))
-
-			aTag := elements.Eq(0).Find("a")
-			if skillUrl, ok := aTag.Attr("href"); ok {
-				skillUrl = "http://descent2e.wikia.com" + skillUrl
-				doc, err := goquery.NewDocument(skillUrl)
-				if err != nil {
-					panic(fmt.Sprintf("error on parsing: %s", err))
-				}
-
-				if src, ok := doc.Find(".wikitable").Find("a").First().Find("img").Eq(0).Attr("src"); ok {
+			if !imageFound {
+				if src, ok := img.Attr("src"); ok {
 					sMeta.img = strings.Split(src, "/scale-to-width-down")[0]
 					if src[:10] == "data:image" {
-						if src, ok := doc.Find(".wikitable").Find("a").First().Find("img").Eq(0).Attr("data-src"); ok {
+						if src, ok := img.Attr("data-src"); ok {
 							sMeta.img = strings.Split(src, "/scale-to-width-down")[0]
 						}
 					}
 				}
 			}
+		}
 
-			meta.skills = append(meta.skills, sMeta)
-		})
+		sMeta.class = meta.name
+		meta.skills = append(meta.skills, sMeta)
+	})
 
-		italics := true
-		doc.Find("p").Each(func(i int, p *goquery.Selection) {
-			text := strings.TrimSpace(p.Text())
-			if strings.Contains(strings.ToLower(text), "starting equipment") {
-				p.Find("a").Each(func(i int, a *goquery.Selection) {
-					if href, ok := a.Attr("href"); ok {
-						href := "https://descent2e.wikia.com/wiki/" + strings.Split(href, "/wiki/")[1]
-						doc, err := goquery.NewDocument(href)
-						if err != nil {
-							panic(fmt.Sprintf("error on parsing: %s", err))
-						}
-						e := equipment{}
-						e.name = strings.TrimSpace(doc.Find(".wikitable").Find("div").Eq(0).Text())
-						for i, s := range meta.skills {
-							if s.name == e.name {
-								if startingSkillsInEquipmentSection {
-									meta.skills = append(meta.skills[:i], meta.skills[i+1:]...)
-									break
-								} else {
-									return
-								}
-							}
-						}
-						e.typ = strings.TrimSpace(doc.Find(".wikitable").Find("tr").Eq(7).Find("td").Eq(1).Text())
-						if src, ok := doc.Find(".wikitable").Find("img").Eq(0).Attr("src"); ok {
-							e.img = strings.Split(src, "/scale-to-width-down")[0]
-							if e.img[:10] == "data:image" {
-								if src, ok := doc.Find(".wikitable").Find("img").Eq(0).Attr("data-src"); ok {
-									e.img = strings.Split(src, "/scale-to-width-down")[0]
-								}
-							}
-							meta.equipments = append(meta.equipments, e)
+	content.Find(".wikitable").Remove()
+	text := strings.TrimSpace(content.Text())
+	if strings.Contains(strings.ToLower(text), "starting equipment") {
+		content.Find("a").Each(func(i int, a *goquery.Selection) {
+			if href, ok := a.Attr("href"); ok {
+				doc, err := goquery.NewDocument(wikiUrl + href)
+				if err != nil {
+					panic(fmt.Sprintf("error on parsing: %s", err))
+				}
+				e := equipment{}
+				e.name = strings.TrimSpace(doc.Find(".wikitable").Find("div").Eq(0).Text())
+				for i, s := range meta.skills {
+					if s.name == e.name {
+						if startingSkillsInEquipmentSection {
+							meta.skills = append(meta.skills[:i], meta.skills[i+1:]...)
+							break
+						} else {
+							return
 						}
 					}
-					return
-				})
-				return
+				}
+				e.typ = strings.TrimSpace(doc.Find(".wikitable").Find("tr").Eq(7).Find("td").Eq(1).Text())
+				img := doc.Find(".wikitable").Find("img").Eq(0)
+				imageFound := false
+				if src, ok := img.Attr("srcset"); ok {
+					set := strings.Split(src, ", ")
+					if len(set) > 0 {
+						tmp := set[len(set)-1]
+						e.img = strings.Split(tmp, " ")[0]
+						if e.img != "" {
+							imageFound = true
+						}
+					}
+				}
+				if !imageFound {
+					if src, ok := img.Attr("src"); ok {
+						imageFound = true
+						e.img = strings.Split(src, "/scale-to-width-down")[0]
+						if e.img[:10] == "data:image" {
+							if src, ok := img.Attr("data-src"); ok {
+								e.img = strings.Split(src, "/scale-to-width-down")[0]
+							}
+						}
+					}
+				}
+				if imageFound && e.typ != "" && e.name != "" {
+					e.class = meta.name
+					meta.equipments = append(meta.equipments, e)
+				}
 			}
-			if p.HasClass("caption") {
-				return
-			}
-			if filterText(text) {
-				return
-			}
-			if len(text) < len(meta.description) {
-				return
-			}
-			if p.Find("i").Length() > 0 && !italics {
-				return
-			}
-			if p.Find("i").Length() == 0 {
-				italics = false
-			}
-
-			meta.description = text
-			// fmt.Printf("%d:%s => [%s]\n", i, meta.name, text)
+			return
 		})
-		// NOTE: this is destructive to the doc
-		text := strings.TrimSpace(content.Children().Remove().End().Text())
-		if filterText(text) {
-			text = ""
+	}
+	// NOTE: this is destructive to the doc
+	// text := strings.TrimSpace(content.Children().Remove().End().Text())
+	// if filterText(text) {
+	// 	text = ""
+	// }
+	// if len(text) > len(meta.description) {
+	// 	meta.description = text
+	// }
+
+	url = fmt.Sprintf(wikiUrl+"/File:Back_-_%s.png", strings.Replace(meta.name, " ", "_", -1))
+	doc, err = goquery.NewDocument(url)
+	if err != nil {
+		panic(fmt.Sprintf("error on parsing: %s", err))
+	}
+	src, ok := doc.Find(".fullImageLink").Find("img").Eq(0).Attr("src")
+	if ok {
+		meta.img = wikiUrl + "/" + src
+	}
+
+	// OLD METHOD:
+	// content.Find("h2").Remove()
+	// content.Find(".wikitable").Remove()
+	// paras := strings.Split(content.Text(), "\n")
+	// for _, p := range paras {
+	// 	text := strings.TrimSpace(p)
+	// 	if text != "" {
+	// 		if meta.description != "" {
+	// 			meta.description += "\n"
+	// 		}
+	// 		meta.description += text
+	// 	}
+	// }
+	// fmt.Printf("%s: [%s]\n", meta.name, meta.description)
+	meta.description = descMap[meta.name]
+	hybridMap[meta.name] = meta.hybrid
+	return meta
+}
+
+var descMap = make(map[string]string)
+
+func loadDescriptions() error {
+	dat, err := ioutil.ReadFile("./classes/descriptions.txt")
+	if err != nil {
+		return err
+	}
+	for _, line := range strings.Split(string(dat), "\n") {
+		arr := strings.Split(line, ": ")
+		if len(arr) != 2 {
+			return fmt.Errorf("unexpected line format: %s", line)
 		}
-		if len(text) > len(meta.description) {
-			meta.description = text
+		class := arr[0]
+		desc := arr[1]
+		descMap[class] = desc
+	}
+	return nil
+}
+
+func classesGen() {
+	if err := loadDescriptions(); err != nil {
+		panic(err)
+	}
+
+	doc, err := goquery.NewDocument(wikiUrl + "/Classes")
+	if err != nil {
+		panic(fmt.Sprintf("error on parsing: %s", err))
+	}
+
+	classMetadata := doc.Find("#mw-content-text").First()
+	classMetadata.Find("li").Each(func(_ int, s1 *goquery.Selection) {
+		classUrl, ok := s1.Find("a").Attr("href")
+		if !ok {
+			return
 		}
 
-		url := fmt.Sprintf("https://wiki.descent-community.org/File:Back_-_%s.png", strings.Replace(meta.name, " ", "_", -1))
-		doc, err = goquery.NewDocument(url)
-		if err != nil {
-			panic(fmt.Sprintf("error on parsing: %s", err))
-		}
-		src, ok = doc.Find(".fullImageLink").Find("img").Eq(0).Attr("src")
-		if ok {
-			meta.img = "https://wiki.descent-community.org/" + src
-		}
-
+		name := strings.TrimSpace(s1.Text())
+		class := genClass(wikiUrl+classUrl, name)
 		// fmt.Printf("%s => TEXT: [%s]\n", meta.name, text)
-		classes = append(classes, meta)
+		classes = append(classes, class)
 	})
 
 	// dumpClasses()
@@ -372,8 +483,30 @@ func classesGen() {
 
 func fixClasses() {
 	var err error
+	sort.Slice(classes, func(i, j int) bool {
+		if classes[i].archetype < classes[j].archetype {
+			return true
+		}
+		if classes[i].archetype > classes[j].archetype {
+			return false
+		}
+		if classes[i].archetype == classes[j].archetype {
+			if !classes[i].hybrid && classes[j].hybrid {
+				return true
+			}
+			if classes[i].hybrid && !classes[j].hybrid {
+				return false
+			}
+		}
+		if classes[i].name < classes[j].name {
+			return true
+		}
+		if classes[i].name > classes[j].name {
+			return false
+		}
+		return false
+	})
 	for i, c := range classes {
-		// c.expImg
 		c.expImg = ""
 		imgFile := "expansions/" + strings.Replace(c.expansion, " ", "_", -1) + ".svg"
 		if _, err := os.Stat(imgFile); !os.IsNotExist(err) {
@@ -487,7 +620,11 @@ func outputCTableRow(w *bufio.Writer, c1 class, c2 *class) {
 	fmt.Fprintf(w, "<tr class=\"%s %s %s\" style=\"display:none;\">\n", arch1, arch2, exp)
 	fmt.Fprintf(w, "<td class=\"expansion\">%s</td>\n", c1.expImg)
 	fmt.Fprintf(w, "<td class=\"class\">")
-	fmt.Fprintf(w, "<span title=\"%s\">", html.EscapeString(c1.description))
+	if c1.hybrid {
+		fmt.Fprintf(w, "<span title=\"%s\">", html.EscapeString(c1.description+"\n"+c2.description))
+	} else {
+		fmt.Fprintf(w, "<span title=\"%s\">", html.EscapeString(c1.description))
+	}
 	fmt.Fprintf(w, "<a href=\"%s\" class=\"class\">", c1.url)
 	fmt.Fprintf(w, "<div class=\"divImage\">")
 	exists := true
@@ -516,7 +653,10 @@ func outputCTableRow(w *bufio.Writer, c1 class, c2 *class) {
 			fmt.Fprintf(w, "<div class=\"className hybrid\">%s<br>%s</div>", c1.name, c2.name)
 		}
 	}
-	fmt.Fprintf(w, "%c</div>", c1.archetype[0])
+	if len(c1.archetype) > 0 {
+		fmt.Fprintf(w, "%c", c1.archetype[0])
+	}
+	fmt.Fprintf(w, "</div>")
 	fmt.Fprintf(w, "</a></span></td>\n")
 
 	sort.Slice(c1.equipments, func(i, j int) bool {
@@ -591,7 +731,21 @@ func outputCTableRow(w *bufio.Writer, c1 class, c2 *class) {
 		}
 	}
 
-	sort.Slice(skillPool, func(i, j int) bool { return skillPool[i].xp < skillPool[j].xp })
+	sort.Slice(skillPool, func(i, j int) bool {
+		if skillPool[i].xp < skillPool[j].xp {
+			return true
+		}
+		if skillPool[i].xp > skillPool[j].xp {
+			return false
+		}
+		if hybridMap[skillPool[i].class] && !hybridMap[skillPool[j].class] {
+			return true
+		}
+		if !hybridMap[skillPool[i].class] && hybridMap[skillPool[j].class] {
+			return false
+		}
+		return skillPool[i].name < skillPool[j].name
+	})
 	for _, s := range skillPool {
 		img := s.img
 		if img == "" {

@@ -17,8 +17,6 @@ import (
 	"github.com/theanine/utils"
 )
 
-const oldWiki = "https://descent2e.wikia.com/wiki/Overlord_Card"
-const wikiUrl = "http://wiki.descent-community.org"
 const overlordHtml = "overlord.html"
 const overlordImg = "olcards/Overlord_Card_Back.png"
 
