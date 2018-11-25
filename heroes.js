@@ -30,6 +30,7 @@ function trigger(select)
 {
 	showHideArrows($(select));
 	showHideRows();
+	doSearch();
 }
 
 function onload()
@@ -49,6 +50,60 @@ function onload()
 			sortRestart    : true
 		});
 	}
+}
+
+function doSearch() {
+	var input = document.getElementById('search-input');
+	if (input == null)
+		return;
+	var filter = input.value.toUpperCase();
+	$("tr", "#classTable").each(function(i, tr){
+		var trHide = null
+		$(tr).find('img.equipment').each(function(j, img){
+			if (trHide == null) {
+				trHide = true
+			}
+			var alt = $(img).attr("alt");
+			var text = $(img).attr("text");
+			if (filter == "") {
+				$(img).show();
+				trHide = false
+			} else if (typeof alt === "undefined" || typeof text === "undefined") {
+				$(img).hide();
+			} else if (alt.toUpperCase().indexOf(filter) > -1 || text.toUpperCase().indexOf(filter) > -1) {
+				$(img).show();
+				trHide = false
+			} else {
+				$(img).hide();
+			}
+		});
+		$(tr).find('img.skill').each(function(j, img){
+			if (trHide == null) {
+				trHide = true
+			}
+			var alt = $(img).attr("alt");
+			var text = $(img).attr("text");
+			if (filter == "") {
+				$(img).show();
+				trHide = false
+			} else if (typeof alt === "undefined" || typeof text === "undefined") {
+				$(img).hide();
+			} else if (alt.toUpperCase().indexOf(filter) > -1 || text.toUpperCase().indexOf(filter) > -1) {
+				$(img).show();
+				trHide = false
+			} else {
+				$(img).hide();
+			}
+		});
+		if (trHide) {
+			$(tr).hide();
+		}
+	});
+}
+
+function search() {
+	showHideRows();
+	doSearch();
 }
 
 function showHideArrows(select)

@@ -23,10 +23,10 @@ const startingSkillsInEquipmentSection = true
 type skill struct {
 	class string
 	name  string
-	xp    int
-	text  string
-	cost  int
 	img   string
+	xp    int
+	cost  int
+	text  string
 }
 
 type equipment struct {
@@ -34,6 +34,9 @@ type equipment struct {
 	name  string
 	typ   string // "Familiar", "Item", "Skill"
 	img   string
+	xp    int
+	cost  int
+	text  string
 }
 
 type class struct {
@@ -98,10 +101,22 @@ func (c *class) dump() {
 	fmt.Printf("|%s\n", c.description)
 }
 
+func (s *skill) dump() {
+	fmt.Printf("[%s] [%d] [%d] [%s] %s\n", s.class, s.xp, s.cost, s.name, s.text)
+}
+
 func dumpClasses() {
 	fmt.Printf("Classes: %d\n", len(classes))
 	for _, c := range classes {
 		c.dump()
+	}
+}
+
+func dumpSkills() {
+	for _, c := range classes {
+		for _, s := range c.skills {
+			s.dump()
+		}
 	}
 }
 
@@ -221,6 +236,47 @@ func downloadCImages() {
 	}
 }
 
+func iconsToText(s *goquery.Selection) *goquery.Selection {
+	s.Find("img.icon").Each(func(i int, img *goquery.Selection) {
+		if src, ok := img.Attr("src"); ok {
+			img.ReplaceWithHtml(strings.Split(src, ".")[0])
+		}
+	})
+	s.Find("span").Each(func(i int, span *goquery.Selection) {
+		text := strings.TrimSpace(span.Text())
+		if text == "𝄞" {
+			span.ReplaceWithHtml("Melody")
+		} else if text == "𝄢" {
+			span.ReplaceWithHtml("Harmony")
+		}
+	})
+	s.Find("br").ReplaceWithHtml(" ")
+	s.Find("i").Each(func(i int, iTag *goquery.Selection) {
+		iTag.ReplaceWithHtml(iTag.Text())
+	})
+	s.Find("b").Each(func(i int, bTag *goquery.Selection) {
+		bTag.ReplaceWithHtml(bTag.Text())
+	})
+	s.Find("a").Each(func(i int, aTag *goquery.Selection) {
+		if title, ok := aTag.Attr("title"); ok {
+			aTag.ReplaceWithHtml(title)
+		}
+	})
+	return s
+}
+
+func tdToSkill(td *goquery.Selection) string {
+	td = replaceIcons(td)
+	td = iconsToText(td)
+	// s, _ := td.Html()
+	s := td.Text()
+	skill := strings.Join(strings.Fields(s), " ")
+	if skill == "" {
+		skill = strings.TrimSpace(td.Text())
+	}
+	return skill
+}
+
 func genClass(url string, name string) class {
 	meta := class{}
 	meta.name = name
@@ -293,7 +349,7 @@ func genClass(url string, name string) class {
 		sMeta := skill{}
 		sMeta.name = strings.TrimSpace(elements.Eq(0).Text())
 		sMeta.xp, _ = strconv.Atoi(strings.TrimSpace(elements.Eq(1).Text()))
-		sMeta.text = strings.TrimSpace(elements.Eq(2).Text())
+		sMeta.text = tdToSkill(elements.Eq(2))
 		sMeta.cost, _ = strconv.Atoi(strings.TrimSpace(elements.Eq(3).Text()))
 
 		aTag := elements.Eq(0).Find("a")
@@ -354,6 +410,17 @@ func genClass(url string, name string) class {
 					}
 				}
 				e.typ = strings.TrimSpace(doc.Find(".wikitable").Find("tr").Eq(7).Find("td").Eq(1).Text())
+				e.xp = 0
+				if e.typ == "Skill" {
+					val := strings.TrimSpace(doc.Find(".wikitable").Find("tr").Eq(8).Find("td").Eq(1).Text())
+					if val != "" {
+						if e.cost, err = strconv.Atoi(val); err != nil {
+							panic(err)
+						}
+					}
+				} else {
+					e.cost = 0
+				}
 				img := doc.Find(".wikitable").Find("img").Eq(0)
 				imageFound := false
 				if src, ok := img.Attr("srcset"); ok {
@@ -377,6 +444,8 @@ func genClass(url string, name string) class {
 						}
 					}
 				}
+				doc.Find(".wikitable").Remove()
+				e.text = tdToSkill(doc.Find("table"))
 				if imageFound && e.typ != "" && e.name != "" {
 					e.class = meta.name
 					meta.equipments = append(meta.equipments, e)
@@ -466,6 +535,7 @@ func classesGen() {
 	})
 
 	// dumpClasses()
+	dumpSkills()
 
 	f, err := os.Create(classesHtml)
 	if err != nil {
@@ -605,8 +675,9 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", strings.ToLower(k), k)
 	}
 	fmt.Fprintf(w, "</select></div></td>\n")
-	fmt.Fprintf(w, "<td class=\"equipment\"><div></div></td>\n")
-	fmt.Fprintf(w, "<td class=\"skill\"><div></div></td>\n")
+	fmt.Fprintf(w, "<td class=\"search\" colspan=\"2\"><div class=\"search\">\n")
+	fmt.Fprintf(w, "<input type=\"text\" class=\"search-input\" id=\"search-input\" name=\"search\" placeholder=\"Search\" onkeyup=\"search()\"/>\n")
+	fmt.Fprintf(w, "<input type=\"submit\" class=\"search-submit\"/></div></td>\n")
 	fmt.Fprintf(w, "</tr></thead><tbody class=\"classes\">\n\n")
 }
 
@@ -700,14 +771,16 @@ func outputCTableRow(w *bufio.Writer, c1 class, c2 *class) {
 		if e.img == "" {
 			e.img = "skills/blank.png"
 		}
-		fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\">", e.img, e.typ)
+		// fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\">", e.img, e.typ)
+		fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\" alt=\"%s\" text=\"%s\" cost=\"%d\" xp=\"%d\">", e.img, e.typ, e.name, e.text, e.cost, e.xp)
 	}
 	if c1.hybrid {
 		for _, e := range c2.equipments {
 			if e.img == "" {
 				e.img = "skills/blank.png"
 			}
-			fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\">", e.img, e.typ)
+			// fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\">", e.img, e.typ)
+			fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\" alt=\"%s\" text=\"%s\" cost=\"%d\" xp=\"%d\">", e.img, e.typ, e.name, e.text, e.cost, e.xp)
 		}
 	}
 	fmt.Fprintf(w, "</td>")
@@ -751,7 +824,7 @@ func outputCTableRow(w *bufio.Writer, c1 class, c2 *class) {
 		if img == "" {
 			img = "skills/blank.png"
 		}
-		fmt.Fprintf(w, "<img src=\"%s\" class=\"skill\">", img)
+		fmt.Fprintf(w, "<img src=\"%s\" class=\"skill\" alt=\"%s\" text=\"%s\" cost=\"%d\" xp=\"%d\">", img, s.name, s.text, s.cost, s.xp)
 	}
 	fmt.Fprintf(w, "</td></tr>\n\n")
 }

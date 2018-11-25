@@ -39,6 +39,34 @@ select {
 	font-family: 'Garamond';
 }
 
+div.search {
+	padding-left: 0px;
+	margin-left: 0px;
+	position: relative;
+}
+.search-input {
+	height: 18px;
+	width: 100%;
+	font-weight: bold;
+	-moz-box-shadow: 1px 1px 1px rgba(255,255,255,0.1); /* Firefox */
+	-webkit-box-shadow: 1px 1px 1px rgba(255,255,255,0.1); /* Safari, Chrome */
+	box-shadow: 1px 1px 1px rgba(255,255,255,0.1); /* CSS3 */
+}
+.search-input:focus {outline: none;}
+.search-submit {
+	width: 13px;
+	height: 13px;
+	border: none;
+	background: url(lib/dark-nav-buttons/mag-glass.png) no-repeat;
+	display: block;
+	position: absolute;
+	text-indent: -9999em;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	right: 5px;
+}
+
 /*
 td.hero {
 	font-size: 16px;
@@ -356,6 +384,13 @@ table th.class, table td.class{
 	/*max-width:calc(250px / 2);*/
 	min-width:calc((100vw - 28px - 30px) / 14);
 	max-width:calc((100vw - 28px - 30px) / 14);
+}
+
+table th.search, table td.search {
+	/*min-width:calc(9 * 125px);*/
+	/*max-width:calc(9 * 125px);*/
+	min-width:calc(13 * (100vw - 28px - 30px) / 14);
+	max-width:calc(13 * (100vw - 28px - 30px) / 14);
 }
 
 table th.equipment, table td.equipment{
