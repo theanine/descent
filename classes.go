@@ -30,13 +30,15 @@ type skill struct {
 }
 
 type equipment struct {
-	class string
-	name  string
-	typ   string // "Familiar", "Item", "Skill"
-	img   string
-	xp    int
-	cost  int
-	text  string
+	class  string
+	name   string
+	typ    string // "Familiar", "Item", "Skill"
+	img    string
+	xp     int
+	cost   int
+	text   string
+	ranged string
+	traits []string
 }
 
 type class struct {
@@ -410,6 +412,20 @@ func genClass(url string, name string) class {
 					}
 				}
 				e.typ = strings.TrimSpace(doc.Find(".wikitable").Find("tr").Eq(7).Find("td").Eq(1).Text())
+				if e.typ == "Item" {
+					doc.Find(".wikitable").Find("tr").Each(func(i int, tr *goquery.Selection) {
+						td := strings.TrimSpace(tr.Find("td").Eq(0).Text())
+						if td == "Range:" {
+							e.ranged = strings.TrimSpace(tr.Find("td").Eq(1).Text())
+						}
+						if td == "Trait:" || td == "Traits:" {
+							traits := strings.TrimSpace(tr.Find("td").Eq(1).Text())
+							for _, trait := range strings.Split(traits, ", ") {
+								e.traits = append(e.traits, strings.TrimSpace(trait))
+							}
+						}
+					})
+				}
 				e.xp = 0
 				if e.typ == "Skill" {
 					val := strings.TrimSpace(doc.Find(".wikitable").Find("tr").Eq(8).Find("td").Eq(1).Text())
@@ -772,7 +788,8 @@ func outputCTableRow(w *bufio.Writer, c1 class, c2 *class) {
 			e.img = "skills/blank.png"
 		}
 		// fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\">", e.img, e.typ)
-		fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\" alt=\"%s\" text=\"%s\" cost=\"%d\" xp=\"%d\">", e.img, e.typ, e.name, e.text, e.cost, e.xp)
+		t := strings.Join(e.traits, " ")
+		fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\" alt=\"%s\" text=\"%s\" cost=\"%d\" xp=\"%d\" ranged=\"%s\" traits=\"%s\">", e.img, e.typ, e.name, e.text, e.cost, e.xp, e.ranged, t)
 	}
 	if c1.hybrid {
 		for _, e := range c2.equipments {
@@ -780,7 +797,8 @@ func outputCTableRow(w *bufio.Writer, c1 class, c2 *class) {
 				e.img = "skills/blank.png"
 			}
 			// fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\">", e.img, e.typ)
-			fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\" alt=\"%s\" text=\"%s\" cost=\"%d\" xp=\"%d\">", e.img, e.typ, e.name, e.text, e.cost, e.xp)
+			t := strings.Join(e.traits, " ")
+			fmt.Fprintf(w, "<img src=\"%s\" class=\"equipment e%s\" alt=\"%s\" text=\"%s\" cost=\"%d\" xp=\"%d\" ranged=\"%s\" traits=\"%s\">", e.img, e.typ, e.name, e.text, e.cost, e.xp, e.ranged, t)
 		}
 	}
 	fmt.Fprintf(w, "</td>")

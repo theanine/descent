@@ -59,18 +59,21 @@ function doSearch() {
 	var filter = input.value.toUpperCase();
 	$("tr", "table").each(function(i, tr){
 		var trHide = null
+		// CLASSES
 		$(tr).find('img.equipment').each(function(j, img){
 			if (trHide == null) {
 				trHide = true
 			}
 			var alt = $(img).attr("alt");
 			var text = $(img).attr("text");
+			var ranged = $(img).attr("ranged");
+			var traits = $(img).attr("traits");
 			if (filter == "") {
 				$(img).show();
 				trHide = false
-			} else if (typeof alt === "undefined" || typeof text === "undefined") {
+			} else if (typeof alt === "undefined" || typeof text === "undefined" || typeof ranged === "undefined" || typeof traits === "undefined") {
 				$(img).hide();
-			} else if (alt.toUpperCase().indexOf(filter) > -1 || text.toUpperCase().indexOf(filter) > -1) {
+			} else if (alt.toUpperCase().indexOf(filter) > -1 || text.toUpperCase().indexOf(filter) > -1 || ranged.toUpperCase().indexOf(filter) > -1 || traits.toUpperCase().indexOf(filter) > -1) {
 				$(img).show();
 				trHide = false
 			} else {
@@ -83,18 +86,22 @@ function doSearch() {
 			}
 			var alt = $(img).attr("alt");
 			var text = $(img).attr("text");
+			var ranged = $(img).attr("ranged");
+			var traits = $(img).attr("traits");
 			if (filter == "") {
 				$(img).show();
 				trHide = false
-			} else if (typeof alt === "undefined" || typeof text === "undefined") {
-				$(img).hide();
-			} else if (alt.toUpperCase().indexOf(filter) > -1 || text.toUpperCase().indexOf(filter) > -1) {
+			} else if ( (typeof alt !== "undefined" && alt.toUpperCase().indexOf(filter) > -1) ||
+						(typeof text !== "undefined" && text.toUpperCase().indexOf(filter) > -1) ||
+						(typeof ranged !== "undefined" && ranged.toUpperCase().indexOf(filter) > -1) ||
+						(typeof traits !== "undefined" && traits.toUpperCase().indexOf(filter) > -1)) {
 				$(img).show();
 				trHide = false
 			} else {
 				$(img).hide();
 			}
 		});
+		// HEROES
 		$(tr).find('td.ability').each(function(j, td){
 			if (trHide == null) {
 				trHide = true
@@ -133,6 +140,7 @@ function doSearch() {
 				trHide = false
 			}
 		});
+		// OVERLORD
 		$(tr).find('div.cardContainer').each(function(j, div){
 			if (trHide == null) {
 				trHide = true
