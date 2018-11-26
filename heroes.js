@@ -133,6 +133,25 @@ function doSearch() {
 				trHide = false
 			}
 		});
+		$(tr).find('div.cardContainer').each(function(j, div){
+			if (trHide == null) {
+				trHide = true
+			}
+			var alt = $(div).find("img").attr("alt");
+			var type = $(div).find("img").attr("type");
+			var text = $(div).find("img").attr("text");
+			if (filter == "") {
+				$(div).show();
+				trHide = false
+			} else if (typeof alt === "undefined" || typeof type === "undefined" || typeof text === "undefined") {
+				$(div).hide();
+			} else if (alt.toUpperCase().indexOf(filter) > -1 || type.toUpperCase().indexOf(filter) > -1 || text.toUpperCase().indexOf(filter) > -1) {
+				$(div).show();
+				trHide = false
+			} else {
+				$(div).hide();
+			}
+		});
 		if (trHide) {
 			$(tr).hide();
 		}

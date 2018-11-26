@@ -28,6 +28,7 @@ type card struct {
 	expImg string
 	typ    string
 	cost   int
+	text   string
 }
 
 type overlord struct {
@@ -156,6 +157,7 @@ func overlordGen() {
 
 				typeFound := false
 				costFound := false
+				expFound := false
 				wikitable := doc.Find(".wikitable")
 				wikitable.Find("td").Each(func(i int, t *goquery.Selection) {
 					text := strings.TrimSpace(t.Text())
@@ -180,6 +182,16 @@ func overlordGen() {
 					}
 					if text == "XP cost:" {
 						costFound = true
+					}
+					if expFound {
+						exp := strings.Split(text, " ")[0]
+						if exp != "" {
+							olCard.exp = expCodes[exp]
+						}
+						expFound = false
+					}
+					if text == "Expansion" {
+						expFound = true
 					}
 				})
 
@@ -208,6 +220,9 @@ func overlordGen() {
 						}
 					}
 				}
+
+				doc.Find(".wikitable").Remove()
+				olCard.text = tdToSkill(doc.Find("table"))
 			}
 
 			qty := strings.TrimSpace(l1.Children().Remove().End().Text())
@@ -371,13 +386,9 @@ Send your overlord to get some Coufee and they'll be adventuring in no time!`)
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", strings.ToLower(arch), arch)
 	}
 	fmt.Fprintf(w, "</select></div></td>\n")
-	fmt.Fprintf(w, "<td class=\"cards\"><div><select id=\"selectCards\" onchange=\"trigger(this)\">\n")
-	fmt.Fprintf(w, "<option value=\"\"></option>\n")
-	types := overlordUniqSortTypes()
-	for _, typ := range types {
-		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", strings.ToLower(typ), typ)
-	}
-	fmt.Fprintf(w, "</select></div></td>\n")
+	fmt.Fprintf(w, "<td class=\"oSearch\"><div class=\"search\">\n")
+	fmt.Fprintf(w, "<input type=\"text\" class=\"search-input\" id=\"search-input\" name=\"search\" placeholder=\"Search\" onkeyup=\"search()\"/>\n")
+	fmt.Fprintf(w, "<input type=\"submit\" class=\"search-submit\"/></div></td>\n")
 	fmt.Fprintf(w, "</tr></thead><tbody class=\"overlord\">\n\n")
 }
 
@@ -387,7 +398,7 @@ func outputOTableRow(w *bufio.Writer, o overlord) {
 	fmt.Fprintf(w, "<span title=\"%s\">", html.EscapeString(o.description))
 	fmt.Fprintf(w, "<a href=\"%s\" class=\"overlord\">", o.url)
 	fmt.Fprintf(w, "<div class=\"divImage\">")
-	fmt.Fprintf(w, "<img src=\"%s\" class=\"overlord\">", overlordImg)
+	fmt.Fprintf(w, "<img src=\"%s\" class=\"overlord\" >", overlordImg)
 	fmt.Fprintf(w, "<div class=\"archetype\">%s</div>", o.archetype)
 	fmt.Fprintf(w, "</div>")
 	fmt.Fprintf(w, "</a></span></td>\n")
@@ -399,7 +410,7 @@ func outputOTableRow(w *bufio.Writer, o overlord) {
 			continue
 		}
 		fmt.Fprintf(w, "<div class=\"cardContainer %s\">", strings.ToLower(c.typ))
-		fmt.Fprintf(w, "<img src=\"%s\" alt=\"%s\" class=\"cards\">", c.img, c.name)
+		fmt.Fprintf(w, "<img src=\"%s\" class=\"cards\" exp=\"%s\" alt=\"%s\" cost=\"%d\" type=\"%s\" text=\"%s\">", c.img, c.exp, c.name, c.cost, c.typ, c.text)
 		if c.qty > 1 {
 			fmt.Fprintf(w, "<div class=\"quantity\">%d</div>", c.qty)
 		} else {

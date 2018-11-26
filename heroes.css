@@ -391,10 +391,13 @@ table th.hSearch, table td.hSearch {
 }
 
 table th.cSearch, table td.cSearch {
-	/*min-width:calc(9 * 125px);*/
-	/*max-width:calc(9 * 125px);*/
 	min-width:calc(13 * (100vw - 28px - 30px) / 14);
 	max-width:calc(13 * (100vw - 28px - 30px) / 14);
+}
+
+table th.oSearch, table td.oSearch {
+	min-width:calc(11 * (100vw - 28px - 30px) / 14);
+	max-width:calc(11 * (100vw - 28px - 30px) / 14);
 }
 
 table th.equipment, table td.equipment{
