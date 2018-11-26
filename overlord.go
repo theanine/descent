@@ -406,8 +406,7 @@ func outputOTableRow(w *bufio.Writer, o overlord) {
 	fmt.Fprintf(w, "<td class=\"cards\">")
 	for _, c := range o.cards {
 		if c.img == "" || c.img == "olcards/Back_-_Overlord_Card.png" {
-			// TODO: fix these
-			continue
+			c.img = "olcards/" + strings.Replace(c.name, " ", "_", -1) + ".png"
 		}
 		fmt.Fprintf(w, "<div class=\"cardContainer %s\">", strings.ToLower(c.typ))
 		fmt.Fprintf(w, "<img src=\"%s\" class=\"cards\" exp=\"%s\" alt=\"%s\" cost=\"%d\" type=\"%s\" text=\"%s\">", c.img, c.exp, c.name, c.cost, c.typ, c.text)
