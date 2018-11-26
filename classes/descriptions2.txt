@@ -1,0 +1,51 @@
+Apothecary: Through the use of Elixirs, you can heal and support you and your companions on a steady basis. Your unique Smoking Vials weapon can produce surprising damaging results. As you progress, you gain more supportive abilities in healing, combat and more.
+
+Bard: Through the majesty of song, you recover fatigue and heal fellow party members. You progress to enhance the potency of your music for not only support to your party but also to the detriments of your enemies. And yes, you start with a Lute.
+
+Battlemage: 
+
+Beastmaster: With two one handed starting weapons and your Wolf familiar, you have the advantage of variety and numerous attacks each turn. Your bond with your Wolf provides great benefits in deadly combat and other abilities as you progress. 
+
+Berserker: You are a heavy damage dealing rage filled nightmare to your enemy and progress to gain more opportunities to attack and deal damage than your companions. 
+
+Bounty Hunter: Through the use of tracking, you are a highly strategic and efficient killer. Monsters within your line of sight can be tracked for later gains. To start, you deal greater damage to tracked monsters. Your tracking also progresses to allow you to further hinder enemies' movement and deal even greater damage. You are also quite the formidable jack of all trades progressing your attack, defense, movement and search capabilities.
+
+Champion: Through the use of Valor, your inspiring presence grants the entire party increased damage dealing. You progress to provide further group benefits including restored healing, fatigue and more. 
+
+Conjurer: You replicate yourself through illusory means called images. Using these images, you can hamper enemies movement and extend the range of your magical attacks. Your use of images progresses to enhance crowd control and enemy damage while keeping them a safe distance from you and your allies.
+
+Disciple: Your holy faith gives you and your party righteous benefits of healing and other supportive benefits. With the use of your weapon and shield you can still hold your own. You progress for greater holy healing and smiting abilities.
+
+Geomancer: You manipulate the earth and obtain a familiar in a summoned stone. The summoned stone acts as an obstacle, provides benefits and can even perform attacks. As you progress, you can summon up to three summoned stone familiars that provide greater crowd control benefits.
+
+Hexer: Through strategic use of your hexes, you can deal heavy damage to powerful opponents and progress to dealing even greater damage and affecting the outcoume of many situations in your favor.
+
+Knight: You are the tank with more starting defense than any other warrior. You also possess abilities to take the brunt of the damage to protect others. Your progression gives you greater control over protecting your allies while damaging your enemies. 
+
+Marshal: You define the term larger than life. Your mere presence in battle and the ultimate justice you serve will be any monster's undoing. You reactively deal damage to any monster near you that dare attack your companions. As you progress, your vigilance and area of effect damage grows more deadly. Your epic and just retribution even extends to hinder the Overlord himself.
+
+Monk: 
+
+Necromancer: You reanimate the dead and heal whenever you kill an enemy. With your Reanimate familiar, you gain even more attack and progress to increase the power and abilities of your Reanimate familiar.
+
+Prophet: Your insight provides you and/or chosen heroes powerful healing properties. You progress to provide even more healing support as well as mitigating attack results and even cheating defeat.
+
+Runemaster: Through the use of your magic rune, you deal heavy damage with great potential to pierce armor and progress to levels of even greater damage and wide area effects that damage multiple targets.
+
+Shadow Walker: You can summon a Shadow Soul familiar which gains you indirect tactical bonuses in combat. You progress to use this Shadow Soul for many more benefits including more combat, searching, recovery, movement and even direct damage from the Shadow Soul.
+
+Skirmisher: You define dual-handed proficiency with incredible speed and the deadliest strikes. You progress to matchless speed and lethal killing efficiency with your two one-handed weapons.
+
+Spiritseaker: You can manipulate spiritual energy to modify defensive and combative results to support you and your party. You progress to change the odds ever more in your party's favor in combat.
+
+Stalker: Through strategic placement of traps, you influence a wide area providing advantages to attacks. You progress for further benefits to attacks as well as searching, recovering fatigue, gaining surges and even health and stamina.
+
+Steelcaster: 
+
+Thief: You're tricky, lucky and have a knack for sniffing out treasures. You progress your skills to work your way in, out or around matters more easily and increase damage to your foes.
+
+Treasure Hunter: Your wit and familiarity with your surroundings grants you damage benefits and unmatched treasure hunting advantages. You progress to become a more efficient fighter and treasure hunter.
+
+Watchman: 
+
+Wildlander: You are incredibly nimble, and deadly at long distance combat due to your mastery with the bow. You progress to evade enemies more effectively and even deadlier from an even farther distance.

@@ -502,7 +502,7 @@ func loadDescriptions() error {
 	for _, line := range strings.Split(string(dat), "\n") {
 		arr := strings.Split(line, ": ")
 		if len(arr) != 2 {
-			return fmt.Errorf("unexpected line format: %s", line)
+			continue
 		}
 		class := arr[0]
 		desc := arr[1]
