@@ -386,7 +386,11 @@ table th.class, table td.class{
 	max-width:calc((100vw - 28px - 30px) / 14);
 }
 
-table th.search, table td.search {
+table th.hSearch, table td.hSearch {
+	width:600px;
+}
+
+table th.cSearch, table td.cSearch {
 	/*min-width:calc(9 * 125px);*/
 	/*max-width:calc(9 * 125px);*/
 	min-width:calc(13 * (100vw - 28px - 30px) / 14);

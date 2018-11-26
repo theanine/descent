@@ -150,8 +150,9 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 	fmt.Fprintf(w, "<td class=\"num willpower\"><div><select id=\"selectWillpower\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></td>\n")
 	fmt.Fprintf(w, "<td class=\"num knowledge\"><div><select id=\"selectKnowledge\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></td>\n")
 	fmt.Fprintf(w, "<td class=\"num awareness\"><div><select id=\"selectAwareness\" onchange=\"trigger(this)\"><option value=\"\"></option></select></div></td>\n")
-	fmt.Fprintf(w, "<td class=\"ability\"><div></div></td>\n")
-	fmt.Fprintf(w, "<td class=\"heroic\"><div></div></td>\n")
+	fmt.Fprintf(w, "<td class=\"hSearch\" colspan=\"2\"><div class=\"search\">\n")
+	fmt.Fprintf(w, "<input type=\"text\" class=\"search-input\" id=\"search-input\" name=\"search\" placeholder=\"Search\" onkeyup=\"search()\"/>\n")
+	fmt.Fprintf(w, "<input type=\"submit\" class=\"search-submit\"/></div></td>\n")
 	fmt.Fprintf(w, "</tr></thead><tbody class=\"heroes\">\n\n")
 }
 

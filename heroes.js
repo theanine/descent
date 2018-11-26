@@ -57,7 +57,7 @@ function doSearch() {
 	if (input == null)
 		return;
 	var filter = input.value.toUpperCase();
-	$("tr", "#classTable").each(function(i, tr){
+	$("tr", "table").each(function(i, tr){
 		var trHide = null
 		$(tr).find('img.equipment').each(function(j, img){
 			if (trHide == null) {
@@ -93,6 +93,44 @@ function doSearch() {
 				trHide = false
 			} else {
 				$(img).hide();
+			}
+		});
+		$(tr).find('td.ability').each(function(j, td){
+			if (trHide == null) {
+				trHide = true
+			}
+			var str = $(td).html();
+			// first create an element and add the string as its HTML
+			var container = $('<div>').html(str);
+			// then use .replaceWith(function()) to modify the HTML structure
+			container.find('img').replaceWith(function() { return this.alt; })
+			// finally get the HTML back as string
+			var text = container.html();
+			
+			if (filter == "") {
+				trHide = false
+			} else if (typeof text === "undefined") {
+			} else if (text.toUpperCase().indexOf(filter) > -1) {
+				trHide = false
+			}
+		});
+		$(tr).find('td.heroic').each(function(j, td){
+			if (trHide == null) {
+				trHide = true
+			}
+			var str = $(td).html();
+			// first create an element and add the string as its HTML
+			var container = $('<div>').html(str);
+			// then use .replaceWith(function()) to modify the HTML structure
+			container.find('img').replaceWith(function() { return this.alt; })
+			// finally get the HTML back as string
+			var text = container.html();
+			
+			if (filter == "") {
+				trHide = false
+			} else if (typeof text === "undefined") {
+			} else if (text.toUpperCase().indexOf(filter) > -1) {
+				trHide = false
 			}
 		});
 		if (trHide) {
@@ -263,4 +301,125 @@ function myFunction() {
     var popup = document.getElementById("myPopup");
     popup.classList.toggle("show");
 }
+
+function rateSpeed(speed) {
+	return (speed - 4);
+}
+
+function rateStamina(stamina) {
+	return (stamina - 4);
+}
+
+function rateHP(hp) {
+	return (hp - 12)/2;
+}
+
+function rateDef(def) {
+	switch (def) {
+		case 1: // brown
+			return -1;
+		case 2: // grey
+			return 0;
+		case 3: // black
+			return 1;
+	}
+}
+
+function rateAttr(arch, might, know, will, aware) {
+	var total = might + know + will + aware;
+	if (might == 3 && know == 3 && will == 3 && aware == 3) {
+		return 1;
+	}
+	if (total != 11) {
+		return null;	// error
+	}
+	if (arch == "W" && might < 3) {
+		return null;	// error
+	}
+	if (arch == "M" && know < 3) {
+		return null;	// error
+	}
+	if (arch == "S" && aware < 3) {
+		return null;	// error
+	}
+	if (arch == "H" && will < 3) {
+		return null;	// error
+	}
+	return 0;
+}
+
+function colorizeCells(cells, red, orange, yellow, green, dkGreen) {
+	for (var i=0, len=cells.length; i<len; i++) {
+		val = parseInt(cells[i].innerHTML, 10)
+		if (val <= red) {
+			cells[i].style.backgroundColor = '#f8696b';
+		} else if (val == orange) {
+			cells[i].style.backgroundColor = '#fbaa77' ;
+		} else if (val == yellow) {
+			cells[i].style.backgroundColor = '#ffeb84' ;
+		} else if (val == green) {
+			cells[i].style.backgroundColor = '#cbdc81' ;
+		} else if (val >= dkGreen) {
+			cells[i].style.backgroundColor = '#63be7b' ;
+		}
+	}
+}
+
+function colorizeAbilityFeat() {
+	// var vals = [];
+	$('tbody.heroes > tr').each(function(index, tr) {
+		var total = 0;
+		var speed = parseInt($(tr).find("td.speed").text(), 10);
+		total += rateSpeed(speed);
+		var hp = parseInt($(tr).find("td.health").text(), 10);
+		total += rateHP(hp);
+		var stamina = parseInt($(tr).find("td.stamina").text(), 10);
+		total += rateStamina(stamina);
+		var def = parseInt($(tr).find("td.dice > div.die").text(), 10);
+		total += rateDef(def);
+		var name = $(tr).find("td.hero").text();
+		var arch = $(tr).find("td.image div.divImage").text();
+		var might = parseInt($(tr).find("td.might").text(), 10);
+		var know = parseInt($(tr).find("td.knowledge").text(), 10);
+		var will = parseInt($(tr).find("td.willpower").text(), 10);
+		var aware = parseInt($(tr).find("td.awareness").text(), 10);
+		total += rateAttr(arch, might, know, will, aware);
+		switch (total) {
+			case 2:
+				$(tr).find("td.ability").css('backgroundColor', '#f8696b');
+				$(tr).find("td.heroic").css('backgroundColor', '#f8696b');
+				break;
+			case 1:
+				$(tr).find("td.ability").css('backgroundColor', '#fbaa77');
+				$(tr).find("td.heroic").css('backgroundColor', '#fbaa77');
+				break;
+			case 0:
+				$(tr).find("td.ability").css('backgroundColor', '#FFFFFF');
+				$(tr).find("td.heroic").css('backgroundColor', '#FFFFFF');
+				break;
+			case -1:
+				$(tr).find("td.ability").css('backgroundColor', '#FFEB84');
+				$(tr).find("td.heroic").css('backgroundColor', '#FFEB84');
+				break;
+			case -2:
+				$(tr).find("td.ability").css('backgroundColor', '#CBDC81');
+				$(tr).find("td.heroic").css('backgroundColor', '#CBDC81');
+				break;
+			case -3:
+				$(tr).find("td.ability").css('backgroundColor', '#97CD7E');
+				$(tr).find("td.heroic").css('backgroundColor', '#97CD7E');
+				break;
+			case -5:
+				$(tr).find("td.ability").css('backgroundColor', '#63BE7B');
+				$(tr).find("td.heroic").css('backgroundColor', '#63BE7B');
+				break;
+		}
+	});
+	// vals = uniquesort(vals);
+	// alert(vals);
+	// dkG  G  dkY  Y  W   O  R
+	// [-5, -3, -2, -1, 0, 1, 2];
+}
+colorizeAbilityFeat();
+
 // </SCRIPT>

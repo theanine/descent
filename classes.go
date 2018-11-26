@@ -535,7 +535,7 @@ func classesGen() {
 	})
 
 	// dumpClasses()
-	dumpSkills()
+	// dumpSkills()
 
 	f, err := os.Create(classesHtml)
 	if err != nil {
@@ -675,7 +675,7 @@ Send your heroes to get some Coufee and they'll be adventuring in no time!`)
 		fmt.Fprintf(w, "<option value=\"%s\">%s</option>\n", strings.ToLower(k), k)
 	}
 	fmt.Fprintf(w, "</select></div></td>\n")
-	fmt.Fprintf(w, "<td class=\"search\" colspan=\"2\"><div class=\"search\">\n")
+	fmt.Fprintf(w, "<td class=\"cSearch\" colspan=\"2\"><div class=\"search\">\n")
 	fmt.Fprintf(w, "<input type=\"text\" class=\"search-input\" id=\"search-input\" name=\"search\" placeholder=\"Search\" onkeyup=\"search()\"/>\n")
 	fmt.Fprintf(w, "<input type=\"submit\" class=\"search-submit\"/></div></td>\n")
 	fmt.Fprintf(w, "</tr></thead><tbody class=\"classes\">\n\n")
