@@ -31,6 +31,14 @@ function trigger(select)
 	showHideArrows($(select));
 	showHideRows();
 	doSearch();
+	addJumps();
+	loadSelects();
+	/*
+	showHideRows();
+	addJumps();
+	loadSelects();
+	doSearch();
+	*/
 }
 
 function onload()
@@ -39,6 +47,8 @@ function onload()
 		showHideArrows($(this));
 	});
 	showHideRows();
+	addJumps();
+	loadSelects();
 	// $("#heroTable").tablesorter();
 	
 	if ($("#heroTable").length) {
@@ -60,7 +70,7 @@ function doSearch() {
 	$("tr", "table").each(function(i, tr){
 		var trHide = null
 		// CLASSES
-		$(tr).find('img.equipment').each(function(j, img){
+		$(tr).find('img.equipment,img.skill').each(function(j, img){
 			if (trHide == null) {
 				trHide = true
 			}
@@ -68,33 +78,11 @@ function doSearch() {
 			var text = $(img).attr("text");
 			var ranged = $(img).attr("ranged");
 			var traits = $(img).attr("traits");
-			if (filter == "") {
-				$(img).show();
-				trHide = false
-			} else if (typeof alt === "undefined" || typeof text === "undefined" || typeof ranged === "undefined" || typeof traits === "undefined") {
-				$(img).hide();
-			} else if (alt.toUpperCase().indexOf(filter) > -1 || text.toUpperCase().indexOf(filter) > -1 || ranged.toUpperCase().indexOf(filter) > -1 || traits.toUpperCase().indexOf(filter) > -1) {
-				$(img).show();
-				trHide = false
-			} else {
-				$(img).hide();
-			}
-		});
-		$(tr).find('img.skill').each(function(j, img){
-			if (trHide == null) {
-				trHide = true
-			}
-			var alt = $(img).attr("alt");
-			var text = $(img).attr("text");
-			var ranged = $(img).attr("ranged");
-			var traits = $(img).attr("traits");
-			if (filter == "") {
-				$(img).show();
-				trHide = false
-			} else if ( (typeof alt !== "undefined" && alt.toUpperCase().indexOf(filter) > -1) ||
-						(typeof text !== "undefined" && text.toUpperCase().indexOf(filter) > -1) ||
-						(typeof ranged !== "undefined" && ranged.toUpperCase().indexOf(filter) > -1) ||
-						(typeof traits !== "undefined" && traits.toUpperCase().indexOf(filter) > -1)) {
+			if ((filter == "") ||
+				(typeof alt !== "undefined" && alt.toUpperCase().indexOf(filter) > -1) ||
+				(typeof type !== "undefined" && type.toUpperCase().indexOf(filter) > -1) ||
+				(typeof ranged !== "undefined" && ranged.toUpperCase().indexOf(filter) > -1) ||
+				(typeof traits !== "undefined" && traits.toUpperCase().indexOf(filter) > -1)) {
 				$(img).show();
 				trHide = false
 			} else {
@@ -102,7 +90,7 @@ function doSearch() {
 			}
 		});
 		// HEROES
-		$(tr).find('td.ability').each(function(j, td){
+		$(tr).find('td.ability,td.heroic').each(function(j, td){
 			if (trHide == null) {
 				trHide = true
 			}
@@ -121,26 +109,7 @@ function doSearch() {
 				trHide = false
 			}
 		});
-		$(tr).find('td.heroic').each(function(j, td){
-			if (trHide == null) {
-				trHide = true
-			}
-			var str = $(td).html();
-			// first create an element and add the string as its HTML
-			var container = $('<div>').html(str);
-			// then use .replaceWith(function()) to modify the HTML structure
-			container.find('img').replaceWith(function() { return this.alt; })
-			// finally get the HTML back as string
-			var text = container.html();
-			
-			if (filter == "") {
-				trHide = false
-			} else if (typeof text === "undefined") {
-			} else if (text.toUpperCase().indexOf(filter) > -1) {
-				trHide = false
-			}
-		});
-		// OVERLORD
+		// OVERLORD / PLOT
 		$(tr).find('div.cardContainer').each(function(j, div){
 			if (trHide == null) {
 				trHide = true
@@ -148,12 +117,14 @@ function doSearch() {
 			var alt = $(div).find("img").attr("alt");
 			var type = $(div).find("img").attr("type");
 			var text = $(div).find("img").attr("text");
-			if (filter == "") {
-				$(div).show();
-				trHide = false
-			} else if (typeof alt === "undefined" || typeof type === "undefined" || typeof text === "undefined") {
-				$(div).hide();
-			} else if (alt.toUpperCase().indexOf(filter) > -1 || type.toUpperCase().indexOf(filter) > -1 || text.toUpperCase().indexOf(filter) > -1) {
+			var exp = $(div).find("img").attr("exp");
+			var num = $(div).find("img").attr("num");
+			if ((filter == "") ||
+				(typeof alt !== "undefined" && alt.toUpperCase().indexOf(filter) > -1) ||
+				(typeof type !== "undefined" && type.toUpperCase().indexOf(filter) > -1) ||
+				(typeof text !== "undefined" && text.toUpperCase().indexOf(filter) > -1) ||
+				(typeof exp !== "undefined" && exp.toUpperCase().indexOf(filter) > -1) ||
+				(typeof num !== "undefined" && num.toUpperCase().indexOf(filter) > -1)) {
 				$(div).show();
 				trHide = false
 			} else {
@@ -169,6 +140,8 @@ function doSearch() {
 function search() {
 	showHideRows();
 	doSearch();
+	addJumps();
+	loadSelects();
 }
 
 function showHideArrows(select)
@@ -239,8 +212,13 @@ function specialJump(e, jump)
 function showHideRows()
 {
 	$("tr", "#heroTable").each(function(index, tr){showHideRow(tr)});
-	
 	$("tr", "#classTable").each(function(index, tr){showHideRow(tr)});
+	$("tr", "#overlordTable").each(function(index, tr){showHideRow(tr)});
+	$("tr", "#plotTable").each(function(index, tr){showHideRow(tr)});
+}
+
+function addJumps()
+{
 	var td = $("#classTable tbody").find("tr:visible:first").find(".skill");
 	var card = td.find("img.skill");
 	var cardWidth = Math.floor(td.width() / card.width());
@@ -250,7 +228,6 @@ function showHideRows()
 	$("#classTable tbody").find("tr:visible:first").find(".equipment img.equipment").each(function(index, e){specialJump(e, "jumpDown")});
 	$("#classTable tbody").find("tr:visible:last").find(".equipment img.equipment").each(function(index, e){specialJump(e, "jumpUp")});
 
-	$("tr", "#overlordTable").each(function(index, tr){showHideRow(tr)});
 	var td = $("#overlordTable tbody").find("tr:visible:first").find(".cards");
 	var card = td.find("div.cardContainer");
 	var cardWidth = Math.floor(td.width() / card.width());
@@ -258,7 +235,12 @@ function showHideRows()
 	$("#overlordTable tbody").find("tr:visible:last").find(".cards div.cardContainer").each(function(index, e){specialJump(e, "jumpUp")});
 	$("#overlordTable tbody").find("tr:visible").find(".cards div.cardContainer:visible:eq("+(cardWidth-1)+")").each(function(index, e){specialJump(e, "jumpLeft")});
 
-	loadSelects();
+	var td = $("#plotTable tbody").find("tr:visible:first").find(".cards");
+	var card = td.find("div.cardContainer");
+	var cardWidth = Math.floor(td.width() / card.width());
+	$("#plotTable tbody").find("tr:visible:first").find(".cards div.cardContainer").each(function(index, e){specialJump(e, "jumpDown")});
+	$("#plotTable tbody").find("tr:visible:last").find(".cards div.cardContainer").each(function(index, e){specialJump(e, "jumpUp")});
+	$("#plotTable tbody").find("tr:visible").find(".cards div.cardContainer:visible:eq("+(cardWidth-1)+")").each(function(index, e){specialJump(e, "jumpLeft")});
 }
 
 function uniquesort(arr) {

@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-const version = "v3.3.2.181125"
+const version = "v3.4.0.181129"
 const downloadEnabled = false
 
 func usage() {
@@ -41,5 +41,8 @@ func main() {
 	}
 	if len(os.Args) == 1 || os.Args[1] == "-o" || os.Args[1] == "--overlord" {
 		overlordGen()
+	}
+	if len(os.Args) == 1 || os.Args[1] == "-p" || os.Args[1] == "--plot" {
+		plotGen()
 	}
 }
