@@ -327,8 +327,7 @@ Send your overlord to get some Coufee and they'll be adventuring in no time!`)
 }
 
 func outputPTableRow(w *bufio.Writer, p plot) {
-	// fmt.Fprintf(w, "<tr class=\"%s\" style=\"display:none;\">\n", strings.ToLower(p.name))
-	fmt.Fprintf(w, "<tr class=\"%s %s\">\n", strings.ToLower(p.name), strings.ToLower(strings.Replace(p.arch, " ", "-", -1)))
+	fmt.Fprintf(w, "<tr class=\"%s %s\" style=\"display:none;\">\n", strings.ToLower(p.name), strings.ToLower(strings.Replace(p.arch, " ", "-", -1)))
 	fmt.Fprintf(w, "<td class=\"archetype\">")
 	fmt.Fprintf(w, "<span title=\"%s\">", html.EscapeString(p.description))
 	fmt.Fprintf(w, "<a href=\"%s\" class=\"plot\">", p.url)
