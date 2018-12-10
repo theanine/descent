@@ -1,0 +1,143 @@
+html, body { height: 100%; padding: 0; margin: 0; overflow:hidden;}
+div { float: left; }
+
+div#back {
+    background: #000;
+    opacity:0.5;
+    position:absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index:-1;
+}
+
+@font-face {
+	font-family: 'Windlass';
+	src: url('fonts/Windlass.ttf'); 
+	src: 
+		local('Windlass'),
+		local('Windlass-Regular'),
+		url('fonts/Windlass.ttf') 
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'Garamond';
+	src: url('fonts/Gara_Scenario_Desc.ttf'); 
+	src: 
+		local('Gara Scenario Descent'),
+		local('Gara-Scenario-Descent-Regular'),
+		url('fonts/Gara_Scenario_Desc.ttf') 
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'Valdemar';
+	src: url('fonts/valdemar.ttf'); 
+	src: 
+		local('Valdemar'),
+		local('Valdemar-Regular'),
+		url('fonts/valdemar.ttf') 
+		format('truetype');
+}
+
+div.stats {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 144px;
+	height: 72px;
+}
+
+div.health, div.fatigue {
+	font-size: 20px;
+	font-family: 'Windlass';
+	
+	bottom: 0px;
+	width: 50%;
+	height: 100%;
+	text-align: center;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+div.fatigue {
+	left: 72px;
+}
+
+img.health, img.fatigue {
+	bottom: 0px;
+	left: 0px;
+}
+
+div.search {
+	position: relative;
+	width: 50%;
+	height: 50%;
+	white-space: nowrap;
+	display: table;
+}
+.search-input {
+	height: 18px;
+	width: 100%;
+	font-weight: bold;
+	-moz-box-shadow: 0px 0px 0px rgba(255,255,255,0.1); /* Firefox */
+	-webkit-box-shadow: 0px 0px 0px rgba(255,255,255,0.1); /* Safari, Chrome */
+	box-shadow: 0px 0px 0px rgba(255,255,255,0.1); /* CSS3 */
+}
+.search-input:focus {outline: none;}
+.search-submit {
+	width: 13px;
+	height: 13px;
+	border: none;
+	background: url(lib/dark-nav-buttons/mag-glass.png) no-repeat;
+	display: block;
+	position: absolute;
+	text-indent: -9999em;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	right: 5px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+}
+
+.myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block;
+}
+
+.myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+
+.cardImg {
+	transform: scale(0.48);
+}

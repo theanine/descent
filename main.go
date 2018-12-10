@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-const version = "v3.4.0.181129"
+const version = "v4.0.0.181218"
 const downloadEnabled = false
 
 func usage() {
@@ -15,7 +15,10 @@ func usage() {
 Options:
   -h, --heroes     Generate heroes.html
   -c, --classes    Generate classes.html
-  -o, --overlord   Generate overlord.html`)
+  -o, --overlord   Generate overlord.html
+  -p, --plot       Generate plot.html
+  -i, --items      Generate items.html
+  -k, --console    Generate console.html`)
 	os.Exit(1)
 }
 
@@ -44,5 +47,11 @@ func main() {
 	}
 	if len(os.Args) == 1 || os.Args[1] == "-p" || os.Args[1] == "--plot" {
 		plotGen()
+	}
+	if len(os.Args) == 1 || os.Args[1] == "-i" || os.Args[1] == "--items" {
+		itemsGen()
+	}
+	if len(os.Args) == 1 || os.Args[1] == "-k" || os.Args[1] == "--console" {
+		consoleGen()
 	}
 }
