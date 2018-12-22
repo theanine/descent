@@ -125,6 +125,18 @@
 
 }
 /*.vertical-list li { margin: 0 0 5px; }*/
-.vertical-list li { margin: 25px; }
+.vertical-list li {
+	margin: 25px;
+}
 /*.vertical-list li:last-child { margin: 0; }*/
 /*.vertical-list li:last-child { margin: 20; }*/
+
+/* fixes for mobile*/
+@media only screen and (max-device-width: 1024px) {
+	.vertical-list {
+		width: 500px;
+	}
+	.vertical-list li {
+		margin: 50px;
+	}
+}
