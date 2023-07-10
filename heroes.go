@@ -23,6 +23,7 @@ type hero struct {
 	expansion   string
 	description string
 	img         string // html (may contain img tags)
+	cardImg     string
 	die         string
 	expImg      string
 	ck          bool
@@ -37,7 +38,7 @@ type hero struct {
 	ability     string // html (may contain img tags)
 	heroic      string // html (may contain img tags)
 	quote       string
-	backstory   string
+	biography   string
 }
 
 var heroes []hero
@@ -163,17 +164,24 @@ func outputHTable(w *bufio.Writer) {
 		exp := expansions[strings.ToLower(h.expansion)]
 		fmt.Fprintf(w, "<tr class=\"%s %s %s %s\" style=\"display:none;\">\n", strings.ToLower(h.archetype), h.die, h.trClass, exp)
 		fmt.Fprintf(w, "<td class=\"expansion\">%s</td>\n", h.expImg)
-		fmt.Fprintf(w, "<td class=\"hero\"><a href=\"%s\">%s</a></td>\n", h.url, h.name)
+		fmt.Fprintf(w, "<td class=\"hero\">")
+		if h.biography == "" {
+			fmt.Fprintf(w, "<span title=\"&quot;%s&quot;\" class=\"quote\">", h.quote)
+		} else {
+			fmt.Fprintf(w, "<span title=\"&quot;%s&quot;\n\n%s\" class=\"quote\">", h.quote, h.biography)
+		}
+		fmt.Fprintf(w, "<a href=\"%s\">%s</a></td>\n", h.url, h.name)
 		// fmt.Fprintf(w, "<td class=\"image\"><img src=\"%s\"></td>\n", image+".png")
 		fmt.Fprintf(w, "<td class=\"image\">")
-		if h.backstory == "" {
-			fmt.Fprintf(w, "<span title=\"%s\" class=\"quote\">", h.quote)
-		} else {
-			fmt.Fprintf(w, "<span title=\"%s\n\n%s\" class=\"quote\">", h.quote, h.backstory)
-		}
-		fmt.Fprintf(w, "<div class=\"divImage\">")
+		// if h.biography == "" {
+		// 	fmt.Fprintf(w, "<span title=\"%s\" class=\"quote\">", h.quote)
+		// } else {
+		// 	fmt.Fprintf(w, "<span title=\"%s\n\n%s\" class=\"quote\">", h.quote, h.biography)
+		// }
+		fmt.Fprintf(w, "<div class=\"divImage heroCardContainer\">")
 		fmt.Fprintf(w, "<img src=\"%s\" class=\"hero\">", h.img)
 		fmt.Fprintf(w, "<img src=\"%s\" class=\"archetype\">", "classes/"+strings.ToLower(h.archetype)+".png")
+		fmt.Fprintf(w, "<img src=\"%s\" class=\"heroCard\">", h.cardImg)
 		fmt.Fprintf(w, "%c</div>", h.archetype[0])
 		fmt.Fprintf(w, "</span></td>\n")
 		fmt.Fprintf(w, "<td class=\"num speed\">%d</td>\n", h.speed)
@@ -205,7 +213,9 @@ func outputHTable(w *bufio.Writer) {
 }
 
 func outputHFooter(w *bufio.Writer) {
-	outputFooter(w, "heroes", 13)
+	outputLFooter(w, "heroes")
+	fmt.Fprintf(w, "<td class=\"legend\"><div class=\"legend\">&nbsp;Weak &rarr; Strong&nbsp;</div></td>\n")
+	outputRFooter(w, 12)
 }
 
 func fixHeroes() {
@@ -227,14 +237,21 @@ func fixHeroes() {
 		}
 
 		// h.img
-		h.img = "heroes-small/" + strings.Replace(h.name, " the ", " The ", -1)
-		h.img = strings.Replace(h.img, " of ", " Of ", -1)
-		h.img = strings.Replace(h.img, " and ", " And ", -1)
-		h.img = strings.Replace(h.img, " ", "", -1)
+		imgFile := strings.Replace(h.name, " the ", " The ", -1)
+		imgFile = strings.Replace(imgFile, " of ", " Of ", -1)
+		imgFile = strings.Replace(imgFile, " and ", " And ", -1)
+		imgFile = strings.Replace(imgFile, " ", "", -1)
 		if h.ck {
-			h.img += "CK"
+			imgFile += "CK"
 		}
-		h.img += ".png"
+		imgFile += ".png"
+		h.img = "heroes-small/" + imgFile
+
+		// h.cardImg
+		h.cardImg = "heroes/" + imgFile
+		if _, err := os.Stat("errata/" + imgFile); !os.IsNotExist(err) {
+			h.cardImg = "errata/" + imgFile
+		}
 
 		// h.name
 		if h.ck {
@@ -255,7 +272,7 @@ func fixHeroes() {
 
 		// h.expImg
 		h.expImg = ""
-		imgFile := "expansions/" + strings.Replace(h.expansion, " ", "_", -1) + ".svg"
+		imgFile = "expansions/" + strings.Replace(h.expansion, " ", "_", -1) + ".svg"
 		if _, err := os.Stat(imgFile); !os.IsNotExist(err) {
 			h.expImg = fmt.Sprintf("<img src=\"%s\" class=\"expansion\">", imgFile)
 		} else if abbr, ok := expansions[strings.ToLower(h.expansion)]; ok {
@@ -264,17 +281,17 @@ func fixHeroes() {
 
 		// h.quote
 		h.quote = html.EscapeString(h.quote)
-		h.quote = strings.Replace(h.backstory, "’", "'", -1)
+		h.quote = strings.Replace(h.quote, "’", "'", -1)
 		h.quote = strings.Replace(h.quote, "&#34;", "", -1)
 		h.quote = strings.Replace(h.quote, "“", "", -1)
 		h.quote = strings.Replace(h.quote, "”", "", -1)
 
-		// h.backstory
-		h.backstory = html.EscapeString(h.backstory)
-		h.backstory = strings.Replace(h.backstory, "’", "'", -1)
-		h.backstory = strings.Replace(h.backstory, "&#34;", "", -1)
-		h.backstory = strings.Replace(h.backstory, "“", "", -1)
-		h.backstory = strings.Replace(h.backstory, "”", "", -1)
+		// h.biography
+		h.biography = html.EscapeString(h.biography)
+		h.biography = strings.Replace(h.biography, "’", "'", -1)
+		h.biography = strings.Replace(h.biography, "&#34;", "", -1)
+		h.biography = strings.Replace(h.biography, "“", "", -1)
+		h.biography = strings.Replace(h.biography, "”", "", -1)
 
 		heroes[i] = h
 	}
@@ -296,8 +313,11 @@ func tdToHeroic(td *goquery.Selection) string {
 	return heroic
 }
 
-func heroFromTd(td *goquery.Selection) hero {
+func heroFromTbody(tbody *goquery.Selection) hero {
+	th := tbody.Find("th")
+	td := tbody.Find("td")
 	var h hero
+	h.name = strings.TrimSpace(th.Eq(0).Text())
 	h.img, _ = td.Eq(0).Find("a").Attr("href")
 	h.speed = utils.MustAtoi(td.Eq(2).Text())
 	h.health = utils.MustAtoi(td.Eq(5).Text())
@@ -345,7 +365,7 @@ func heroesGen() {
 					}
 				} else if foundBio && goquery.NodeName(c) == "p" {
 					foundBio = false
-					meta.backstory = strings.TrimSpace(c.Text())
+					meta.biography = strings.TrimSpace(c.Text())
 				}
 			})
 
@@ -365,27 +385,29 @@ func heroesGen() {
 				}
 			})
 
+			// Base
 			if characters.Length() > 0 {
-				base := characters.First().Find("td")
-				h := heroFromTd(base)
+				tbody := characters.First()
+				h := heroFromTbody(tbody)
 				h.url = heroUrl
-				h.name = meta.name
+				// h.name = meta.name
 				h.archetype = meta.archetype
 				h.expansion = meta.expansion
 				h.description = meta.description
-				h.backstory = meta.backstory
+				h.biography = meta.biography
 				heroes = append(heroes, h)
 			}
 
+			// CK
 			if characters.Length() > 1 {
-				ck := characters.Eq(1).Find("td")
-				h := heroFromTd(ck)
+				tbody := characters.Eq(1)
+				h := heroFromTbody(tbody)
 				h.url = heroUrl
-				h.name = meta.name
+				// h.name = meta.name
 				h.archetype = meta.archetype
 				h.expansion = "Second Edition Conversion Kit"
 				h.description = meta.description
-				h.backstory = meta.backstory
+				h.biography = meta.biography
 				heroes = append(heroes, h)
 			}
 		}

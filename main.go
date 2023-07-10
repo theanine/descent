@@ -13,6 +13,7 @@ func usage() {
 	fmt.Println(`Usage: heroes <OPTION>
 
 Options:
+  -s, --serve      Start local server on localhost:8000
   -h, --heroes     Generate heroes.html
   -c, --classes    Generate classes.html
   -o, --overlord   Generate overlord.html
@@ -23,6 +24,7 @@ Options:
 }
 
 func serve() {
+	fmt.Printf("Server started on localhost:8000\n")
 	http.Handle("/", http.FileServer(http.Dir("./")))
 	if err := http.ListenAndServe(":8000", nil); err != nil {
 		panic(err)
@@ -30,28 +32,37 @@ func serve() {
 }
 
 func main() {
-	if len(os.Args) < 1 || len(os.Args) > 2 {
+	if len(os.Args) < 1 {
 		usage()
 	}
-	if len(os.Args) == 2 && (os.Args[1] == "-s" || os.Args[1] == "--serve") {
+	startServer := false
+	for i, arg := range os.Args {
+		if i == 0 {
+			continue
+		}
+		if arg == "-s" || arg == "--serve" {
+			startServer = true
+		}
+		if arg == "-h" || arg == "--heroes" {
+			heroesGen()
+		}
+		if arg == "-c" || arg == "--classes" {
+			classesGen()
+		}
+		if arg == "-o" || arg == "--overlord" {
+			overlordGen()
+		}
+		if arg == "-p" || arg == "--plot" {
+			plotGen()
+		}
+		// if arg == "-i" || arg == "--items" {
+		// 	itemsGen()
+		// }
+		if arg == "-k" || arg == "--console" {
+			consoleGen()
+		}
+	}
+	if startServer == true {
 		serve()
-	}
-	if len(os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--heroes" {
-		heroesGen()
-	}
-	if len(os.Args) == 1 || os.Args[1] == "-c" || os.Args[1] == "--classes" {
-		classesGen()
-	}
-	if len(os.Args) == 1 || os.Args[1] == "-o" || os.Args[1] == "--overlord" {
-		overlordGen()
-	}
-	if len(os.Args) == 1 || os.Args[1] == "-p" || os.Args[1] == "--plot" {
-		plotGen()
-	}
-	if len(os.Args) == 1 || os.Args[1] == "-i" || os.Args[1] == "--items" {
-		itemsGen()
-	}
-	if len(os.Args) == 1 || os.Args[1] == "-k" || os.Args[1] == "--console" {
-		consoleGen()
 	}
 }

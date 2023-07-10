@@ -1,0 +1,49 @@
+  {
+    "name": "Gust",
+    "points": 224,
+    "archetype": "Mage",
+    "class": "Elementalist",
+    "xp cost": 9,
+    "rules": "Exhaust this card during your turn to choose another friendly figure within 3 spaces of you. Move that figure up to a number of spaces equal to the number of exhausted Elemental cards.",
+    "fatigue cost": "1",
+    "expansion": "Lost Legends",
+    "image": "class-skills/mage-elementalist-ll-gust.png",
+    "xws": "gust"
+  },
+  {
+    "name": "Tide",
+    "points": 235,
+    "archetype": "Mage",
+    "class": "Elementalist",
+    "xp cost": 9,
+    "rules": "Exhaust this card when you perform an attack, after dice are rolled. A monster adjacent to the target space suffers Hearts equal to the number of exhausted Elemental cards.",
+    "fatigue cost": "1",
+    "expansion": "Lost Legends",
+    "image": "class-skills/mage-elementalist-ll-tide-errata.png",
+    "xws": "tide"
+  },
+  {
+    "name": "Blaze",
+    "points": 220,
+    "archetype": "Mage",
+    "class": "Elementalist",
+    "xp cost": 9,
+    "rules": "Exhaust this card when you perform an attack, after dice are rolled. This attack gains Pierce X, where X is equal to the number of exhausted Elemental cards.",
+    "fatigue cost": "1",
+    "expansion": "Lost Legends",
+    "image": "class-skills/mage-elementalist-ll-blaze.png",
+    "xws": "blaze"
+  },
+  {
+    "name": "Grasp",
+    "points": 223,
+    "archetype": "Mage",
+    "class": "Elementalist",
+    "xp cost": 9,
+    "rules": "Exhaust this card during your turn to choose a non-lieutenant monster within 3 spaces of you. If the number of exhausted Elemental cards is equal to or greater than the number of spaces that monster occupies, it is Stunned.",
+    "fatigue cost": "1",
+    "expansion": "Lost Legends",
+    "image": "class-skills/mage-elementalist-ll-grasp.png",
+    "xws": "grasp"
+  },
+  

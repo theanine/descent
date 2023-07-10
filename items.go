@@ -1,17 +1,5 @@
 package main
 
-import (
-	"bufio"
-	"encoding/json"
-	"fmt"
-	"html"
-	"io/ioutil"
-	"log"
-	"os"
-	"sort"
-	"strings"
-)
-
 // shop.html
 // Name	Exp	Gold	Qty	Equip	AttackType	Dice	Traits	Text
 const itemsHtml = "items.html"
@@ -40,6 +28,7 @@ type Item struct {
 
 var items []Item
 
+/*
 func loadXML() error {
 	var shopItems []Item
 	dat1, err := ioutil.ReadFile("../d2e-master/data/shop-items.js")
@@ -355,3 +344,4 @@ func outputITable(w *bufio.Writer) {
 func outputIFooter(w *bufio.Writer) {
 	outputFooter(w, "classes", 4)
 }
+*/

@@ -113,6 +113,32 @@ var expansions = map[string]string{
 	"zarihell lieutenant pack":          "LP",
 }
 
+var expImgs = map[string]string{
+	"base game":                "",
+	"bonds of the wild":        "Bonds_of_the_Wild.svg",
+	"crown of destiny":         "Crown_of_Destiny.svg",
+	"crusade of the forgotten": "Crusade_of_the_Forgotten.svg",
+	"dark elements":            "Dark_Elements.svg",
+	"forgotten souls":          "Forgotten_Souls.svg",
+	"guardians of deephall":    "Guardians_of_Deephall.svg",
+	"labyrinth of ruin":        "Labyrinth_of_Ruin.svg",
+	"lair of the wyrm":         "Lair_of_the_Wyrm.svg",
+	"lieutenant pack":          "Lieutenant_Pack.png",
+	"lost legends":             "",
+	"manor of ravens":          "Manor_of_Ravens.svg",
+	"mists of bilehall":        "Mists_of_Bilehall.svg",
+	"nature's ire":             "Nature's_Ire.svg",
+	"oath of the outcast":      "Oath_of_the_Outcast.svg",
+	"sands of the past":        "",
+	"shadow of nerekhall":      "Shadow_of_Nerekhall.svg",
+	"shards of everdark":       "Shards_of_Everdark.svg",
+	"stewards of the secret":   "Stewards_of_the_Secret.svg",
+	"the chains that rust":     "The_Chains_that_Rust.svg",
+	"the trollfens":            "The_Trollfens.svg",
+	"treaty of champions":      "Treaty_of_Champions.svg",
+	"visions of dawn":          "Visions_of_Dawn.svg",
+}
+
 func replaceIcon(src string) string {
 	if strings.Contains(src, "Heart.png") || strings.Contains(src, "Heart.svg") {
 		return "attributes/health.svg"
@@ -165,7 +191,7 @@ func replaceErrata(img *string) {
 	*img = file
 }
 
-func outputFooter(w *bufio.Writer, class string, cols int) {
+func outputLFooter(w *bufio.Writer, class string) {
 	fmt.Fprintf(w, "</tbody>\n")
 	fmt.Fprintf(w, "<tfoot class=\"%s\"><tr><td class=\"donateArea\">\n", class)
 	fmt.Fprintf(w, `<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -178,8 +204,11 @@ func outputFooter(w *bufio.Writer, class string, cols int) {
 	fmt.Fprintf(w, `<div class="popup" onclick="myFunction()"><img src="etc/donate-bitcoin.svg" class="donate">
 						<span class="popuptext" id="myPopup">Donations Address<br><br>
 						<img src="etc/bitcoin.png" width=200px height=200px><br><br>
-						3Q6y5d5c43Lj9maDr8dcZyXUFqxPcbBiEv</span></div></td>`)
+						1KiR9rZJgSrF8xN3f2A6ZKYGFYuv7oRYxn</span></div></td>`)
 	fmt.Fprintf(w, "<td class=\"support\"><img src=\"etc/support.png\"></td>\n")
+}
+
+func outputRFooter(w *bufio.Writer, cols int) {
 	fmt.Fprintf(w, "<td class=\"version\">%s</td>\n", version)
 	for i := 3; i < cols; i++ {
 		fmt.Fprintf(w, "<td></td>")
@@ -187,4 +216,9 @@ func outputFooter(w *bufio.Writer, class string, cols int) {
 	fmt.Fprintf(w, "</tr></tfoot></table>\n")
 	fmt.Fprintf(w, "</body></html>\n")
 	fmt.Fprintf(w, "<script type=\"text/javascript\" src=\"heroes.js?version=%s\"></script>\n", version)
+}
+
+func outputFooter(w *bufio.Writer, class string, cols int) {
+	outputLFooter(w, class)
+	outputRFooter(w, cols)
 }

@@ -82,11 +82,11 @@ func downloadPImages() {
 					panic(err)
 				}
 				conf.Outfile = outfile
-				if _, err := utils.Wget(conf); err != nil {
+				if _, _, err := utils.Wget(conf); err != nil {
 					if strings.Contains(conf.Url, "/revision/latest") {
 						conf.Url = strings.Split(conf.Url, "/revision/latest")[0]
 					}
-					if _, err := utils.Wget(conf); err != nil {
+					if _, _, err := utils.Wget(conf); err != nil {
 						panic(fmt.Sprintf("%s: %s\n", conf.Url, err))
 					}
 				}

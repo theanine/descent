@@ -87,8 +87,18 @@ span {
 	left: 0;
 }*/
 
-span.quote {
-	font-style: italic;
+td.legend {
+	width: 100%;
+}
+
+div.legend {
+    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: bold;
+    /* display: inline-block; */
+    background-color: white;
+    background-image: linear-gradient(to right, #f8696b, #fbaa77, #FFFFFF, #FFEB84, #CBDC81, #97CD7E, #63BE7B);
 }
 
 div.divImage {
@@ -203,51 +213,49 @@ img.class,img.skill,img.equipment,img.cards,img.overlord,img.plot {
 	margin: 0 auto;
 }
 
-img.skill:hover,img.equipment:hover,div.cardContainer:hover {
-	-webkit-transform: scale(2);
-	-moz-transform: scale(2);
-	-o-transform: scale(2);
-	transform: scale(2);
-	transition: all 0.4s;
-	-webkit-transition: all 0.4s;
-	z-index: 1;
+@media screen and (min-width: 1024px) {
+	img.skill:hover,img.equipment:hover,div.cardContainer:hover {
+		-webkit-transform: scale(2);
+		-moz-transform: scale(2);
+		-o-transform: scale(2);
+		transform: scale(2);
+		transition: all 0.4s;
+		-webkit-transition: all 0.4s;
+		z-index: 1;
+	}
+	div.cardContainer.jumpLeft:hover, img.skill.jumpLeft:hover, img.equipment.jumpLeft:hover {
+		-webkit-transform: scale(2) translateX(-25%);
+		-moz-transform: scale(2) translateX(-25%);
+		-o-transform: scale(2) translateX(-25%);
+		transform: scale(2) translateX(-25%);
+	}
+	div.cardContainer.jumpUp:hover, img.skill.jumpUp:hover, img.equipment.jumpUp:hover {
+		-webkit-transform: scale(2) translateY(-25%);
+		-moz-transform: scale(2) translateY(-25%);
+		-o-transform: scale(2) translateY(-25%);
+		transform: scale(2) translateY(-25%);
+	}
+	div.cardContainer.jumpUp.jumpLeft:hover, img.skill.jumpUp.jumpLeft:hover, img.equipment.jumpUp.jumpLeft:hover {
+		-webkit-transform: scale(2) translateY(-25%) translateX(-25%);
+		-moz-transform: scale(2) translateY(-25%) translateX(-25%);
+		-o-transform: scale(2) translateY(-25%) translateX(-25%);
+		transform: scale(2) translateY(-25%) translateX(-25%);
+	}
+	div.cardContainer.jumpDown:hover, img.skill.jumpDown:hover, img.equipment.jumpDown:hover {
+		-webkit-transform: scale(2) translateY(25%);
+		-moz-transform: scale(2) translateY(25%);
+		-o-transform: scale(2) translateY(25%);
+		transform: scale(2) translateY(25%);
+	}
+	div.cardContainer.jumpDown.jumpLeft:hover, img.skill.jumpDown.jumpLeft:hover, img.equipment.jumpDown.jumpLeft:hover {
+		-webkit-transform: scale(2) translateY(25%) translateX(-25%);
+		-moz-transform: scale(2) translateY(25%) translateX(-25%);
+		-o-transform: scale(2) translateY(25%) translateX(-25%);
+		transform: scale(2) translateY(25%) translateX(-25%);
+	}
 }
 
-div.cardContainer.jumpLeft:hover, img.skill.jumpLeft:hover, img.equipment.jumpLeft:hover {
-	-webkit-transform: scale(2) translateX(-25%);
-	-moz-transform: scale(2) translateX(-25%);
-	-o-transform: scale(2) translateX(-25%);
-	transform: scale(2) translateX(-25%);
-}
-
-div.cardContainer.jumpUp:hover, img.skill.jumpUp:hover, img.equipment.jumpUp:hover {
-	-webkit-transform: scale(2) translateY(-25%);
-	-moz-transform: scale(2) translateY(-25%);
-	-o-transform: scale(2) translateY(-25%);
-	transform: scale(2) translateY(-25%);
-}
-
-div.cardContainer.jumpUp.jumpLeft:hover, img.skill.jumpUp.jumpLeft:hover, img.equipment.jumpUp.jumpLeft:hover {
-	-webkit-transform: scale(2) translateY(-25%) translateX(-25%);
-	-moz-transform: scale(2) translateY(-25%) translateX(-25%);
-	-o-transform: scale(2) translateY(-25%) translateX(-25%);
-	transform: scale(2) translateY(-25%) translateX(-25%);
-}
-
-div.cardContainer.jumpDown:hover, img.skill.jumpDown:hover, img.equipment.jumpDown:hover {
-	-webkit-transform: scale(2) translateY(25%);
-	-moz-transform: scale(2) translateY(25%);
-	-o-transform: scale(2) translateY(25%);
-	transform: scale(2) translateY(25%);
-}
-
-div.cardContainer.jumpDown.jumpLeft:hover, img.skill.jumpDown.jumpLeft:hover, img.equipment.jumpDown.jumpLeft:hover {
-	-webkit-transform: scale(2) translateY(25%) translateX(-25%);
-	-moz-transform: scale(2) translateY(25%) translateX(-25%);
-	-o-transform: scale(2) translateY(25%) translateX(-25%);
-	transform: scale(2) translateY(25%) translateX(-25%);
-}
-img.agentBack{ 
+img.agentBack,img.heroCard{ 
 	display: none;
 }
 div.cardContainer:hover img.agentBack{
@@ -255,6 +263,21 @@ div.cardContainer:hover img.agentBack{
 	position: absolute;
 	top: 0;
 	right: calc(1 * (100vw - 28px - 30px) / 14);
+}
+div.heroCardContainer {
+	position: relative;
+	top: 0;
+	left: 0;
+	font-size: 0px;
+	display:inline-block;
+}
+div.heroCardContainer:hover img.heroCard{
+	display : block;
+	position: absolute;
+	top: 0;
+	/*left: calc(1 * (100vw - 28px - 30px) / 14);*/
+	left: 150px;
+	z-index: 1;
 }
 
 img.eItem {
@@ -310,6 +333,7 @@ img.die {
 	-webkit-transition: all 0.5s linear;
 	-o-transition: all 0.5s linear;
 	transition: all 0.5s linear;
+	z-index: -1;
 }
 
 .die:hover {
@@ -618,6 +642,7 @@ select.blank {
 }
 
 /* fixes for mobile*/
+/*
 @media only screen and (max-device-width: 1024px) {
 	img.skill:hover,img.equipment:hover {
 		-webkit-transform: scale(2.25);
@@ -660,9 +685,9 @@ select.blank {
 	table th.skill, table td.skill{
 		min-width:calc(9 * 250px / 3.2);
 		max-width:calc(9 * 250px / 3.2);
-	}*/
+	}
 }
-
+*/
 .ability img, .heroic img, .text img {
 	height: 0.8em;
 }
